@@ -2,29 +2,12 @@
 session_start();
 include_once 'dbconnect.php';
 
-if(isset($_SESSION['user'])!="")
+if(!isset($_SESSION['user']))
 {
- header("Location: home.php");
+ header("Location: index.php");
 }
-if(isset($_POST['btn-login']))
-{
- $email = mysql_real_escape_string($_POST['email']);
- $upass = mysql_real_escape_string($_POST['pass']);
- $res=mysql_query("SELECT * FROM users WHERE email='$email'");
- $row=mysql_fetch_array($res);
- if($row['password']==md5($upass))
- {
-  $_SESSION['user'] = $row['user_id'];
-  header("Location: home.php");
- }
- else
- {
-  ?>
-        <script>alert('wrong details');</script>
-        <?php
- }
- 
-}
+$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
+$userRow=mysql_fetch_array($res);
 ?>
 <!DOCTYPE html>
 <!--
@@ -36,12 +19,100 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-<title>Log In</title>
+<script data-require="angular.js@1.4.0" data-semver="1.4.0" src="https://code.angularjs.org/1.4.0/angular.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome - <?php echo $userRow['email']; ?></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script data-require="raphael@*" data-semver="2.1.0" src="js/raphael-min.js"></script>
+  <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
+  <script src="js/gameDetails.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/initMap.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="screen">
+    #canvas {
+      height: 768px;
+      position: absolute;
+      width: 1366px;
+    }
+    
+    #paper {
+      height: 300px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 300px;
+    }
+    
+    #Alaska,
+    #NorthWestTerritory,
+    #Alberta,
+    #Ontario,
+    #Greenland,
+    #Quebec,
+    #WesternUnitedStates,
+    #EasternUnitedStates,
+    #CentralAmerica,
+    #Peru,
+    #Brazil,
+    #Venezuela,
+    #Argentina,
+    #NorthAfrica,
+    #Egypt,
+    #Congo,
+    #EastAfrica,
+    #SouthAfrica,
+    #Iceland,
+    #GreatBritain,
+    #WesternEurope,
+    #NorthernEurope,
+    #SouthernEurope,
+    #Scandinavia,
+    #Madagascar,
+    #Ukraine,
+    #MiddleEast,
+    #Afghanistan,
+    #Ural,
+    #India,
+    #Siam,
+    #China,
+    #Mongolia,
+    #Irkutsk,
+    #Yakutsk,
+    #Siberia,
+    #Kamchatka,
+    #Japan,
+    #Indonesia,
+    #NewGuinea,
+    #WesternAustralia,
+    #EasternAustralia {
+      display: none;
+      height: 400px;
+      overflow: auto;
+      position: fixed;
+      left: 20px;
+      top: 360px;
+      width: 300px;
+    }
+    
+    h2 {
+      text-align: center;
+    }
+    
+    .sidebar {
+      width: 300px;
+      height: 550px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      border-style: solid;
+      border-width: 5px;
+      border-color: blue;
+    }
+  </style>
 </head>
-<body id="top">
+<body id="top" ng-controller="MainController">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -58,8 +129,9 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="../index.html">Home</a></li>
 		<li><a href="index.html">Game Instructions</a></li>
 		<li><a href="index.html">About us</a></li>
-		<li class="active"><a href="login.php">Login</a></li>
-		<li><a href="signup.php">Sign up</a></li>
+		<li><a href="logout.php?logout">Log Out</a></li>
+		<li class="active"><a href="#">Hi' <?php echo $userRow['username']; ?></a></li>
+		
         <!-- ################################################################################################ -->
       </ul>
     </nav>
@@ -86,30 +158,73 @@ Licence URI: http://www.os-templates.com/template-terms
   <main class="container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="content"> 
+    <div class="content" background="img/bg_image.png"> 
       <!-- ################################################################################################ -->
-        
-		<center>
-		<div id="login-form">
-		<form method="post">
-		<table align="center" width="30%" border="0">
-		<tr>
-		<td><input type="text" name="email" placeholder="Your Email" required /></td>
-		</tr>
-		<tr>
-		<td><input type="password" name="pass" placeholder="Your Password" required /></td>
-		</tr>
-		<tr>
-		<td><button type="submit" name="btn-login">Sign In</button></td>
-		</tr>
-		<tr>
-		<td><a href="signup.php">Sign Up Here</a></td>
-		</tr>
-		</table>
-		</form>
-		</div>
-		</center>
-
+		<div id="canvas">
+		<div id="paper"></div>
+    <div class='sidebar'>
+      <h2>GAME OPTIONS</h2>
+      <ul>
+        <div id="DIVbtns">
+          <button id="button1" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="deploy(this.id);">Deploy</button>
+          <br>
+          <br>
+          <button id="button2" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="attack(this.id);">Attack</button>
+          <br>
+          <br>
+          <button id="button3" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="commit(this.id)">Commit</button>
+          <br>
+          <br>
+          <button id="button4" style="color: orange; background-color:white" type="button" onclick="reset()">Begin Phase</button>
+          <button id="button5" style="color: orange; background-color:white" type="button" onclick="next()">Next Phase</button>
+          <br>
+          <br>
+        </div>
+      </ul>
+      <div id="Alaska"></div>
+      <div id="NorthWestTerritory"></div>
+      <div id="Alberta"></div>
+      <div id="Ontario"></div>
+      <div id="Greenland"></div>
+      <div id="Quebec"></div>
+      <div id="WesternUnitedStates"></div>
+      <div id="EasternUnitedStates"></div>
+      <div id="CentralAmerica"></div>
+      <div id="Peru"></div>
+      <div id="Brazil"></div>
+      <div id="Venezuela"></div>
+      <div id="Argentina"></div>
+      <div id="NorthAfrica"></div>
+      <div id="Egypt"></div>
+      <div id="Congo"></div>
+      <div id="EastAfrica"></div>
+      <div id="SouthAfrica"></div>
+      <div id="Iceland"></div>
+      <div id="GreatBritain"></div>
+      <div id="WesternEurope"></div>
+      <div id="NorthernEurope"></div>
+      <div id="SouthernEurope"></div>
+      <div id="Scandinavia"></div>
+      <div id="Madagascar"></div>
+      <div id="Ukraine"></div>
+      <div id="MiddleEast"></div>
+      <div id="Afghanistan"></div>
+      <div id="Ural"></div>
+      <div id="India"></div>
+      <div id="Siam"></div>
+      <div id="China"></div>
+      <div id="Mongolia"></div>
+      <div id="Irkutsk"></div>
+      <div id="Yakutsk"></div>
+      <div id="Siberia"></div>
+      <div id="Kamchatka"></div>
+      <div id="Japan"></div>
+      <div id="Indonesia"></div>
+      <div id="NewGuinea"></div>
+      <div id="WesternAustralia"></div>
+      <div id="EasternAustralia"></div>
+    </div>
+  </div>
       </div>
       <!-- ################################################################################################ -->
     </div>
@@ -139,19 +254,19 @@ Licence URI: http://www.os-templates.com/template-terms
     <div class="one_quarter">
       <h6 class="title">About D-Risk</h6>
       <ul class="nospace linklist">
-        <li><a href="#">A Strategy based game</a></li>
-        <li><a href="#">Implemented as a web based game</a></li>
-        <li><a href="#">Creted by students of Arizona State University</a></li>
+        <li><a href="#"></a>A Strategy based game</li>
+        <li><a href="#"></a>Implemented as a web based game</li>
+        <li><a href="#"></a>Creted by students of Arizona State University</li>
       </ul>
     </div>
     <div class="one_quarter">
       <h6 class="title">Contact Details</h6>
       <ul class="nospace linklist">
-        <li><a href="#">abhinav.mishra.1@asu.edu</a></li>
+        <li><a href="#"></a>abhinav.mishra.1@asu.edu</li>
         <li><a href="#"></a>atogani@asu.edu</li>
         <li><a href="#"></a>amathur18@asu.edu</li>
 		<li><a href="#"></a>nkumar43@asu.edu</li>
-		<li><a href="#"></a>vdev1@asu.edu</li>
+		<li><a href="#"></a>vdeo1@asu.edu</li>
       </ul>
     </div>
     <div class="one_quarter">
@@ -174,7 +289,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row5">
   <div id="copyright" class="clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#">Created by Team Inferno</a></p>
+    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#"></a>Created by Team Inferno</p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ -->
   </div>

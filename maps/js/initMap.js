@@ -265,7 +265,7 @@
             fill: st.color,
 
           }, 500);
-          R.safari();
+      
           document.getElementById(country).style.display = "block";
           document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + getOwner(country) + "<br /> Army Count : " + getArmyCount(country) + " </p>";
           current = country;
@@ -285,7 +285,7 @@
           document.getElementById(current).style.display = "";
           st.toFront();
           TerritoryData[current].text.toFront();
-          R.safari();
+         
           arrow1.remove();
         };
 
@@ -310,7 +310,7 @@
             fill: st.color,
             stroke: "#ccc"
           }, 500);
-          R.safari();
+        
           document.getElementById(country).style.display = "block";
           document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + getOwner(country) + "<br /> Army Count : " + getArmyCount(country) + " </p>";
           current = country;
@@ -331,7 +331,7 @@
           document.getElementById(current).style.display = "";
           st.toFront();
           TerritoryData[current].text.toFront();
-          R.safari();
+         
           arrow2.remove();
         };
 

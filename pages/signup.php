@@ -1,3 +1,31 @@
+<?php
+session_start();
+if(isset($_SESSION['user'])!="")
+{
+ header("Location: home.php");
+}
+include_once 'dbconnect.php';
+
+if(isset($_POST['btn-signup']))
+{
+ $uname = mysql_real_escape_string($_POST['uname']);
+ $email = mysql_real_escape_string($_POST['email']);
+ $upass = md5(mysql_real_escape_string($_POST['pass']));
+ 
+ if(mysql_query("INSERT INTO users(username,email,password) VALUES('$uname','$email','$upass')"))
+ {
+  ?>
+        <script>alert('successfully registered ');</script>
+        <?php
+ }
+ else
+ {
+  ?>
+        <script>alert('error while registering you...');</script>
+        <?php
+ }
+}
+?>
 <!DOCTYPE html>
 <!--
 Template Name: Splash
@@ -8,12 +36,12 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-<title>D-Risk</title>
+<title>Splash | Pages | Full Width</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
-<body id="top" class="homepage"><!-- Homepage class is only used on the homepage in conjunction with the slider -->
+<body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -21,40 +49,77 @@ Licence URI: http://www.os-templates.com/template-terms
   <header id="header" class="clear">
     <div id="logo" class="fl_left"> 
       <!-- ################################################################################################ -->
-      <h1><a href="index.html">D-Risk</a></h1>
+      <h1><a href="../index.html">D-Risk</a></h1>
       <!-- ################################################################################################ -->
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <!-- ################################################################################################ -->
-        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="../index.html">Home</a></li>
 		<li><a href="index.html">Game Instructions</a></li>
 		<li><a href="index.html">About us</a></li>
-		<li><a href="pages/login.php">Login</a></li>
-		<li><a href="pages/signup.php">Sign up</a></li>
+		<li><a href="login.php">Login</a></li>
+		<li class="active"><a href="signup.php">Sign up</a></li>
         <!-- ################################################################################################ -->
       </ul>
     </nav>
   </header>
+</div><!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!--<div class="wrapper row2">
+  <div id="breadcrumb" class="clear"> 
+    <!-- ################################################################################################ -->
+    <!--<ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Lorem</a></li>
+      <li><a href="#">Ipsum</a></li>
+      <li><a href="#">Dolor</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  <!--</div>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<!--<div id="slider">-->
-  <div class="flexslider basicslider">
-    <ul class="slides">
+<div class="wrapper row3">
+  <main class="container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
       <!-- ################################################################################################ -->
-      <li class="bgded" style="background-image:url('images/demo/slider/01.png')">
-        <article class="flex-content">
-          <h2 class="heading underlined">D-Risk </h2>
-          <p>A Strategy based game</p>
-          <p><a class="btn" href="pages/login.php">Enter the world of D-Risk</a></p>
-        </article>
-      </li>
-      
+        
+			<center>
+			<div id="login-form">
+			<form method="post">
+			<table align="center" width="30%" border="0">
+			<tr>
+			<td><input type="text" name="uname" placeholder="User Name" required /></td>
+			</tr>
+			<tr>
+			<td><input type="email" name="email" placeholder="Your Email" required /></td>
+			</tr>
+			<tr>
+			<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+			</tr>
+			<tr>
+			<td><button type="submit" name="btn-signup">Sign Me Up</button></td>
+			</tr>
+			<tr>
+			<td><a href="login.php">Sign In Here</a></td>
+			</tr>
+			</table>
+			</form>
+			</div>
+			</center>
+      </div>
       <!-- ################################################################################################ -->
-    </ul>
-  </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -76,15 +141,15 @@ Licence URI: http://www.os-templates.com/template-terms
     <div class="one_quarter">
       <h6 class="title">About D-Risk</h6>
       <ul class="nospace linklist">
-        <li><a href="#"></a>A Strategy based game</li>
-        <li><a href="#"></a>Implemented as a web based game</li>
-        <li><a href="#">Creted by students of Arizona State University</li>
+        <li><a href="#">A Strategy based game</a></li>
+        <li><a href="#">Implemented as a web based game</a></li>
+        <li><a href="#">Creted by students of Arizona State University</a></li>
       </ul>
     </div>
     <div class="one_quarter">
       <h6 class="title">Contact Details</h6>
       <ul class="nospace linklist">
-        <li><a href="#"></a>abhinav.mishra.1@asu.edu</li>
+        <li><a href="#">abhinav.mishra.1@asu.edu</a></li>
         <li><a href="#"></a>atogani@asu.edu</li>
         <li><a href="#"></a>amathur18@asu.edu</li>
 		<li><a href="#"></a>nkumar43@asu.edu</li>
@@ -111,7 +176,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row5">
   <div id="copyright" class="clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#"></a>Created by Team Inferno</p>
+    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#">Created by Team Inferno</a></p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ -->
   </div>
@@ -119,19 +184,13 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
 <!-- JAVASCRIPTS -->
-<script src="layout/scripts/jquery.min.js"></script>
-<script src="layout/scripts/jquery.backtotop.js"></script>
-<script src="layout/scripts/jquery.mobilemenu.js"></script>
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
 <!-- IE9 Placeholder Support -->
-<script src="layout/scripts/jquery.placeholder.min.js"></script>
+<script src="../layout/scripts/jquery.placeholder.min.js"></script>
 <!-- / IE9 Placeholder Support -->
-<!-- Homepage specific -->
-<script src="layout/scripts/jquery.flexslider-min.js"></script>
-<script src="layout/scripts/jquery.easypiechart.min.js"></script>
-<div id="preloader"><div></div></div><!-- Basic page preloader -->
-<script>$(window).load(function(){$("#preloader div").delay(500).fadeOut();$("#preloader").delay(800).fadeOut("slow");});</script>
-<!-- / Homepage specific -->
 </body>
-))
+</html>

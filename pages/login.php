@@ -1,29 +1,29 @@
 <?php
 session_start();
+include_once 'dbconnect.php';
+
 if(isset($_SESSION['user'])!="")
 {
  header("Location: home.php");
 }
-include_once 'dbconnect.php';
-
-if(isset($_POST['btn-signup']))
+if(isset($_POST['btn-login']))
 {
- $uname = mysql_real_escape_string($_POST['uname']);
  $email = mysql_real_escape_string($_POST['email']);
- $upass = md5(mysql_real_escape_string($_POST['pass']));
- 
- if(mysql_query("INSERT INTO users(username,email,password) VALUES('$uname','$email','$upass')"))
+ $upass = mysql_real_escape_string($_POST['pass']);
+ $res=mysql_query("SELECT * FROM users WHERE email='$email'");
+ $row=mysql_fetch_array($res);
+ if($row['password']==md5($upass))
  {
-  ?>
-        <script>alert('successfully registered ');</script>
-        <?php
+  $_SESSION['user'] = $row['user_id'];
+  header("Location: home.php");
  }
  else
  {
   ?>
-        <script>alert('error while registering you...');</script>
+        <script>alert('wrong details');</script>
         <?php
  }
+ 
 }
 ?>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-<title>Sign Up</title>
+<title>Splash | Pages | Full Width</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -58,8 +58,8 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="../index.html">Home</a></li>
 		<li><a href="index.html">Game Instructions</a></li>
 		<li><a href="index.html">About us</a></li>
-		<li><a href="login.php">Login</a></li>
-		<li class="active"><a href="signup.php">Sign up</a></li>
+		<li class="active"><a href="login.php">Login</a></li>
+		<li><a href="signup.php">Sign up</a></li>
         <!-- ################################################################################################ -->
       </ul>
     </nav>
@@ -89,29 +89,27 @@ Licence URI: http://www.os-templates.com/template-terms
     <div class="content"> 
       <!-- ################################################################################################ -->
         
-			<center>
-			<div id="login-form">
-			<form method="post">
-			<table align="center" width="30%" border="0">
-			<tr>
-			<td><input type="text" name="uname" placeholder="User Name" required /></td>
-			</tr>
-			<tr>
-			<td><input type="email" name="email" placeholder="Your Email" required /></td>
-			</tr>
-			<tr>
-			<td><input type="password" name="pass" placeholder="Your Password" required /></td>
-			</tr>
-			<tr>
-			<td><button type="submit" name="btn-signup">Sign Me Up</button></td>
-			</tr>
-			<tr>
-			<td><a href="login.php">Sign In Here</a></td>
-			</tr>
-			</table>
-			</form>
-			</div>
-			</center>
+		<center>
+		<div id="login-form">
+		<form method="post">
+		<table align="center" width="30%" border="0">
+		<tr>
+		<td><input type="text" name="email" placeholder="Your Email" required /></td>
+		</tr>
+		<tr>
+		<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+		</tr>
+		<tr>
+		<td><button type="submit" name="btn-login">Sign In</button></td>
+		</tr>
+		<tr>
+		<td><a href="signup.php">Sign Up Here</a></td>
+		</tr>
+		</table>
+		</form>
+		</div>
+		</center>
+
       </div>
       <!-- ################################################################################################ -->
     </div>

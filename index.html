@@ -1,14 +1,3 @@
-<?php
-session_start();
-include_once 'dbconnect.php';
-
-if(!isset($_SESSION['user']))
-{
- header("Location: index.php");
-}
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$userRow=mysql_fetch_array($res);
-?>
 <!DOCTYPE html>
 <!--
 Template Name: Splash
@@ -19,15 +8,12 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-<script data-require="angular.js@1.4.0" data-semver="1.4.0" src="https://code.angularjs.org/1.4.0/angular.js"></script>
-<script src="script.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome - <?php echo $userRow['email']; ?></title>
+<title>D-Risk</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
-<body id="top">
+<body id="top" class="homepage"><!-- Homepage class is only used on the homepage in conjunction with the slider -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -35,85 +21,40 @@ Licence URI: http://www.os-templates.com/template-terms
   <header id="header" class="clear">
     <div id="logo" class="fl_left"> 
       <!-- ################################################################################################ -->
-      <h1><a href="../index.html">D-Risk</a></h1>
+      <h1><a href="index.html">D-Risk</a></h1>
       <!-- ################################################################################################ -->
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <!-- ################################################################################################ -->
-        <li><a href="../index.html">Home</a></li>
+        <li class="active"><a href="index.html">Home</a></li>
 		<li><a href="index.html">Game Instructions</a></li>
 		<li><a href="index.html">About us</a></li>
-		<li><a href="logout.php?logout">Log Out</a></li>
-		<li class="active"><a href="#">Hi' <?php echo $userRow['username']; ?></a></li>
-		
+		<li><a href="pages/login.php">Login</a></li>
+		<li><a href="pages/signup.php">Sign up</a></li>
         <!-- ################################################################################################ -->
       </ul>
     </nav>
   </header>
-</div><!-- ################################################################################################ -->
+</div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<!--<div class="wrapper row2">
-  <div id="breadcrumb" class="clear"> 
-    <!-- ################################################################################################ -->
-    <!--<ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lorem</a></li>
-      <li><a href="#">Ipsum</a></li>
-      <li><a href="#">Dolor</a></li>
+<!-- ################################################################################################ -->
+<!--<div id="slider">-->
+  <div class="flexslider basicslider">
+    <ul class="slides">
+      <!-- ################################################################################################ -->
+      <li class="bgded" style="background-image:url('images/demo/slider/01.png')">
+        <article class="flex-content">
+          <h2 class="heading underlined">D-Risk </h2>
+          <p>A Strategy based game</p>
+          <p><a class="btn" href="pages/login.php">Enter the world of D-Risk</a></p>
+        </article>
+      </li>
+      
+      <!-- ################################################################################################ -->
     </ul>
-    <!-- ################################################################################################ -->
-  <!--</div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <main class="container clear"> 
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div class="content"> 
-      <!-- ################################################################################################ -->
-        <style>
-		form{
-		
-		   width:300px; display: block; background: white;
-		}
-		</style>
-		<form id="difLevel">
-		
-		  <p>Choose the difficulty level</p>
-		  <input type="radio" name="dLevel" value="Easy" checked> Easy
-		  <br>
-		  <input type="radio" name="dLevel" value="Medium" checked> Medium
-		  <br>
-		  <input type="radio" name="dLevel" value="Hard" checked> Hard
-		  <br>
-		  <p>Choose the number of Players</p>
-		  <input type="radio" name="nPlayer" value="1" checked> 1
-		  <br>
-		  <input type="radio" name="nPlayer" value="2" checked> 2
-		  <br>
-		  <input type="radio" name="nPlayer" value="3" checked> 3
-		  <br>
-		  <input type="radio" name="nPlayer" value="4" checked> 4
-		  <br>
-		  <input type="radio" name="nPlayer" value="5" checked> 5
-		  <br>
-		  <br>
-		  <input type="button" value="Submit">
-		 
-		 </form>
-		<br>
-      </div>
-      <!-- ################################################################################################ -->
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
-</div>
+  </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -147,7 +88,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#"></a>atogani@asu.edu</li>
         <li><a href="#"></a>amathur18@asu.edu</li>
 		<li><a href="#"></a>nkumar43@asu.edu</li>
-		<li><a href="#"></a>vdev1@asu.edu</li>
+		<li><a href="#"></a>vdeo1@asu.edu</li>
       </ul>
     </div>
     <div class="one_quarter">
@@ -170,7 +111,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row5">
   <div id="copyright" class="clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#">Created by Team Inferno</p>
+    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#"></a>Created by Team Inferno</p>
     <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ -->
   </div>
@@ -178,13 +119,19 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="layout/scripts/jquery.min.js"></script>
+<script src="layout/scripts/jquery.backtotop.js"></script>
+<script src="layout/scripts/jquery.mobilemenu.js"></script>
 <!-- IE9 Placeholder Support -->
-<script src="../layout/scripts/jquery.placeholder.min.js"></script>
+<script src="layout/scripts/jquery.placeholder.min.js"></script>
 <!-- / IE9 Placeholder Support -->
+<!-- Homepage specific -->
+<script src="layout/scripts/jquery.flexslider-min.js"></script>
+<script src="layout/scripts/jquery.easypiechart.min.js"></script>
+<div id="preloader"><div></div></div><!-- Basic page preloader -->
+<script>$(window).load(function(){$("#preloader div").delay(500).fadeOut();$("#preloader").delay(800).fadeOut("slow");});</script>
+<!-- / Homepage specific -->
 </body>
-</html>
+))
