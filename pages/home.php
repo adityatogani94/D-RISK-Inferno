@@ -81,32 +81,24 @@ Licence URI: http://www.os-templates.com/template-terms
 		<center>
 		<form name= "MapSelector" action="../maps/index1.html">
 			  
-		<fieldset>
-		<legend>Choose the difficulty level</legend>
-		<input type="radio" name="dLevel" value="Easy" checked ng-model="dlevel"> Easy
-		<br>
-		<input type="radio" name="dLevel" value="Medium" checked ng-model="dlevel"> Medium
-		<br>
-		<input type="radio" name="dLevel" value="Hard" checked ng-model="dlevel"> Hard
-		<br>
-		</fieldset>
-		<br>
-		<fieldset>
-		<legend>Choose the number of Players</legend>
-		<input type="radio" name="nPlayer" value="one" checked ng-model="num"> 1
-		<br>
-		<input type="radio" name="nPlayer" value="two" checked ng-model="num"> 2
-		<br>
-		<input type="radio" name="nPlayer" value="three" checked ng-model="num"> 3
-		<br>
-		<input type="radio" name="nPlayer" value="four" checked ng-model="num"> 4
-		<br>
-		<input type="radio" name="nPlayer" value="five" checked ng-model="num"> 5
-		<br>
-		<input type="submit" value="Submit">
-		</fieldset>
-		</form>
-		<br>
+		<h1 style="text-align:center; color:black">Game Options</h1>
+		<form id="difLevel" style="background:black; color:white; width:400px; margin:0 auto">
+		  <p style="text-align:center">Choose the difficulty level</p>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="dLevel" value="Easy" checked/>Easy</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="dLevel" value="Medium"/> Medium</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="dLevel" value="Hard"/> Hard</label>
+		  <p style="text-align:center">Choose the number of Players</p>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="nPlayer" value="1" checked/>One</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="nPlayer" value="2"/>Two</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="nPlayer" value="3"/>Three</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="nPlayer" value="4"/>Four</label>
+		  <label style="text-align:center"><input style="vartical-align:middle; margin:0 auto" type="radio" name="nPlayer" value="5"/>Five</label>
+		  </br`>
+		  <br>
+		  <input type="button" value="Submit" style="background-color:gray; text: black; margin:0 auto">
+		  <br>
+		 </form>
+		 <br>
 		<!-- <button id="button">Submit</button> -->
 		
 
