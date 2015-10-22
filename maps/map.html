@@ -1,309 +1,195 @@
-<?php
-session_start();
-include_once 'dbconnect.php';
-
-if(!isset($_SESSION['user']))
-{
- header("Location: index.php");
-}
-$res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
-$userRow=mysql_fetch_array($res);
-?>
-<!DOCTYPE html>
-<!--
-Template Name: Splash
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
+
 <head>
-<script data-require="angular.js@1.4.0" data-semver="1.4.0" src="https://code.angularjs.org/1.4.0/angular.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome - <?php echo $userRow['email']; ?></title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<script data-require="raphael@*" data-semver="2.1.0" src="js/raphael-min.js"></script>
-  <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
-  <script src="js/gameDetails.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/initMap.js" type="text/javascript" charset="utf-8"></script>
-  <style type="text/css" media="screen">
-    #canvas {
-      height: 768px;
-      position: absolute;
-      width: 1366px;
-    }
-    
-    #paper {
-      height: 300px;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 300px;
-    }
-    
-    #Alaska,
-    #NorthWestTerritory,
-    #Alberta,
-    #Ontario,
-    #Greenland,
-    #Quebec,
-    #WesternUnitedStates,
-    #EasternUnitedStates,
-    #CentralAmerica,
-    #Peru,
-    #Brazil,
-    #Venezuela,
-    #Argentina,
-    #NorthAfrica,
-    #Egypt,
-    #Congo,
-    #EastAfrica,
-    #SouthAfrica,
-    #Iceland,
-    #GreatBritain,
-    #WesternEurope,
-    #NorthernEurope,
-    #SouthernEurope,
-    #Scandinavia,
-    #Madagascar,
-    #Ukraine,
-    #MiddleEast,
-    #Afghanistan,
-    #Ural,
-    #India,
-    #Siam,
-    #China,
-    #Mongolia,
-    #Irkutsk,
-    #Yakutsk,
-    #Siberia,
-    #Kamchatka,
-    #Japan,
-    #Indonesia,
-    #NewGuinea,
-    #WesternAustralia,
-    #EasternAustralia {
-      display: none;
-      height: 400px;
-      overflow: auto;
-      position: fixed;
-      left: 20px;
-      top: 360px;
-      width: 300px;
-    }
-    
-    h2 {
-      text-align: center;
-    }
-    
-    .sidebar {
-      width: 300px;
-      height: 550px;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      border-style: solid;
-      border-width: 5px;
-      border-color: blue;
-    }
-  </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Drisk</title>
+    <script src="js/raphael-min.js"></script>
+    <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/gameDetails.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/fileManager.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style type="text/css" media="screen">
+        #canvas {
+            height: 768px;
+            position: absolute;
+            width: 1366px;
+        }
+
+        #paper {
+            height: 300px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 300px;
+        }
+
+        #Alaska,
+        #NorthWestTerritory,
+        #Alberta,
+        #Ontario,
+        #Greenland,
+        #Quebec,
+        #WesternUnitedStates,
+        #EasternUnitedStates,
+        #CentralAmerica,
+        #Peru,
+        #Brazil,
+        #Venezuela,
+        #Argentina,
+        #NorthAfrica,
+        #Egypt,
+        #Congo,
+        #EastAfrica,
+        #SouthAfrica,
+        #Iceland,
+        #GreatBritain,
+        #WesternEurope,
+        #NorthernEurope,
+        #SouthernEurope,
+        #Scandinavia,
+        #Madagascar,
+        #Ukraine,
+        #MiddleEast,
+        #Afghanistan,
+        #Ural,
+        #India,
+        #Siam,
+        #China,
+        #Mongolia,
+        #Irkutsk,
+        #Yakutsk,
+        #Siberia,
+        #Kamchatka,
+        #Japan,
+        #Indonesia,
+        #NewGuinea,
+        #WesternAustralia,
+        #EasternAustralia {
+            display: none;
+            height: 400px;
+            overflow: auto;
+            position: fixed;
+            left: 30px;
+            top: 360px;
+            width: 260px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .sidebar {
+            width: 260px;
+            height: 550px;
+            position: fixed;
+            left: 20px;
+            top: 50px;
+            border-style: solid;
+            border-width: 5px;
+            border-color: gray;
+        }
+        #overlay {
+            width:100%;
+            height: 100%;
+            position:absolute;
+            top:0;
+            left: 0;
+            background-color:#111;
+            z-index:2000;
+        }
+
+        #overlay>img {
+            position: absolute;
+            top: 50%;
+            left:50%;
+            margin: -135px 0 0 -140px;
+            z-index:2001;
+        }
+    </style>
+
 </head>
-<body id="top" ng-controller="MainController">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
-  <header id="header" class="clear">
-    <div id="logo" class="fl_left"> 
-      <!-- ################################################################################################ -->
-      <h1><a href="../index.html">D-Risk</a></h1>
-      <!-- ################################################################################################ -->
-    </div>
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <!-- ################################################################################################ -->
-        <li><a href="../index.html">Home</a></li>
-		<li><a href="index.html">Game Instructions</a></li>
-		<li><a href="index.html">About us</a></li>
-		<li><a href="logout.php?logout">Log Out</a></li>
-		<li class="active"><a href="#">Hi' <?php echo $userRow['username']; ?></a></li>
-		
-        <!-- ################################################################################################ -->
-      </ul>
-    </nav>
-  </header>
-</div><!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!--<div class="wrapper row2">
-  <div id="breadcrumb" class="clear"> 
-    <!-- ################################################################################################ -->
-    <!--<ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lorem</a></li>
-      <li><a href="#">Ipsum</a></li>
-      <li><a href="#">Dolor</a></li>
-    </ul>
-    <!-- ################################################################################################ -->
-  <!--</div>
+
+<body>
+
+<div id="overlay">
+    <img src="img/loading.gif">
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <main class="container clear"> 
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div class="content" background="img/bg_image.png"> 
-      <!-- ################################################################################################ -->
-		<div id="canvas">
-		<div id="paper"></div>
+
+<div id="canvas">
+    <div id="paper"></div>
+
     <div class='sidebar'>
-      <h2>GAME OPTIONS</h2>
-      <ul>
-        <div id="DIVbtns">
-          <button id="button1" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="deploy(this.id);">Deploy</button>
-          <br>
-          <br>
-          <button id="button2" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="attack(this.id);">Attack</button>
-          <br>
-          <br>
-          <button id="button3" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="commit(this.id)">Commit</button>
-          <br>
-          <br>
-          <button id="button4" style="color: orange; background-color:white" type="button" onclick="reset()">Begin Phase</button>
-          <button id="button5" style="color: orange; background-color:white" type="button" onclick="next()">Next Phase</button>
-          <br>
-          <br>
-        </div>
-      </ul>
-      <div id="Alaska"></div>
-      <div id="NorthWestTerritory"></div>
-      <div id="Alberta"></div>
-      <div id="Ontario"></div>
-      <div id="Greenland"></div>
-      <div id="Quebec"></div>
-      <div id="WesternUnitedStates"></div>
-      <div id="EasternUnitedStates"></div>
-      <div id="CentralAmerica"></div>
-      <div id="Peru"></div>
-      <div id="Brazil"></div>
-      <div id="Venezuela"></div>
-      <div id="Argentina"></div>
-      <div id="NorthAfrica"></div>
-      <div id="Egypt"></div>
-      <div id="Congo"></div>
-      <div id="EastAfrica"></div>
-      <div id="SouthAfrica"></div>
-      <div id="Iceland"></div>
-      <div id="GreatBritain"></div>
-      <div id="WesternEurope"></div>
-      <div id="NorthernEurope"></div>
-      <div id="SouthernEurope"></div>
-      <div id="Scandinavia"></div>
-      <div id="Madagascar"></div>
-      <div id="Ukraine"></div>
-      <div id="MiddleEast"></div>
-      <div id="Afghanistan"></div>
-      <div id="Ural"></div>
-      <div id="India"></div>
-      <div id="Siam"></div>
-      <div id="China"></div>
-      <div id="Mongolia"></div>
-      <div id="Irkutsk"></div>
-      <div id="Yakutsk"></div>
-      <div id="Siberia"></div>
-      <div id="Kamchatka"></div>
-      <div id="Japan"></div>
-      <div id="Indonesia"></div>
-      <div id="NewGuinea"></div>
-      <div id="WesternAustralia"></div>
-      <div id="EasternAustralia"></div>
+        <h2>GAME OPTIONS</h2>
+        <ul>
+            <div id="DIVbtns">
+                <button id="button1" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="deploy(this.id);">Deploy</button>
+                <br>
+                <br>
+                <button id="button2" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="attack(this.id);">Attack</button>
+                <br>
+                <br>
+                <button id="button3" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="commit(this.id)">Commit</button>
+                <br>
+                <br>
+                <button id="button4" style="color: orange; background-color:white" type="button" onclick="reset()">Begin Phase</button>
+                <button id="button5" style="color: orange; background-color:white" type="button" onclick="next()">Next Phase</button>
+                <br>
+                <br>
+            </div>
+        </ul>
+
+        <div id = "hello"></div>
+
+        <div id="Alaska"></div>
+        <div id="NorthWestTerritory"></div>
+        <div id="Alberta"></div>
+        <div id="Ontario"></div>
+        <div id="Greenland"></div>
+        <div id="Quebec"></div>
+        <div id="WesternUnitedStates"></div>
+        <div id="EasternUnitedStates"></div>
+        <div id="CentralAmerica"></div>
+        <div id="Peru"></div>
+        <div id="Brazil"></div>
+        <div id="Venezuela"></div>
+        <div id="Argentina"></div>
+        <div id="NorthAfrica"></div>
+        <div id="Egypt"></div>
+        <div id="Congo"></div>
+        <div id="EastAfrica"></div>
+        <div id="SouthAfrica"></div>
+        <div id="Iceland"></div>
+        <div id="GreatBritain"></div>
+        <div id="WesternEurope"></div>
+        <div id="NorthernEurope"></div>
+        <div id="SouthernEurope"></div>
+        <div id="Scandinavia"></div>
+        <div id="Madagascar"></div>
+        <div id="Ukraine"></div>
+        <div id="MiddleEast"></div>
+        <div id="Afghanistan"></div>
+        <div id="Ural"></div>
+        <div id="India"></div>
+        <div id="Siam"></div>
+        <div id="China"></div>
+        <div id="Mongolia"></div>
+        <div id="Irkutsk"></div>
+        <div id="Yakutsk"></div>
+        <div id="Siberia"></div>
+        <div id="Kamchatka"></div>
+        <div id="Japan"></div>
+        <div id="Indonesia"></div>
+        <div id="NewGuinea"></div>
+        <div id="WesternAustralia"></div>
+        <div id="EasternAustralia"></div>
     </div>
-  </div>
-      </div>
-      <!-- ################################################################################################ -->
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row4">
-  <footer id="footer" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="one_quarter first">
-      <h6 class="title">D-Risk</h6>
-      <address class="btmspace-15">
-      Team name : Inferno<br>
-      Members:<br>
-      Abhinav Mishra<br>
-	  Aditya Togani<br>
-	  Arpit Mathur<br>
-	  Nikhil Kumar<br>
-	  Vimarsh Deo
-      </address>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">About D-Risk</h6>
-      <ul class="nospace linklist">
-        <li><a href="#"></a>A Strategy based game</li>
-        <li><a href="#"></a>Implemented as a web based game</li>
-        <li><a href="#"></a>Creted by students of Arizona State University</li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Contact Details</h6>
-      <ul class="nospace linklist">
-        <li><a href="#"></a>abhinav.mishra.1@asu.edu</li>
-        <li><a href="#"></a>atogani@asu.edu</li>
-        <li><a href="#"></a>amathur18@asu.edu</li>
-		<li><a href="#"></a>nkumar43@asu.edu</li>
-		<li><a href="#"></a>vdeo1@asu.edu</li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Have a query?</h6>
-      <form method="post" action="#">
-        <fieldset>
-          <legend>Newsletter:</legend>
-          <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button type="submit" value="submit">Submit</button>
-        </fieldset>
-      </form>
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <div id="copyright" class="clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#"></a>Created by Team Inferno</p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
-<!-- JAVASCRIPTS -->
-<script src="../layout/scripts/jquery.min.js"></script>
-<script src="../layout/scripts/jquery.backtotop.js"></script>
-<script src="../layout/scripts/jquery.mobilemenu.js"></script>
-<!-- IE9 Placeholder Support -->
-<script src="../layout/scripts/jquery.placeholder.min.js"></script>
-<!-- / IE9 Placeholder Support -->
 </body>
+
 </html>
