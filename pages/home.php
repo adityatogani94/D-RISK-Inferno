@@ -79,7 +79,7 @@ Licence URI: http://www.os-templates.com/template-terms
       <!-- ################################################################################################ -->
         
 		<center>
-		<form name= "MapSelector" action="../maps/index1.html">
+		<form name= "MapSelector" action="../maps/map.html">
 			  
 		<h1 style="text-align:center; color:black">Game Options</h1>
 		<form id="difLevel" style="background:black; color:white; width:400px; margin:0 auto">
