@@ -136,7 +136,9 @@ var Map = {
         }
 
     },
-
+	
+	
+	
     setColor: function(country, color) {
         TerritoryData[country].path.attr({
             fill: color
@@ -325,7 +327,35 @@ var Map = {
 
                     }
                 }
+			st[0].unclick = function(){
+				st.toFront();
+                TerritoryData[current].text.toFront();
+				arrow1.remove();
+			}
+				
+				st[0].onmouseover = function() {
+                    current && (document.getElementById(current).style.display = "");
+                    st.animate({
+                        fill: st.color,
 
+                    }, 500);
+
+                    document.getElementById(country).style.display = "block";
+                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                    current = country;
+                    
+                }
+				
+				st[0].onmouseout = function() {
+                    st.animate({
+                        fill: TerritoryData[current].color,
+                    }, 500);
+                    document.getElementById(current).style.display = "";
+                                        
+                };
+				
+				
+				
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
                 TerritoryData[country].text[0].onclick = function() {
@@ -376,7 +406,33 @@ var Map = {
                     }
                 }
 
-                //more event handlers
+                TerritoryData[country].text[0].unclick = function(){
+				st.toFront();
+                TerritoryData[current].text.toFront();
+				arrow1.remove();
+			}
+				
+                TerritoryData[country].text[0].onmouseover = function() {
+                    current && (document.getElementById(current).style.display = "");
+                    st.animate({
+                        fill: st.color,
+                     
+                    }, 500);
+
+                    document.getElementById(country).style.display = "block";
+                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                    current = country;
+                    
+                };
+
+                TerritoryData[country].text[0].onmouseout = function() {
+                    st.animate({
+                        fill: TerritoryData[current].color,
+                        
+                    }, 500);
+                    document.getElementById(current).style.display = "";					
+                };
+				
             })(Map.world[country], country);
         }
     },
