@@ -111,12 +111,18 @@
             margin: -135px 0 0 -140px;
             z-index:2001;
         }
+		
+		#soundbar {
+			position: fixed;
+			bottom: 0px;
+			right: 20px;
+		}
     </style>
 
 </head>
 
 <body>
-<audio src="sound/1.mp3" loop="true" autoplay="true" controls></audio>
+
 <div id="overlay">
     <img src="img/loading.gif">
 </div>
@@ -188,7 +194,11 @@
         <div id="NewGuinea"></div>
         <div id="WesternAustralia"></div>
         <div id="EasternAustralia"></div>
+		
     </div>
+</div>
+<div id = "soundbar">
+	<audio src="sound/1.mp3" loop="true" autoplay="true" controls></audio>
 </div>
 </body>
 
