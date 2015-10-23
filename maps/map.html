@@ -198,7 +198,10 @@
     </div>
 </div>
 <div id = "soundbar">
-	<audio src="sound/1.mp3" loop="true" autoplay="true" controls></audio>
+	<audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
+	<button onclick="document.getElementById('player').play()">Play</button>
+    <button onclick="document.getElementById('player').pause()">Pause</button>
+    <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/ Unmute</button>
 </div>
 </body>
 
