@@ -279,20 +279,24 @@ var Map = {
 
                 st[0].onclick = function() {
                     if (Map.stage == "deploy") {
-
+						if(deploycount < 5){
 
                             var a = Map.getArmyCount(country);
                             a = a + 1;
+							deploycount ++;
+							current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
                             document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-
+						}
+						else {
+							alert("Deploy Limit Reached");
+						}
 
                     }
                     if (Map.stage == "attack") {
-						//Vimarsh deploycount = 0;
+						deploycount = 0;
 						current = country;
-						//vimarsh TerritoryData[current].deploycount = 0;
 						if (atkcntry != null){
 							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
 								if(current == TerritoryData[atkcntry].neighbours[index]) {
@@ -326,16 +330,22 @@ var Map = {
 
                 TerritoryData[country].text[0].onclick = function() {
                     if (Map.stage == "deploy") {
-                        var a = Map.getArmyCount(country);
-                        a = a + 1;
-                        TerritoryData[current].text.attr('text', a);
-                        TerritoryData[current].armyNum = a;
-                        document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-                    }
+						if(deploycount < 5){
+							var a = Map.getArmyCount(country);
+							a = a + 1;
+							deploycount ++;
+							current = country;
+							TerritoryData[current].text.attr('text', a);
+							TerritoryData[current].armyNum = a;
+							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+						}
+						else{
+							alert("Deploy Limit Reached");
+						}
+					}
                     if (Map.stage == "attack") {
-						//vimarsh deploycount = 0;
+						deploycount = 0;
 						current = country;
-						//vimarsh TerritoryData[current].deploycount = 0;
 					if (atkcntry != null){
 				for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
 					if(current == TerritoryData[atkcntry].neighbours[index]) {
