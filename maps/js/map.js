@@ -1,6 +1,3 @@
-/**
- * Created by Nikhil on 10/20/2015.
- */
 
 var TerritoryData = {};
 var deploy;
@@ -8,6 +5,11 @@ var attack;
 var commit;
 var next;
 var reset;
+var atkcntry;
+var atkcount;
+var orgcount;
+var atkdcntrycount;
+var deploycount = 0;
 
 
 for (var id in TerritoryNames) {
@@ -193,8 +195,6 @@ var Map = {
 
             if (Map.stage == "deploy") {
                 alert('Click on areas to deploy your army and then click next phase!!');
-                //alert('color did not change');
-                //alert('color did not change');
             } else {
                 alert("First Deploy -> then Attack -> then Commit");
             }
@@ -290,39 +290,37 @@ var Map = {
 
                     }
                     if (Map.stage == "attack") {
-                        alert("Need to add pop-up window");
+						//Vimarsh deploycount = 0;
+						current = country;
+						//vimarsh TerritoryData[current].deploycount = 0;
+						if (atkcntry != null){
+							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
+								if(current == TerritoryData[atkcntry].neighbours[index]) {
+									arrow1.remove();
+									atkcount = prompt("Please enter the number of armies to attack", "0");
+									orgcount = Map.getArmyCount(atkcntry); 
+									atkdcntrycount = Map.getArmyCount(current);
+								}
+								else{
+									arrow1.remove();
+								}
+							}
+							atkcntry =null;
+						} 
+						else {			
+								document.getElementById(country).style.display = "block";
+								document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+								current = country;				
+								Map.R.setStart();
+								for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+									Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+								}
+								arrow1 = Map.R.setFinish();
+								atkcntry = country;
+						}
+
                     }
                 }
-
-                st[0].onmouseover = function() {
-                    current && (document.getElementById(current).style.display = "");
-                    st.animate({
-                        fill: st.color,
-
-                    }, 500);
-
-                    document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-                    current = country;
-                    if (Map.stage == "attack") {
-                        Map.R.setStart();
-                        for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-                            Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-                        }
-                        arrow1 = Map.R.setFinish();
-                    }
-                }
-
-                st[0].onmouseout = function() {
-                    st.animate({
-                        fill: TerritoryData[current].color,
-                    }, 500);
-                    document.getElementById(current).style.display = "";
-                    st.toFront();
-                    TerritoryData[current].text.toFront();
-
-                    arrow1.remove();
-                };
 
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
@@ -335,41 +333,38 @@ var Map = {
                         document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     }
                     if (Map.stage == "attack") {
-                        alert("need to add pop-up window");
+						//vimarsh deploycount = 0;
+						current = country;
+						//vimarsh TerritoryData[current].deploycount = 0;
+					if (atkcntry != null){
+				for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
+					if(current == TerritoryData[atkcntry].neighbours[index]) {
+						arrow1.remove();
+						atkcount = prompt("Please enter the number of armies to attack", "0");
+						orgcount = Map.getArmyCount(atkcntry); 
+						atkdcntrycount = Map.getArmyCount(current);
+					}
+					else{
+						arrow1.remove();
+					}
+				}
+				 atkcntry =null;
+			} else {
+				
+              document.getElementById(country).style.display = "block";
+              document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+              current = country;
+				
+              Map.R.setStart();
+              for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+
+                Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+              }
+              arrow1 = Map.R.setFinish();
+              atkcntry = country;
+				}
                     }
                 }
-
-                TerritoryData[country].text[0].onmouseover = function() {
-                    current && (document.getElementById(current).style.display = "");
-                    st.animate({
-                        fill: st.color,
-                        stroke: "#ccc"
-                    }, 500);
-
-                    document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-                    current = country;
-                    if (Map.stage == "attack") {
-                        Map.R.setStart();
-                        for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-                            Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-                        }
-                        arrow2 = Map.R.setFinish();
-                    }
-                };
-
-                TerritoryData[country].text[0].onmouseout = function() {
-                    st.animate({
-                        fill: TerritoryData[current].color,
-                        stroke: "#666"
-                    }, 500);
-                    document.getElementById(current).style.display = "";
-                    st.toFront();
-                    TerritoryData[current].text.toFront();
-
-                    arrow2.remove();
-                };
-
 
                 //more event handlers
             })(Map.world[country], country);
