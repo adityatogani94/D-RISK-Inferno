@@ -303,9 +303,12 @@ var Map = {
 							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
 								if(current == TerritoryData[atkcntry].neighbours[index]) {
 									arrow1.remove();
-									atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+									atkcount = 0;
 									orgcount = Map.getArmyCount(atkcntry); 
 									atkdcntrycount = Map.getArmyCount(current);
+									do{
+									atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+									}while( atkcount <=0 || atkcount >= orgcount);
 									
 									
 									// Attacking conditions
