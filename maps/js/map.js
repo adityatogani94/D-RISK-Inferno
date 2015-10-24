@@ -303,9 +303,33 @@ var Map = {
 							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
 								if(current == TerritoryData[atkcntry].neighbours[index]) {
 									arrow1.remove();
-									atkcount = prompt("Please enter the number of armies to attack", "0");
+									atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
 									orgcount = Map.getArmyCount(atkcntry); 
 									atkdcntrycount = Map.getArmyCount(current);
+									
+									
+									// Attacking conditions
+									percentAtkCount = 0.6 * atkcount;
+									percentAtkCount = Math.floor(percentAtkCount);
+									percentAtkdCount = 0.7 * atkdcntrycount;
+									percentAtkdCount = Math.ceil(percentAtkdCount);
+									if (percentAtkCount - percentAtkdCount > 0){
+										
+										leftArmyCount = atkcount - percentAtkdCount;
+										orgcount = orgcount - atkcount;
+										Map.setArmyCount(atkcntry,orgcount)
+										Map.setArmyCount(current,leftArmyCount);
+									}else if(percentAtkCount == percentAtkdCount){
+										orgcount = orgcount - atkcount;
+										Map.setArmyCount(atkcntry,orgcount);
+										Map.setArmyCount(atkdcntry,1);
+									}
+									else{
+										orgcount = orgcount - atkcount;
+										leftArmyCount = percentAtkdCount - percentAtkCount;
+										Map.setArmyCount(atkcntry,orgcount);
+										Map.setArmyCount(current,leftArmyCount) 
+									}
 								}
 								else{
 									arrow1.remove();
