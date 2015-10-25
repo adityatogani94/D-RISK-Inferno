@@ -281,6 +281,8 @@ var Map = {
 
                 st[0].onclick = function() {
                     if (Map.stage == "deploy") {
+						var audio1 = document.getElementById('sounddeploy');
+						audio1.play();
 						if(deploycount < 5){
 
                             var a = Map.getArmyCount(country);
@@ -297,11 +299,14 @@ var Map = {
 
                     }
                     if (Map.stage == "attack") {
+						
 						deploycount = 0;
 						current = country;
 						if (atkcntry != null){
+							var audio1 = document.getElementById('soundattack');
+							audio1.play();
 							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
-								if(current == TerritoryData[atkcntry].neighbours[index]) {
+								if(current == TerritoryData[atkcntry].neighbours[index] && Map.getArmyCount(atkcntry) > 1) {
 									arrow1.remove();
 									atkcount = 0;
 									orgcount = Map.getArmyCount(atkcntry); 
@@ -340,16 +345,18 @@ var Map = {
 							}
 							atkcntry =null;
 						} 
-						else {			
-								document.getElementById(country).style.display = "block";
-								document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-								current = country;				
-								Map.R.setStart();
-								for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-									Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-								}
-								arrow1 = Map.R.setFinish();
-								atkcntry = country;
+						else {	
+							var audio1 = document.getElementById('soundattacked');
+							audio1.play();
+							document.getElementById(country).style.display = "block";
+							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+							current = country;				
+							Map.R.setStart();
+							for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+								Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+							}
+							arrow1 = Map.R.setFinish();
+							atkcntry = country;
 						}
 
                     }
