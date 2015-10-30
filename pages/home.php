@@ -44,8 +44,10 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul class="clear">
         <!-- ################################################################################################ -->
         <li><a href="../index.html">Home</a></li>
-		<li><a href="index.html">Game Instructions</a></li>
-		<li><a href="index.html">About us</a></li>
+		<!-- <li><a href="index.html">Game Instructions</a></li> -->
+		<!-- <li><a href="index.html">About us</a></li> -->
+		<li><a href="rules.html">Game Instructions</a></li>
+		<li><a href="aboutUs.html">About us</a></li>
 		<li><a href="logout.php?logout">Log Out</a></li>
 		<li class="active"><a href="#">Hi' <?php echo $userRow['username']; ?></a></li>
 		
