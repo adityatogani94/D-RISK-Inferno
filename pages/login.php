@@ -151,7 +151,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#"></a>atogani@asu.edu</li>
         <li><a href="#"></a>amathur18@asu.edu</li>
 		<li><a href="#"></a>nkumar43@asu.edu</li>
-		<li><a href="#"></a>vdev1@asu.edu</li>
+		<li><a href="#"></a>vdeo1@asu.edu</li>
       </ul>
     </div>
     <div class="one_quarter">
