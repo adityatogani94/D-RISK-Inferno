@@ -280,7 +280,9 @@ var Map = {
                 st[0].style.cursor = "pointer";
 
                 st[0].onclick = function() {
-                    if (Map.stage == "deploy") {
+					
+                    if (Map.stage == "deploy" && Map.getOwner(country) != "Neutral") {
+						
 						var audio1 = document.getElementById('sounddeploy');
 						audio1.play();
 						if(deploycount < 5){
@@ -296,6 +298,7 @@ var Map = {
 						else {
 							alert("Deploy Limit Reached");
 						}
+						
 
                     }
                     if (Map.stage == "attack") {
@@ -312,7 +315,8 @@ var Map = {
 									orgcount = Map.getArmyCount(atkcntry); 
 									atkdcntrycount = Map.getArmyCount(current);
 									do{
-									atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+										atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+									
 									}while( atkcount <=0 || atkcount >= orgcount);
 									
 									
@@ -327,10 +331,14 @@ var Map = {
 										orgcount = orgcount - atkcount;
 										Map.setArmyCount(atkcntry,orgcount)
 										Map.setArmyCount(current,leftArmyCount);
+										Map.setOwner(current,Map.getOwner(atkcntry));
+										Map.setColor(current,Map.getColor(atkcntry));
 									}else if(percentAtkCount == percentAtkdCount){
 										orgcount = orgcount - atkcount;
 										Map.setArmyCount(atkcntry,orgcount);
-										Map.setArmyCount(atkdcntry,1);
+										Map.setArmyCount(current,1);
+										Map.setOwner(current,Map.getOwner(atkcntry));
+										Map.setColor(current,Map.getColor(atkcntry));
 									}
 									else{
 										orgcount = orgcount - atkcount;
@@ -345,7 +353,7 @@ var Map = {
 							}
 							atkcntry =null;
 						} 
-						else {	
+						else if(Map.getOwner(country) != "Neutral") {	
 							var audio1 = document.getElementById('soundattacked');
 							audio1.play();
 							document.getElementById(country).style.display = "block";
@@ -353,7 +361,9 @@ var Map = {
 							current = country;				
 							Map.R.setStart();
 							for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-								Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+								if(Map.getOwner(current) != Map.getOwner(TerritoryData[current].neighbours[index])) {
+									Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+								}
 							}
 							arrow1 = Map.R.setFinish();
 							atkcntry = country;
@@ -365,6 +375,8 @@ var Map = {
 				st.toFront();
                 TerritoryData[current].text.toFront();
 				arrow1.remove();
+				
+				
 			}
 				
 				st[0].onmouseover = function() {
