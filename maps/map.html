@@ -7,16 +7,17 @@
     <script src="js/raphael-min.js"></script>
     <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
+	<script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/gameDetails.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/fileManager.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/socket.io/socket.io.js"></script>
 
     <style type="text/css" media="screen">
         #canvas {
-            height: 768px;
+            display: none;
+	    height: 768px;
             position: absolute;
             width: 1366px;
         }
@@ -117,19 +118,118 @@
 			bottom: 0px;
 			right: 20px;
 		}
+		#chat{
+			height:500px;
+		}
+		#contentWrap{
+			display: none;
+		}
+		#chatWrap{
+			float: left;
+			border: 1px #000 solid;
+		}
+		.error{
+			color: red;
+		}
+		.whisper{
+			color: gray;
+			font-style: italic;
+		}
     </style>
 
 </head>
 
 <body>
-<audio id="sounddeploy" src="sound/3.mp3"></audio>
-<audio id="soundattack" src="sound/2.mp3"></audio>
-<audio id="soundattacked" src="sound/4.mp3"></audio>
+<div id="nickWrap">
+		<p>Enter a username:</p>
+		<p id="nickError"></p>
+		<form id="setNick">
+			<input size="35" id="nickname"></input>
+			<input type="submit"></input>
+		</form>
+	</div>
+
+	<div id="contentWrap">
+		<div id="chatWrap">
+			<div id="chat"></div>
+			<form id="send-message">
+				<input size="35" id="message"></input>
+				<input type="submit"></input>
+			</form>
+		</div>
+		<div id="users"></div>
+
+<button id="button10" style="color: black; background-color:white; width:100px; height:75px" type="button" >Start Game</button>		
+
+	</div>
+
+<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $nickForm = $('#setNick');
+			var $nickError = $('#nickError');
+			var $nickBox = $('#nickname');
+			var $users = $('#users');
+			var $messageForm = $('#send-message');
+			var $messageBox = $('#message');
+			var $chat = $('#chat');
+			
+			$nickForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('new user', $nickBox.val(), function(data){
+					if(data){
+						$('#nickWrap').hide();
+						$('#contentWrap').show();
+					} else{
+						$nickError.html('That username is already taken!  Try again.');
+					}
+				});
+				$nickBox.val('');
+			});
+			
+			socket.on('usernames', function(data){
+				var html = '';
+				for(i=0; i < data.length; i++){
+					html += data[i] + '<br/>'
+				}
+				$users.html(html);
+			});
+			
+			$messageForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('send message', $messageBox.val(), function(data){
+					$chat.append('<span class="error">' + data + "</span><br/>");
+				});
+				$messageBox.val('');
+			});
+			
+			socket.on('new message', function(data){
+				$chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+			});
+			
+			socket.on('whisper', function(data){
+				$chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+			});
+		});
+	
+$(document).ready(function() {
+    $("#button10").click(function(){
+         $('#contentWrap').hide();
+	 $('#canvas').show();
+    }); 
+});
+</script>			
+
+
 <div id="overlay">
     <img src="img/loading.gif">
 </div>
 
 <div id="canvas">
+<audio id="sounddeploy" src="sound/3.mp3"></audio>
+<audio id="soundattack" src="sound/2.mp3"></audio>
+<audio id="soundattacked" src="sound/4.mp3"></audio>
+
     <div id="paper"></div>
 
     <div class='sidebar'>
@@ -198,12 +298,15 @@
         <div id="EasternAustralia"></div>
     
 	</div>
-</div>
+
 <div id = "soundbar">
-	<audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
-	<button onclick="document.getElementById('player').play()">Play</button>
+        <audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
+        <button onclick="document.getElementById('player').play()">Play</button>
     <button onclick="document.getElementById('player').pause()">Pause</button>
     <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/ Unmute</button>
+</div>
+
+</div>
 </div>
 </body>
 

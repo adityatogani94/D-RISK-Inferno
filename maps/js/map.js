@@ -276,7 +276,7 @@ var Map = {
         for (var country in Map.world) {
             Map.world[country].color = Raphael.getColor();
             (function(st, country) {
-
+		var socket = io('ws://54.186.29.28:8080/');
                 st[0].style.cursor = "pointer";
 
                 st[0].onclick = function() {
@@ -294,7 +294,9 @@ var Map = {
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
                             document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-						}
+				socket.emit('deploy', {country:current, count: Map.getArmyCount(current)});						
+
+}
 						else {
 							alert("Deploy Limit Reached");
 						}
@@ -341,18 +343,25 @@ var Map = {
 											Map.setArmyCount(current,leftArmyCount);
 											Map.setOwner(current,Map.getOwner(atkcntry));
 											Map.setColor(current,Map.getColor(atkcntry));
+	 socket.emit('attack', {country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
+
+	 socket.emit('attack', {country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
 										}else if(percentAtkCount == percentAtkdCount){
 											orgcount = orgcount - atkcount;
 											Map.setArmyCount(atkcntry,orgcount);
 											Map.setArmyCount(current,1);
 											Map.setOwner(current,Map.getOwner(atkcntry));
 											Map.setColor(current,Map.getColor(atkcntry));
+		socket.emit('attack', {country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
+         	socket.emit('attack', {country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry), owner: Map.getOwner(atkcntry)});
 										}
 										else{
 											orgcount = orgcount - atkcount;
 											leftArmyCount = percentAtkdCount - percentAtkCount;
 											Map.setArmyCount(atkcntry,orgcount);
-											Map.setArmyCount(current,leftArmyCount) 
+											Map.setArmyCount(current,leftArmyCount)
+		socket.emit('attack', {country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
+         	socket.emit('attack', {country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry), owner: Map.getOwner(atkcntry)}); 
 										}
 									}
 								}
