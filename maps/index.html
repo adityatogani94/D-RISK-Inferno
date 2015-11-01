@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/gameCreator.js"></script>
+</head>
+
+<body>
+			
+
+<div id="HomeScreenWrapper">
+    Name:            <input type="text" name="name" id ="name" />
+    <br />
+    <br />
+    <input id="btnCreateSubmit" type="submit" value="Create Game" />
+    <br />
+    <br />
+
+
+    Already have game id, Enter Game id !             <br />
+    <br />
+
+    Name:             <input type="text" name="name" id = "name2" /> <br> <br>
+    Game Id:             <input type="text" name="gameid" id = "enteredgameid" />
+    <br />
+    <br />
+    <input id="btnJoinSubmit" type="submit" value="Join Game" />
+    <br />
+    <br />
+</div>
+<div id="CreateScreenWrapper" style="display: none;">
+    <div id="welcome"> Hi </div>
+    <div id="gameid">New game id created: </div><br />
+
+    <br />
+
+    Invite Friends to join the game, Enter their email id's below       <br />
+    <br />
+
+    Player 1 email :       <input type="text" id="user1email" />
+    <br />
+    <br />
+
+    Player 2 email :       <input type="text" id="user2email" />
+    <br />
+    <br />
+
+    Player 3 email :       <input type="text" id="user3email" />
+    <br />
+    <br />
+
+    Player 4 email :       <input type="text" id="user4email" />
+    <br />
+    <br />
+
+    Player 5 email :       <input type="text" id="user5email" />
+    <br />
+    <br />
+    <input id="btnJoinLobby" type="submit" value="Join Game" />
+</div>
+<div id="LobbyScreenWrapper" style="display: none;">
+    <div id="displayjoinedplayers"> Waiting for all players to join. <br></div>
+    <input id="btnStartGame" style="display: none;" type="submit" value="StartGame" />
+</div>
+
+
+</body>
+
+</html>
