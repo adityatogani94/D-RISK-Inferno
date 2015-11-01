@@ -421,7 +421,9 @@ var Map = {
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
                 TerritoryData[country].text[0].onclick = function() {
-                    if (Map.stage == "deploy") {
+                    if (Map.stage == "deploy" && Map.getOwner(country) != "Neutral") {
+						var audio1 = document.getElementById('sounddeploy');
+						audio1.play();
 						if(deploycount < 5){
 							var a = Map.getArmyCount(country);
 							a = a + 1;
