@@ -1,7 +1,7 @@
 /**
  * Created by Nikhil on 10/31/2015.
  */
-
+/*
 var socket = io('ws://localhost:8080/');
 var mySocketId = "";
 var message = "";
@@ -78,3 +78,4 @@ $(document).ready(function() {
     });
 
 });
+*/
