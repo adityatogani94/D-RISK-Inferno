@@ -156,7 +156,7 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <div class="one_quarter">
       <h6 class="title">Have a query?</h6>
-      <form method="post" action="#">
+      <form method="post" action="/pages/query.php">
         <fieldset>
           <legend>Newsletter:</legend>
           <input class="btmspace-15" type="text" value="" placeholder="Name">
