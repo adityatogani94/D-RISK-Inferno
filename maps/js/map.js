@@ -441,34 +441,79 @@ var Map = {
 						deploycount = 0;
 						current = country;
 					if (atkcntry != null){
+						var audio1 = document.getElementById('soundattack');
+						audio1.play();
 						for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
 							if(current == TerritoryData[atkcntry].neighbours[index]) {
 								arrow1.remove();
-								atkcount = prompt("Please enter the number of armies to attack", "0");
+								atkcount = 0;
+								transfercount = 0;								
 								orgcount = Map.getArmyCount(atkcntry); 
 								atkdcntrycount = Map.getArmyCount(current);
-							}
+								if(Map.getOwner(atkcntry) == Map.getOwner(current)) {
+										do{
+											transfercount = prompt("Please enter the number of armies to transfer. You should leave atleast one army behind", "0");
+										}while(transfercount <=0 || transfercount >= orgcount);
+										orgcount = orgcount - transfercount;
+										atkdcntrycount = Number(atkdcntrycount) + Number(transfercount);
+										Map.setArmyCount(atkcntry,orgcount);
+										Map.setArmyCount(current,atkdcntrycount);
+									}
+								else{
+										do{
+											atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+										}while( atkcount <=0 || atkcount >= orgcount);
+										// Attacking conditions
+										percentAtkCount = 0.6 * atkcount;
+										percentAtkCount = Math.floor(percentAtkCount);
+										percentAtkdCount = 0.7 * atkdcntrycount;
+										percentAtkdCount = Math.ceil(percentAtkdCount);
+										if (percentAtkCount - percentAtkdCount > 0){
+											
+											leftArmyCount = atkcount - percentAtkdCount;
+											orgcount = orgcount - atkcount;
+											Map.setArmyCount(atkcntry,orgcount);
+											Map.setArmyCount(current,leftArmyCount);
+											Map.setOwner(current,Map.getOwner(atkcntry));
+											Map.setColor(current,Map.getColor(atkcntry));
+										}else if(percentAtkCount == percentAtkdCount){
+											orgcount = orgcount - atkcount;
+											Map.setArmyCount(atkcntry,orgcount);
+											Map.setArmyCount(current,1);
+											Map.setOwner(current,Map.getOwner(atkcntry));
+											Map.setColor(current,Map.getColor(atkcntry));
+										}
+										else{
+											orgcount = orgcount - atkcount;
+											leftArmyCount = percentAtkdCount - percentAtkCount;
+											Map.setArmyCount(atkcntry,orgcount);
+											Map.setArmyCount(current,leftArmyCount)	
+										}
+									}		
+								}
 							else{
 								arrow1.remove();
 							}
 						}
 						 atkcntry =null;
-					} else {
-				
-						document.getElementById(country).style.display = "block";
-						document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-						current = country;
+					} 
+					else if(Map.getOwner(country) != "Neutral") {	
+							var audio1 = document.getElementById('soundattacked');
+							audio1.play();
+							document.getElementById(country).style.display = "block";
+							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+							current = country;
 
-						Map.R.setStart();
-						for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+							Map.R.setStart();
+							for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
 
-						Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+							Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+							}
+							arrow1 = Map.R.setFinish();
+							atkcntry = country;
 						}
-						arrow1 = Map.R.setFinish();
-						atkcntry = country;
 					}
-                }
-            }
+				}
 
                 TerritoryData[country].text[0].unclick = function(){
 				st.toFront();
