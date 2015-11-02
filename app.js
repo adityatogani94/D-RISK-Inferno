@@ -1,8 +1,15 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var nodemailer = require("nodemailer");
 
-
+var smtpTransport = nodemailer.createTransport("SMTP",{
+   service: "Gmail",
+   auth: {
+       user: "driskinferno@gmail.com",
+       pass: "Inferno123"
+   }
+});
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
@@ -30,23 +37,88 @@ io.sockets.on('connection', function (socket) {
 	socket.on('inviteFriends', function (message) {
 		if ( message.user1 != ''){
 			console.log("Sending Email to user1");
-			// Send Email to User1
+		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;	
+		smtpTransport.sendMail({
+   				from: "drisk.inferno@gmail.com", 
+   				to: message.user1,
+   				subject: "Drisk Invitation",
+   				text: email 
+			}, function(error, response){
+   				if(error){
+       					console.log(error);
+   				}else{
+      					 console.log("Message sent: " + response.message);
+   				}
+		});
 		}
+		
 		if ( message.user2 != ''){
 			console.log("Sending Email to user2");
-			// Send Email to User2
+		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;
+                smtpTransport.sendMail({
+                                from: "drisk.inferno@gmail.com",
+                                to: message.user2,
+                                subject: "Drisk Invitation",
+                                text: email
+                        }, function(error, response){
+                                if(error){
+                                        console.log(error);
+                                }else{
+                                         console.log("Message sent: " + response.message);
+                                }
+                });
+
 		}
 		if ( message.user3 != ''){
 			console.log("Sending Email to user3");
-			// Send Email to User3
+		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;
+                smtpTransport.sendMail({
+                                from: "drisk.inferno@gmail.com",
+                                to: message.user3,
+                                subject: "Drisk Invitation",
+                                text: email
+                        }, function(error, response){
+                                if(error){
+                                        console.log(error);
+                                }else{
+                                         console.log("Message sent: " + response.message);
+                                }
+                });
+
 		}
 		if ( message.user4 != ''){
 			console.log("Sending Email to user4");
-			// Send Email to User4
+		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;
+                smtpTransport.sendMail({
+                                from: "drisk.inferno@gmail.com",
+                                to: message.user4,
+                                subject: "Drisk Invitation",
+                                text: email
+                        }, function(error, response){
+                                if(error){
+                                        console.log(error);
+                                }else{
+                                         console.log("Message sent: " + response.message);
+                                }
+                });
+
 		}
 		if ( message.user5 != ''){
 			console.log("Sending Email to user5");
-			// Send Email to User5
+		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;
+                smtpTransport.sendMail({
+                                from: "drisk.inferno@gmail.com",
+                                to: message.user5,
+                                subject: "Drisk Invitation",
+                                text: email
+                        }, function(error, response){
+                                if(error){
+                                        console.log(error);
+                                }else{
+                                         console.log("Message sent: " + response.message);
+                                }
+                });
+
 		}
 	});
 
