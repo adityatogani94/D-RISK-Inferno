@@ -14,11 +14,15 @@ var gameId;
 var username;
 var socket = io('ws://localhost:8080/');
 
+
 socket.on('updateDetails', function(data){
    gameId = data.gameId;
    username = data.name;
 
 });
+
+
+
 
 
 
@@ -47,6 +51,7 @@ var Map = {
     R: null,
     world:{},
     stage:null,
+    state:null,
     init: function() {
 
 
@@ -199,10 +204,8 @@ var Map = {
     },
 
     runStages: function() {
-
-        Map.stage = "deploy";
-
-        next = function() {
+		/*
+		next = function() {
             if (Map.stage == "deploy") {
                 Map.stage = "attack";
                 alert("Now proceed to Attack");
@@ -214,9 +217,11 @@ var Map = {
                 confirm("Executing your turn.");
             }
         }
+*/
 
         deploy = function(IDS) {
-            document.getElementById(IDS).style.backgroundColor = 'green';
+			/*
+			 document.getElementById(IDS).style.backgroundColor = 'green';
 
             if (Map.stage == "deploy") {
                 alert('Click on areas to deploy your army and then click next phase!!');
@@ -224,20 +229,35 @@ var Map = {
                 alert("First Deploy -> then Attack -> then Commit");
             }
             document.getElementById(IDS).style.backgroundColor = 'white';
+*/
+            if (Map.state == "active") {
+                Map.stage = "deploy";
+                console.log("in deploy");
+            }
+
         }
 
         commit = function(IDS) {
-            document.getElementById(IDS).style.backgroundColor = 'green';
+			/*
+			document.getElementById(IDS).style.backgroundColor = 'green';
             if (Map.stage == "commit") {
                 alert('Are you sure? if yes click next phase');
             } else {
                 alert("First Deploy -> then Attack -> then Commit");
             }
             document.getElementById(IDS).style.backgroundColor = 'white';
+                 socket.emit('executedTurn', {gameId: gameId, name: username});
+*/
+            if (Map.state == "active") {
+                socket.emit('executedTurn', {gameId: gameId, name: username, users: players});
+                Map.state = "inactive";
+            }
+
         }
 
         attack = function(IDS) {
-            document.getElementById(IDS).style.backgroundColor = 'green';
+			/*
+			document.getElementById(IDS).style.backgroundColor = 'green';
             if (Map.stage == "attack") {
                 alert('click on the areas you want to attack and then click next phase');
 
@@ -245,11 +265,18 @@ var Map = {
                 alert("In attack issue");
             }
             document.getElementById(IDS).style.backgroundColor = 'white';
+*/
+            if (Map.state == "active") {
+                Map.stage = "attack";
+                console.log("in attack");
+            }
+            
         }
-
-        reset = function() {
+		/*
+		 reset = function() {
             Map.stage = "deploy";
         }
+	*/
     },
 
     defEventHandler: function(){
@@ -305,7 +332,7 @@ var Map = {
 
                 st[0].onclick = function() {
 					
-                    if (Map.stage == "deploy" && Map.getOwner(country) == username) {
+                    if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
 
 						var audio1 = document.getElementById('sounddeploy');
 						audio1.play();
@@ -326,7 +353,7 @@ var Map = {
 						
 
                     }
-                    if (Map.stage == "attack") {
+                    if (Map.state == "active" && Map.stage == "attack") {
 						
 						deploycount = 0;
 						current = country;
@@ -446,7 +473,7 @@ var Map = {
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
                 TerritoryData[country].text[0].onclick = function() {
-                    if (Map.stage == "deploy" && Map.getOwner(country) == username) {
+                    if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
 						var audio1 = document.getElementById('sounddeploy');
 						audio1.play();
 						if(deploycount < 5){
@@ -463,7 +490,7 @@ var Map = {
 							alert("Deploy Limit Reached");
 						}
 					}
-                    if (Map.stage == "attack") {
+                    if (Map.state == "active" && Map.stage == "attack") {
 						deploycount = 0;
 						current = country;
 					if (atkcntry != null){

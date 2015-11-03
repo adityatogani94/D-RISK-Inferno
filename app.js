@@ -1,8 +1,8 @@
 var express = require('express');
 var path = require('path');
 var app = express();
-var nodemailer = require("nodemailer");
-
+//var nodemailer = require("nodemailer");
+/*
 var smtpTransport = nodemailer.createTransport("SMTP",{
    service: "Gmail",
    auth: {
@@ -10,6 +10,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
        pass: "Inferno123"
    }
 });
+*/
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
@@ -35,7 +36,7 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('inviteFriends', function (message) {
-		if ( message.user1 != ''){
+		/*if ( message.user1 != ''){
 			console.log("Sending Email to user1");
 		var email = "You have been invited by " +message.name+" to play risk. Go to 54.186.29.28 and Join game with Game id "+ message.gameId;	
 		smtpTransport.sendMail({
@@ -119,7 +120,7 @@ io.sockets.on('connection', function (socket) {
                                 }
                 });
 
-		}
+		}*/
 	});
 
 	socket.on('joingamelobby', function (message) {
@@ -147,10 +148,14 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.in(message.gameId).emit('beginGame');
 	});
 
+    socket.on('sendUserData', function (message) {
+        io.sockets.in(message.gameId).emit('updateUserData', message.users);
+    });
+
 	socket.on('loaded', function (message) {
 		console.log("About to send init data");
-		users = message.users;
-
+        users = message.users;
+        io.sockets.in(message.gameId).emit('updateState', message.name, "active");
 		if (users.length == 2) {
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
@@ -212,25 +217,53 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "Peru", "Cyan", users[5]);
 
 		}
-
-
-
 	});
-
-
-
 	socket.on('deploy', function (message) {
 		io.sockets.in(message.gameId).emit('deploy', message.country, message.count);
 	});
 	socket.on('attack', function (message) {
 		io.sockets.in(message.gameId).emit('attack', message.country, message.count, message.color, message.owner);
 	});
+	socket.on('executedTurn', function (message) {
+        console.log(users);
+        var count = message.users.length;
+        console.log(count);
+
+        if (count == 2){
+            var currentPlayerIndex = users.indexOf(message.name);
+            var newPlayerIndex = (currentPlayerIndex + 1) % 2 ;
+            io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
+        }
+        if (count == 3){
+            var currentPlayerIndex = users.indexOf(message.name);
+            var newPlayerIndex = (currentPlayerIndex + 1) % 3 ;
+            io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
+        }
+        if (count == 4){
+            var currentPlayerIndex = users.indexOf(message.name);
+            var newPlayerIndex = (currentPlayerIndex + 1) % 4 ;
+            io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
+        }
+        if (count == 5){
+            var currentPlayerIndex = users.indexOf(message.name);
+            var newPlayerIndex = (currentPlayerIndex + 1) % 5 ;
+            io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
+        }
+        if (count == 6){
+            var currentPlayerIndex = users.indexOf(message.name);
+            var newPlayerIndex = (currentPlayerIndex + 1) % 6 ;
+            io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
+        }
+
+
+
+
+
+
+		});
+
 });
 
-
-
-
-users = {};
 
 /*
 io.on('connection', function (socket) {

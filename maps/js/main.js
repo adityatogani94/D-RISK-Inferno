@@ -9,6 +9,7 @@ FILE_MANAGER.queueDownload('sound/4.mp3');
 
 var socket = io('ws://localhost:8080/');
 //Map.setColor()
+var players = [];
 FILE_MANAGER.downloadAll(function() {
 
 
@@ -17,8 +18,8 @@ FILE_MANAGER.downloadAll(function() {
 	var mySocketId = "";
 	var message = "";
 	var gameId = "";
-	var players = [];
 	var isHost = false;
+	var name = "";
 
 	socket.on('connected', function(data){
 		mySocketId = data.mySocketId;
@@ -35,6 +36,7 @@ FILE_MANAGER.downloadAll(function() {
 		players.push(data.name);
 		$('#welcome').append(data.name);
 		$('#gameid').append(gameId);
+		name = data.name;
 		if (isHost) {
 			$('#displayjoinedplayers').append(data.name + " has joined the room <br>");
 		}
@@ -57,10 +59,27 @@ FILE_MANAGER.downloadAll(function() {
 		$('#HomeScreenWrapper').remove();
 		$('#CanvasWrapper').show();
         Map.init();
-		socket.emit('loaded', {gameId: gameId, users: players});
+		if (isHost) {
+			socket.emit('loaded', {gameId: gameId, users: players, name: name});
+			socket.emit('sendUserData', {gameId: gameId, users: players});
+		}
+	});
+
+	socket.on('updateUserData', function(users){
+		players = users;
 	});
 
 
+
+	socket.on('updateState', function (name1, state1) {
+		console.log(name);
+		console.log(name1);
+		if (name == name1){
+			Map.state = state1;
+			console.log(Map.state);
+		}
+
+	});
 
 	jQuery(function($) {
 		$("#btnCreateSubmit").click(function () {
@@ -73,6 +92,7 @@ FILE_MANAGER.downloadAll(function() {
 		$("#btnJoinSubmit").click(function () {
 			$('#HomeScreenWrapper').hide();
 			$('#LobbyScreenWrapper').show();
+			name = $('#name2').val();
 			socket.emit("joingamelobby", {gameId: $('#enteredgameid').val(), name: $('#name2').val(), socketid: mySocketId})
 
 		});
@@ -83,8 +103,7 @@ FILE_MANAGER.downloadAll(function() {
 			if (isHost) {
 				$('#btnStartGame').show();
 			}
-			socket.emit('inviteFriends', {
-				user1: $('#user1email').val(), user2: $('#user2email').val(),
+			socket.emit('inviteFriends', {name: name, gameId: gameId, user1: $('#user1email').val(), user2: $('#user2email').val(),
 				user3: $('#user3email').val(), user4: $('#user4email').val(), user5: $('#user5email').val(),
 			})
 
@@ -99,21 +118,21 @@ FILE_MANAGER.downloadAll(function() {
 
 
 
-socket.on('init', function (country, color, owner) {
-		console.log ("hahaha"+country+color+owner);
+socket.on('init', function (country, color, owner, users) {
+		console.log (country+color+owner);
 		Map.setColor(country,color);
 		Map.setOwner(country,owner);
 
 });
 
 socket.on('deploy', function (country, count) {
-Map.setArmyCount(country,count);
+		Map.setArmyCount(country,count);
 });
 
 socket.on('attack', function (country, count, color, owner) {
-Map.setArmyCount(country,count);
-Map.setColor(country,color);
-Map.setOwner(country,owner)
+		Map.setArmyCount(country,count);
+		Map.setColor(country,color);
+		Map.setOwner(country,owner)
 });
 
 
