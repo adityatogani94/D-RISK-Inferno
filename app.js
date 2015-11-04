@@ -219,11 +219,30 @@ io.sockets.on('connection', function (socket) {
 		}
 	});
 	socket.on('deploy', function (message) {
-		io.sockets.in(message.gameId).emit('deploy', message.country, message.count);
+		io.sockets.in(message.gameId).emit('deploy', message.country, message.count)
+        var info = message.name + " deployed 1 unit to " + message.country;
+        io.sockets.in(message.gameId).emit('actionInfo', info);
+
 	});
 	socket.on('attack', function (message) {
 		io.sockets.in(message.gameId).emit('attack', message.country, message.count, message.color, message.owner);
+
 	});
+
+    socket.on('sendinfo', function (message) {
+
+        if (message.type == "transferred"){
+            var info = message.name + " " + message.type + " " + message.count + " units to " + message.country;
+            io.sockets.in(message.gameId).emit('actionInfo', info);
+        }
+        else {
+            var info = message.name + " " + message.type +" on " + message.country + " with " + message.count + " units" ;
+            io.sockets.in(message.gameId).emit('actionInfo', info);
+        }
+    });
+
+
+
 	socket.on('executedTurn', function (message) {
         console.log(users);
         var count = message.users.length;

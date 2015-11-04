@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
 	<script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/jquery.tabSlideOut.v1.3.js"></script>
     <script src="js/gameCreator.js"></script>
     <script src="js/gameDetails.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
@@ -78,7 +79,7 @@
             overflow: auto;
             position: fixed;
             left: 30px;
-            top: 360px;
+            top: 520px;
             width: 260px;
         }
 
@@ -87,15 +88,18 @@
         }
 
         .sidebar {
+            background-image: url("img/sidebar.gif");
             width: 260px;
-            height: 550px;
+            height: 600px;
             position: fixed;
             left: 20px;
-            top: 50px;
+            top: 30px;
             border-style: solid;
             border-width: 5px;
             border-color: gray;
         }
+
+
         #overlay {
             width:100%;
             height: 100%;
@@ -136,8 +140,33 @@
 			color: gray;
 			font-style: italic;
 		}
+        .slide-out-div {
+            padding: 20px;
+            width: 200px;
+            background: #ccc;
+            border: 1px solid #29216d;
+        }
     </style>
 
+
+    <script type="text/javascript">
+        $(function(){
+            $('.slide-out-div').tabSlideOut({
+                tabHandle: '.handle',                     //class of the element that will become your tab
+                pathToTabImage: 'img/CHAT.png', //path to the image for the tab //Optionally can be set using css
+                imageHeight: '300px',                     //height of tab image           //Optionally can be set using css
+                imageWidth: '40px',                       //width of tab image            //Optionally can be set using css
+                tabLocation: 'right',                      //side of screen where tab lives, top, right, bottom, or left
+                speed: 300,                               //speed of animation
+                action: 'click',                          //options: 'click' or 'hover', action to trigger animation
+                topPos: '40px',                          //position from the top/ use if tabLocation is left or right
+                leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+                fixedPosition: false                      //options: true makes it stick(fixed position) on scroll
+            });
+
+        });
+
+    </script>
 </head>
 
 <body>
@@ -209,27 +238,35 @@
 <audio id="soundattacked" src="sound/4.mp3"></audio>
 
     <div id="paper"></div>
+    <div class="slide-out-div">
+        <a class="handle" href="http://link-for-non-js-users.html">Content</a>
+        <h3>Chat</h3>
+        Need to add Chat div here
+    </div>
+
 
     <div class='sidebar'>
-        <h2>GAME OPTIONS</h2>
+
+
         <ul>
             <div id="DIVbtns">
+                <br><br>
                 <button id="button1" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="deploy(this.id);">Deploy</button>
                 <br>
                 <br>
                 <button id="button2" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="attack(this.id);">Attack</button>
                 <br>
                 <br>
-                <button id="button3" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="commit(this.id)">Commit</button>
-                <br>
-                <br>
-                <button id="button4" style="color: orange; background-color:white" type="button" onclick="reset()">Begin Phase</button>
-                <button id="button5" style="color: orange; background-color:white" type="button" onclick="next()">Next Phase</button>
-                <br>
-                <br>
+                <button id="button3" style="color: black; background-color:white; width:75px; height:25px" type="button" onclick="commit(this.id)">Execute</button>
+                <br><br> <br>
+
+               <!-- <button id="button4" style="color: orange; background-color:white" type="button" onclick="reset()">Begin Phase</button>
+<button id="button5" style="color: orange; background-color:white" type="button" onclick="next()">Next Phase</button>
+
+-->
             </div>
         </ul>
-
+    <div id="actionInfo" style="overflow:auto; height:225px; left: 20px; width: 260px"></div>
         <div id = "hello"></div>
 
         <div id="Alaska"></div>

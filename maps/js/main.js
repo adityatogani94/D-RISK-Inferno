@@ -129,6 +129,14 @@ socket.on('deploy', function (country, count) {
 		Map.setArmyCount(country,count);
 });
 
+	socket.on('actionInfo', function (info) {
+		$('#actionInfo').append(info +"<br>");
+	});
+
+
+
+
+
 socket.on('attack', function (country, count, color, owner) {
 		Map.setArmyCount(country,count);
 		Map.setColor(country,color);

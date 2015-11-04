@@ -1,4 +1,3 @@
-
 var TerritoryData = {};
 var deploy;
 var attack;
@@ -15,16 +14,11 @@ var username;
 var socket = io('ws://localhost:8080/');
 
 
-socket.on('updateDetails', function(data){
-   gameId = data.gameId;
-   username = data.name;
+socket.on('updateDetails', function(data) {
+    gameId = data.gameId;
+    username = data.name;
 
 });
-
-
-
-
-
 
 
 
@@ -44,14 +38,12 @@ for (var id in TerritoryNames) {
 
 
 
-
-
 var Map = {
 
     R: null,
-    world:{},
-    stage:null,
-    state:null,
+    world: {},
+    stage: null,
+    state: null,
     init: function() {
 
 
@@ -64,8 +56,13 @@ var Map = {
 
     drawMap: function() {
 
-        Map.R.image("img/bg_image.png",0,0,1366,768);
-        var attr = {fill: "gray",stroke: "#666","stroke-width": 1.5,"stroke-linejoin": "round"};
+        Map.R.image("img/bg_image.png", 0, 0, 1366, 768);
+        var attr = {
+            fill: "gray",
+            stroke: "#666",
+            "stroke-width": 1.5,
+            "stroke-linejoin": "round"
+        };
         Map.world.Alaska = Map.R.path(TerritoryPathData['Alaska'].path).attr(attr);
         TerritoryData['Alaska'].path = Map.world.Alaska;
         Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData['NorthWestTerritory'].path).attr(attr);
@@ -151,7 +148,11 @@ var Map = {
         Map.world.EasternAustralia = Map.R.path(TerritoryPathData['EasternAustralia'].path).attr(attr);
         TerritoryData['EasternAustralia'].path = Map.world.EasternAustralia;
 
-        var attr_text = {"font-size": 20,"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",width: 2};
+        var attr_text = {
+            "font-size": 20,
+            "font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
+            width: 2
+        };
         for (id in TerritoryNames) {
 
             var textObject = Map.R.text(ArmyCountCoords[id].x, ArmyCountCoords[id].y, 2).attr(attr_text);
@@ -164,9 +165,9 @@ var Map = {
         }
 
     },
-	
-	
-	
+
+
+
     setColor: function(country, color) {
         TerritoryData[country].path.attr({
             fill: color
@@ -204,32 +205,8 @@ var Map = {
     },
 
     runStages: function() {
-		/*
-		next = function() {
-            if (Map.stage == "deploy") {
-                Map.stage = "attack";
-                alert("Now proceed to Attack");
-            } else if (Map.stage == "attack") {
-                Map.stage = "commit";
-                alert("Proceed to commit your final turn");
-            } else {
-                Map.stage = "deploy";
-                confirm("Executing your turn.");
-            }
-        }
-*/
 
         deploy = function(IDS) {
-			/*
-			 document.getElementById(IDS).style.backgroundColor = 'green';
-
-            if (Map.stage == "deploy") {
-                alert('Click on areas to deploy your army and then click next phase!!');
-            } else {
-                alert("First Deploy -> then Attack -> then Commit");
-            }
-            document.getElementById(IDS).style.backgroundColor = 'white';
-*/
             if (Map.state == "active") {
                 Map.stage = "deploy";
                 console.log("in deploy");
@@ -238,48 +215,27 @@ var Map = {
         }
 
         commit = function(IDS) {
-			/*
-			document.getElementById(IDS).style.backgroundColor = 'green';
-            if (Map.stage == "commit") {
-                alert('Are you sure? if yes click next phase');
-            } else {
-                alert("First Deploy -> then Attack -> then Commit");
-            }
-            document.getElementById(IDS).style.backgroundColor = 'white';
-                 socket.emit('executedTurn', {gameId: gameId, name: username});
-*/
             if (Map.state == "active") {
-                socket.emit('executedTurn', {gameId: gameId, name: username, users: players});
+                socket.emit('executedTurn', {
+                    gameId: gameId,
+                    name: username,
+                    users: players
+                });
                 Map.state = "inactive";
             }
 
         }
 
         attack = function(IDS) {
-			/*
-			document.getElementById(IDS).style.backgroundColor = 'green';
-            if (Map.stage == "attack") {
-                alert('click on the areas you want to attack and then click next phase');
-
-            } else {
-                alert("In attack issue");
-            }
-            document.getElementById(IDS).style.backgroundColor = 'white';
-*/
             if (Map.state == "active") {
                 Map.stage = "attack";
                 console.log("in attack");
             }
-            
+
         }
-		/*
-		 reset = function() {
-            Map.stage = "deploy";
-        }
-	*/
     },
 
-    defEventHandler: function(){
+    defEventHandler: function() {
         var current = null;
         var arrow1;
         var arrow2;
@@ -331,123 +287,209 @@ var Map = {
                 st[0].style.cursor = "pointer";
 
                 st[0].onclick = function() {
-					
+
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
 
-						var audio1 = document.getElementById('sounddeploy');
-						audio1.play();
-						if(deploycount < 5){
+                        var audio1 = document.getElementById('sounddeploy');
+                        audio1.play();
+                        if (deploycount < 5) {
 
                             var a = Map.getArmyCount(country);
                             a = a + 1;
-							deploycount ++;
-							current = country;
+                            deploycount++;
+                            current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
                             document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-							socket.emit('deploy', {gameId: gameId, country:current, count: Map.getArmyCount(current)});
-						}
-						else {
-							alert("Deploy Limit Reached");
-						}
-						
+                            socket.emit('deploy', {
+                                gameId: gameId,
+                                country: current,
+                                count: Map.getArmyCount(current),
+                                name: username
+                            });
+                        } else {
+                            alert("Deploy Limit Reached");
+                        }
+
 
                     }
                     if (Map.state == "active" && Map.stage == "attack") {
-						
-						deploycount = 0;
-						current = country;
-						if (atkcntry != null){
-							var audio1 = document.getElementById('soundattack');
-							audio1.play();
-							for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
-								if(current == TerritoryData[atkcntry].neighbours[index] && Map.getArmyCount(atkcntry) > 1) {
-									arrow1.remove();
-									atkcount = 0;
-									transfercount = 0;
-									orgcount = Map.getArmyCount(atkcntry); 
-									atkdcntrycount = Map.getArmyCount(current);
-									if(Map.getOwner(atkcntry) == Map.getOwner(current)) {
-										do{
-											transfercount = prompt("Please enter the number of armies to transfer. You should leave atleast one army behind", "0");
-										}while(transfercount <=0 || transfercount >= orgcount);
-										orgcount = orgcount - transfercount;
-										atkdcntrycount = Number(atkdcntrycount) + Number(transfercount);
-										Map.setArmyCount(atkcntry,orgcount);
-										Map.setArmyCount(current,atkdcntrycount);
-										socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-										socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-									}
-									else{
-										do{
-											atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
-										}while( atkcount <=0 || atkcount >= orgcount);
-										// Attacking conditions
-										percentAtkCount = 0.6 * atkcount;
-										percentAtkCount = Math.floor(percentAtkCount);
-										percentAtkdCount = 0.7 * atkdcntrycount;
-										percentAtkdCount = Math.ceil(percentAtkdCount);
-										if (percentAtkCount - percentAtkdCount > 0){
-											
-											leftArmyCount = atkcount - percentAtkdCount;
-											orgcount = orgcount - atkcount;
-											Map.setArmyCount(atkcntry,orgcount);
-											Map.setArmyCount(current,leftArmyCount);
-											Map.setOwner(current,Map.getOwner(atkcntry));
-											Map.setColor(current,Map.getColor(atkcntry));
-											socket.emit('attack', {gameId:gameId, country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
+                        var atkcount = 0;
+                        deploycount = 0;
+                        current = country;
+                        if (atkcntry != null) {
+                            var audio1 = document.getElementById('soundattack');
+                            audio1.play();
+                            for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
+                                if (current == TerritoryData[atkcntry].neighbours[index] && Map.getArmyCount(atkcntry) > 1) {
+                                    arrow1.remove();
+                                    atkcount = 0;
+                                    var transfercount = 0;
 
-											socket.emit('attack', {gameId:gameId, country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-										}else if(percentAtkCount == percentAtkdCount){
-											orgcount = orgcount - atkcount;
-											Map.setArmyCount(atkcntry,orgcount);
-											Map.setArmyCount(current,1);
-											Map.setOwner(current,Map.getOwner(atkcntry));
-											Map.setColor(current,Map.getColor(atkcntry));
-											socket.emit('attack', {gameId: gameId, country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-											socket.emit('attack', {gameId: gameId, country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry), owner: Map.getOwner(atkcntry)});
-										}
-										else{
-											orgcount = orgcount - atkcount;
-											leftArmyCount = percentAtkdCount - percentAtkCount;
-											Map.setArmyCount(atkcntry,orgcount);
-											Map.setArmyCount(current,leftArmyCount)
-											socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-											socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry), owner: Map.getOwner(atkcntry)});
-										}
-									}
-								}
-								else{
-									arrow1.remove();
-								}
-							}
-							atkcntry =null;
-						} 
-						else if(Map.getOwner(country) == username) {	
-							var audio1 = document.getElementById('soundattacked');
-							audio1.play();
-							document.getElementById(country).style.display = "block";
-							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-							current = country;				
-							Map.R.setStart();
-							for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-								Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-							}
-							arrow1 = Map.R.setFinish();
-							atkcntry = country;
-						}
+                                    orgcount = Map.getArmyCount(atkcntry);
+                                    atkdcntrycount = Map.getArmyCount(current);
+                                    if (Map.getOwner(atkcntry) == Map.getOwner(current)) {
+
+                                        do {
+                                            transfercount = prompt("Please enter the number of armies to transfer. You should leave atleast one army behind", "0");
+                                        } while (transfercount <= 0 || transfercount >= orgcount);
+                                        orgcount = orgcount - transfercount;
+                                        atkdcntrycount = Number(atkdcntrycount) + Number(transfercount);
+                                        Map.setArmyCount(atkcntry, orgcount);
+                                        Map.setArmyCount(current, atkdcntrycount);
+                                        socket.emit('sendinfo', {
+                                            gameId: gameId,
+                                            name: username,
+                                            type: "transferred",
+                                            count: transfercount,
+                                            country: current
+                                        });
+                                        socket.emit('attack', {
+                                            gameId: gameId,
+                                            country: current,
+                                            count: Map.getArmyCount(current),
+                                            color: Map.getColor(current),
+                                            owner: Map.getOwner(current),
+                                            name: username
+                                        });
+                                        socket.emit('attack', {
+                                            gameId: gameId,
+                                            country: atkcntry,
+                                            count: Map.getArmyCount(atkcntry),
+                                            color: Map.getColor(atkcntry),
+                                            owner: Map.getOwner(atkcntry),
+                                            name: username
+                                        });
+                                    } else {
+
+                                        do {
+                                            atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+                                        } while (atkcount <= 0 || atkcount >= orgcount);
+                                        // Attacking conditions
+                                        percentAtkCount = 0.6 * atkcount;
+                                        percentAtkCount = Math.floor(percentAtkCount);
+                                        percentAtkdCount = 0.7 * atkdcntrycount;
+                                        percentAtkdCount = Math.ceil(percentAtkdCount);
+                                        if (percentAtkCount - percentAtkdCount > 0) {
+
+                                            leftArmyCount = atkcount - percentAtkdCount;
+                                            orgcount = orgcount - atkcount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, leftArmyCount);
+                                            Map.setOwner(current, Map.getOwner(atkcntry));
+                                            Map.setColor(current, Map.getColor(atkcntry));
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                        } else if (percentAtkCount == percentAtkdCount) {
+                                            orgcount = orgcount - atkcount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, 1);
+                                            Map.setOwner(current, Map.getOwner(atkcntry));
+                                            Map.setColor(current, Map.getColor(atkcntry));
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                        } else {
+                                            orgcount = orgcount - atkcount;
+                                            leftArmyCount = percentAtkdCount - percentAtkCount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, leftArmyCount)
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                        }
+                                    }
+                                } else {
+                                    arrow1.remove();
+                                }
+                            }
+                            atkcntry = null;
+                        } else if (Map.getOwner(country) == username) {
+                            var audio1 = document.getElementById('soundattacked');
+                            audio1.play();
+                            document.getElementById(country).style.display = "block";
+                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            current = country;
+                            Map.R.setStart();
+                            for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+                                Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+                            }
+                            arrow1 = Map.R.setFinish();
+                            atkcntry = country;
+                        }
 
                     }
                 }
-			st[0].unclick = function(){
-				st.toFront();
-                TerritoryData[current].text.toFront();
-				arrow1.remove();
-				
-				
-			}
-				
-				st[0].onmouseover = function() {
+                st[0].unclick = function() {
+                    st.toFront();
+                    TerritoryData[current].text.toFront();
+                    arrow1.remove();
+
+
+                }
+
+                st[0].onmouseover = function() {
                     current && (document.getElementById(current).style.display = "");
                     st.animate({
                         fill: st.color,
@@ -457,152 +499,236 @@ var Map = {
                     document.getElementById(country).style.display = "block";
                     document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
-                    
+
                 }
-				
-				st[0].onmouseout = function() {
+
+                st[0].onmouseout = function() {
                     st.animate({
                         fill: TerritoryData[current].color,
                     }, 500);
                     document.getElementById(current).style.display = "";
-                                        
+
                 };
-				
-				
-				
+
+
+
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
                 TerritoryData[country].text[0].onclick = function() {
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
-						var audio1 = document.getElementById('sounddeploy');
-						audio1.play();
-						if(deploycount < 5){
-							var a = Map.getArmyCount(country);
-							a = a + 1;
-							deploycount ++;
-							current = country;
-							TerritoryData[current].text.attr('text', a);
-							TerritoryData[current].armyNum = a;
-							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-							socket.emit('deploy', {gameId:gameId, country:current, count: Map.getArmyCount(current)});
-						}
-						else{
-							alert("Deploy Limit Reached");
-						}
-					}
+                        var audio1 = document.getElementById('sounddeploy');
+                        audio1.play();
+                        if (deploycount < 5) {
+                            var a = Map.getArmyCount(country);
+                            a = a + 1;
+                            deploycount++;
+                            current = country;
+                            TerritoryData[current].text.attr('text', a);
+                            TerritoryData[current].armyNum = a;
+                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            socket.emit('deploy', {
+                                gameId: gameId,
+                                country: current,
+                                count: Map.getArmyCount(current),
+                                name: username
+                            });
+                        } else {
+                            alert("Deploy Limit Reached");
+                        }
+                    }
                     if (Map.state == "active" && Map.stage == "attack") {
-						deploycount = 0;
-						current = country;
-					if (atkcntry != null){
-						var audio1 = document.getElementById('soundattack');
-						audio1.play();
-						for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
-							if(current == TerritoryData[atkcntry].neighbours[index]) {
-								arrow1.remove();
-								atkcount = 0;
-								transfercount = 0;								
-								orgcount = Map.getArmyCount(atkcntry); 
-								atkdcntrycount = Map.getArmyCount(current);
-								if(Map.getOwner(atkcntry) == Map.getOwner(current)) {
-									do{
-										transfercount = prompt("Please enter the number of armies to transfer. You should leave atleast one army behind", "0");
-									}while(transfercount <=0 || transfercount >= orgcount);
-									orgcount = orgcount - transfercount;
-									atkdcntrycount = Number(atkdcntrycount) + Number(transfercount);
-									Map.setArmyCount(atkcntry,orgcount);
-									Map.setArmyCount(current,atkdcntrycount);
-									socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-									socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-								}
-								else{
-									do{
-										atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
-									}while( atkcount <=0 || atkcount >= orgcount);
-									// Attacking conditions
-									percentAtkCount = 0.6 * atkcount;
-									percentAtkCount = Math.floor(percentAtkCount);
-									percentAtkdCount = 0.7 * atkdcntrycount;
-									percentAtkdCount = Math.ceil(percentAtkdCount);
-									if (percentAtkCount - percentAtkdCount > 0){
-										
-										leftArmyCount = atkcount - percentAtkdCount;
-										orgcount = orgcount - atkcount;
-										Map.setArmyCount(atkcntry,orgcount);
-										Map.setArmyCount(current,leftArmyCount);
-										Map.setOwner(current,Map.getOwner(atkcntry));
-										Map.setColor(current,Map.getColor(atkcntry));
-										socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-										socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-									}else if(percentAtkCount == percentAtkdCount){
-										orgcount = orgcount - atkcount;
-										Map.setArmyCount(atkcntry,orgcount);
-										Map.setArmyCount(current,1);
-										Map.setOwner(current,Map.getOwner(atkcntry));
-										Map.setColor(current,Map.getColor(atkcntry));
-										socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-										socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-									}
-									else{
-										orgcount = orgcount - atkcount;
-										leftArmyCount = percentAtkdCount - percentAtkCount;
-										Map.setArmyCount(atkcntry,orgcount);
-										Map.setArmyCount(current,leftArmyCount)	
-										socket.emit('attack', {gameId:gameId,country:current, count: Map.getArmyCount(current), color: Map.getColor(current), owner: Map.getOwner(current)});
-										socket.emit('attack', {gameId:gameId,country:atkcntry, count: Map.getArmyCount(atkcntry), color: Map.getColor(atkcntry),  owner: Map.getOwner(atkcntry)});
-									}
-								}		
-							}
-							else{
-								arrow1.remove();
-							}
-						}
-						 atkcntry =null;
-					} 
-					else if(Map.getOwner(country) == username) {	
-							var audio1 = document.getElementById('soundattacked');
-							audio1.play();
-							document.getElementById(country).style.display = "block";
-							document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
-							current = country;
+                        deploycount = 0;
+                        current = country;
+                        if (atkcntry != null) {
+                            var audio1 = document.getElementById('soundattack');
+                            audio1.play();
+                            for (index = 0; index < TerritoryData[atkcntry].neighbours.length; index++) {
+                                if (current == TerritoryData[atkcntry].neighbours[index]) {
+                                    arrow1.remove();
+                                    atkcount = 0;
+                                    transfercount = 0;
+                                    orgcount = Map.getArmyCount(atkcntry);
+                                    atkdcntrycount = Map.getArmyCount(current);
+                                    if (Map.getOwner(atkcntry) == Map.getOwner(current)) {
+                                        do {
+                                            transfercount = prompt("Please enter the number of armies to transfer. You should leave atleast one army behind", "0");
+                                        } while (transfercount <= 0 || transfercount >= orgcount);
+                                        orgcount = orgcount - transfercount;
+                                        atkdcntrycount = Number(atkdcntrycount) + Number(transfercount);
+                                        Map.setArmyCount(atkcntry, orgcount);
+                                        Map.setArmyCount(current, atkdcntrycount);
+                                        socket.emit('attack', {
+                                            gameId: gameId,
+                                            country: current,
+                                            count: Map.getArmyCount(current),
+                                            color: Map.getColor(current),
+                                            owner: Map.getOwner(current),
+                                            name: username
+                                        });
+                                        socket.emit('attack', {
+                                            gameId: gameId,
+                                            country: atkcntry,
+                                            count: Map.getArmyCount(atkcntry),
+                                            color: Map.getColor(atkcntry),
+                                            owner: Map.getOwner(atkcntry),
+                                            name: username
+                                        });
+                                        socket.emit('sendinfo', {
+                                            gameId: gameId,
+                                            name: username,
+                                            type: "transferred",
+                                            count: transfercount,
+                                            country: current
+                                        });
+                                    } else {
+                                        do {
+                                            atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
+                                        } while (atkcount <= 0 || atkcount >= orgcount);
+                                        // Attacking conditions
+                                        percentAtkCount = 0.6 * atkcount;
+                                        percentAtkCount = Math.floor(percentAtkCount);
+                                        percentAtkdCount = 0.7 * atkdcntrycount;
+                                        percentAtkdCount = Math.ceil(percentAtkdCount);
+                                        if (percentAtkCount - percentAtkdCount > 0) {
 
-							Map.R.setStart();
-							for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
+                                            leftArmyCount = atkcount - percentAtkdCount;
+                                            orgcount = orgcount - atkcount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, leftArmyCount);
+                                            Map.setOwner(current, Map.getOwner(atkcntry));
+                                            Map.setColor(current, Map.getColor(atkcntry));
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                        } else if (percentAtkCount == percentAtkdCount) {
+                                            orgcount = orgcount - atkcount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, 1);
+                                            Map.setOwner(current, Map.getOwner(atkcntry));
+                                            Map.setColor(current, Map.getColor(atkcntry));
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                        } else {
+                                            orgcount = orgcount - atkcount;
+                                            leftArmyCount = percentAtkdCount - percentAtkCount;
+                                            Map.setArmyCount(atkcntry, orgcount);
+                                            Map.setArmyCount(current, leftArmyCount)
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: current,
+                                                count: Map.getArmyCount(current),
+                                                color: Map.getColor(current),
+                                                owner: Map.getOwner(current),
+                                                name: username
+                                            });
+                                            socket.emit('attack', {
+                                                gameId: gameId,
+                                                country: atkcntry,
+                                                count: Map.getArmyCount(atkcntry),
+                                                color: Map.getColor(atkcntry),
+                                                owner: Map.getOwner(atkcntry),
+                                                name: username
+                                            });
+                                            socket.emit('sendinfo', {
+                                                gameId: gameId,
+                                                name: username,
+                                                type: "attacked",
+                                                count: atkcount,
+                                                country: current
+                                            });
+                                        }
+                                    }
+                                } else {
+                                    arrow1.remove();
+                                }
+                            }
+                            atkcntry = null;
+                        } else if (Map.getOwner(country) == username) {
+                            var audio1 = document.getElementById('soundattacked');
+                            audio1.play();
+                            document.getElementById(country).style.display = "block";
+                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            current = country;
 
-							Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-							}
-							arrow1 = Map.R.setFinish();
-							atkcntry = country;
-						}
-					}
-				}
+                            Map.R.setStart();
+                            for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
 
-                TerritoryData[country].text[0].unclick = function(){
-				st.toFront();
-                TerritoryData[current].text.toFront();
-				arrow1.remove();
-			}
-				
+                                Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+                            }
+                            arrow1 = Map.R.setFinish();
+                            atkcntry = country;
+                        }
+                    }
+                }
+
+                TerritoryData[country].text[0].unclick = function() {
+                    st.toFront();
+                    TerritoryData[current].text.toFront();
+                    arrow1.remove();
+                }
+
                 TerritoryData[country].text[0].onmouseover = function() {
                     current && (document.getElementById(current).style.display = "");
                     st.animate({
                         fill: st.color,
-                     
+
                     }, 500);
 
                     document.getElementById(country).style.display = "block";
                     document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
-                    
+
                 };
 
                 TerritoryData[country].text[0].onmouseout = function() {
                     st.animate({
                         fill: TerritoryData[current].color,
-                        
+
                     }, 500);
-                    document.getElementById(current).style.display = "";					
+                    document.getElementById(current).style.display = "";
                 };
-				
+
             })(Map.world[country], country);
         }
     },
