@@ -146,6 +146,12 @@
             background: #ccc;
             border: 1px solid #29216d;
         }
+        #popup{
+            position: fixed;
+            left: 10px;
+            top: 10px;
+
+        }
     </style>
 
 
@@ -230,9 +236,14 @@
     <img src="img/loading.gif">
 </div>
 
+
+
 <div id = "CanvasWrapper" style="display: none;">
 
 <div id="canvas">
+
+
+
 <audio id="sounddeploy" src="sound/3.mp3"></audio>
 <audio id="soundattack" src="sound/2.mp3"></audio>
 <audio id="soundattacked" src="sound/4.mp3"></audio>
@@ -244,7 +255,7 @@
         Need to add Chat div here
     </div>
 
-
+    <div id = "popup"></div>
     <div class='sidebar'>
 
 
@@ -269,6 +280,7 @@
     <div id="actionInfo" style="overflow:auto; height:225px; left: 20px; width: 260px"></div>
         <div id = "hello"></div>
 
+    </div>
         <div id="Alaska"></div>
         <div id="NorthWestTerritory"></div>
         <div id="Alberta"></div>
@@ -314,12 +326,15 @@
     
 	</div>
 
+
+
 <div id = "soundbar">
         <audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
         <button onclick="document.getElementById('player').play()">Play</button>
     <button onclick="document.getElementById('player').pause()">Pause</button>
     <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/ Unmute</button>
 </div>
+
 
 </div>
 </div>

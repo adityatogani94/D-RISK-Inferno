@@ -77,6 +77,8 @@ FILE_MANAGER.downloadAll(function() {
 		if (name == name1){
 			Map.state = state1;
 			console.log(Map.state);
+			$("#popup").empty();
+			$("#popup").append("Current Stage: None, Click on buttons to begin stage !");
 		}
 
 	});
@@ -112,6 +114,8 @@ FILE_MANAGER.downloadAll(function() {
 		$("#btnStartGame").click(function () {
 			socket.emit("initGame", {gameId: gameId, users: players});
 		});
+
+
 
 	});
 

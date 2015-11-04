@@ -205,17 +205,50 @@ var Map = {
     },
 
     runStages: function() {
-
+        $("#popup").append("Current Stage: None, Click on buttons to begin stage !");
+        var deploycheck = true;
         deploy = function(IDS) {
+            if (Map.state == "inactive" || Map.state == null){
+                $("#popup").empty();
+                $("#popup").append("This is not your turn, Wait for your turn !");
+            }
             if (Map.state == "active") {
-                Map.stage = "deploy";
-                console.log("in deploy");
+                if (deploycheck){
+                    Map.stage = "deploy";
+                    $("#popup").empty();
+                    $("#popup").append("Current Stage: Deploy, Proceed to attack once done !");
+                }
+                else {
+                    $("#popup").empty();
+                    $("#popup").append("You have already deployed for this turn, proceed to attack");
+                }
+            }
+
+        }
+
+        attack = function(IDS) {
+            if (Map.state == "inactive" || Map.state == null){
+                $("#popup").empty();
+                $("#popup").append("This is not your turn, Wait for your turn !");
+            }
+            deploycheck = false;
+            if (Map.state == "active") {
+                Map.stage = "attack";
+                $("#popup").empty();
+                $("#popup").append( "Current Stage: Attack / Transfer, Execute your turn after this !");
             }
 
         }
 
         commit = function(IDS) {
+            if (Map.state == "inactive" || Map.state == null){
+                $("#popup").empty();
+                $("#popup").append("This is not your turn, Wait for your turn !");
+            }
+            deploycheck = true;
             if (Map.state == "active") {
+                $("#popup").empty();
+                $("#popup").append( "Your turn has been executed");
                 socket.emit('executedTurn', {
                     gameId: gameId,
                     name: username,
@@ -226,13 +259,7 @@ var Map = {
 
         }
 
-        attack = function(IDS) {
-            if (Map.state == "active") {
-                Map.stage = "attack";
-                console.log("in attack");
-            }
 
-        }
     },
 
     defEventHandler: function() {
@@ -308,7 +335,8 @@ var Map = {
                                 name: username
                             });
                         } else {
-                            alert("Deploy Limit Reached");
+                            $("#popup").empty();
+                            $("#popup").append("Deploy limit reached. Proceed to attack !");
                         }
 
 
@@ -533,7 +561,8 @@ var Map = {
                                 name: username
                             });
                         } else {
-                            alert("Deploy Limit Reached");
+                            $("#popup").empty();
+                            $("#popup").append("Deploy limit reached. Proceed to attack !");
                         }
                     }
                     if (Map.state == "active" && Map.stage == "attack") {
