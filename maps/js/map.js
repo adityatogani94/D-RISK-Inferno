@@ -340,6 +340,7 @@ var Map = {
                         }
 
 
+
                     }
                     if (Map.state == "active" && Map.stage == "attack") {
                         var atkcount = 0;

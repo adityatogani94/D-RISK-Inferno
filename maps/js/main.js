@@ -74,14 +74,26 @@ FILE_MANAGER.downloadAll(function() {
 	socket.on('updateState', function (name1, state1) {
 		console.log(name);
 		console.log(name1);
+		$("#turnIndicator").empty();
+		$("#turnIndicator").append(name1+"'s turn");
+
 		if (name == name1){
 			Map.state = state1;
 			console.log(Map.state);
 			$("#popup").empty();
 			$("#popup").append("Current Stage: None, Click on buttons to begin stage !");
+
+
+
 		}
 
 	});
+
+
+
+
+
+
 
 	jQuery(function($) {
 		$("#btnCreateSubmit").click(function () {

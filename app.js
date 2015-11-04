@@ -142,6 +142,8 @@ io.sockets.on('connection', function (socket) {
 		}
 	});
 
+
+
 	socket.on('initGame', function (message) {
 		console.log ("Game about to begin");
 		console.log("The Game room is:"+ message.gameId + " and " +"The players are: " + message.users);
@@ -156,6 +158,7 @@ io.sockets.on('connection', function (socket) {
 		console.log("About to send init data");
         users = message.users;
         io.sockets.in(message.gameId).emit('updateState', message.name, "active");
+
 		if (users.length == 2) {
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
