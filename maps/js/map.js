@@ -389,6 +389,7 @@ var Map = {
                                             owner: Map.getOwner(atkcntry),
                                             name: username
                                         });
+                                        Map.checkGameOver();
                                     } else {
 
                                         do {
@@ -430,6 +431,7 @@ var Map = {
                                                 owner: Map.getOwner(atkcntry),
                                                 name: username
                                             });
+                                            Map.checkGameOver();
                                         } else if (percentAtkCount == percentAtkdCount) {
                                             orgcount = orgcount - atkcount;
                                             Map.setArmyCount(atkcntry, orgcount);
@@ -459,6 +461,7 @@ var Map = {
                                                 count: atkcount,
                                                 country: current
                                             });
+                                            Map.checkGameOver();
                                         } else {
                                             orgcount = orgcount - atkcount;
                                             leftArmyCount = percentAtkdCount - percentAtkCount;
@@ -487,6 +490,7 @@ var Map = {
                                                 count: atkcount,
                                                 country: current
                                             });
+                                            Map.checkGameOver();
                                         }
                                     }
                                 } else {
@@ -610,6 +614,7 @@ var Map = {
                                             count: transfercount,
                                             country: current
                                         });
+                                        Map.checkGameOver();
                                     } else {
                                         do {
                                             atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
@@ -650,6 +655,7 @@ var Map = {
                                                 count: atkcount,
                                                 country: current
                                             });
+                                            Map.checkGameOver();
                                         } else if (percentAtkCount == percentAtkdCount) {
                                             orgcount = orgcount - atkcount;
                                             Map.setArmyCount(atkcntry, orgcount);
@@ -679,6 +685,7 @@ var Map = {
                                                 count: atkcount,
                                                 country: current
                                             });
+                                            Map.checkGameOver();
                                         } else {
                                             orgcount = orgcount - atkcount;
                                             leftArmyCount = percentAtkdCount - percentAtkCount;
@@ -707,6 +714,7 @@ var Map = {
                                                 count: atkcount,
                                                 country: current
                                             });
+                                            Map.checkGameOver();
                                         }
                                     }
                                 } else {
@@ -765,8 +773,22 @@ var Map = {
 
 
 
-    updateMap: function() {
-
+    checkGameOver: function() {
+        var totalTerritoriesOwned = 0;
+        var result = false;
+        for (id in TerritoryNames) {
+            if (Map.getOwner(id) == username){
+                totalTerritoriesOwned += 1;
+            }
+        }
+        if (totalTerritoriesOwned == 5){
+            socket.emit('gameOver', {
+                gameId: gameId,
+                name: username
+            });
+            result = true;
+        }
+        return result;
     },
 
 

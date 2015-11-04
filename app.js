@@ -276,13 +276,11 @@ io.sockets.on('connection', function (socket) {
             var newPlayerIndex = (currentPlayerIndex + 1) % 6 ;
             io.sockets.in(message.gameId).emit('updateState', users[newPlayerIndex], "active");
         }
-
-
-
-
-
-
 		});
+    socket.on('gameOver', function (message) {
+        io.sockets.in(message.gameId).emit('gameFinished', message.name);
+    });
+
 
 });
 

@@ -88,6 +88,13 @@ FILE_MANAGER.downloadAll(function() {
 		}
 
 	});
+	socket.on('gameFinished', function (name) {
+		Map.state = "inactive";
+		$('#CanvasWrapper').hide();
+		$("#GameOver").append(name);
+		$('#GameOver').show();
+	});
+
 
 
 
