@@ -64,6 +64,14 @@ var Map = {
             "stroke-linejoin": "round"
         };
         if(mapsize == "large"){
+			/*
+            *********************************************************
+            *        This code contains the map                     *
+            *              making for                               *
+            *           the large size map                          *
+            *********************************************************
+            */
+			
 			Map.world.Alaska = Map.R.path(TerritoryPathData['Alaska'].path).attr(attr);
 			TerritoryData['Alaska'].path = Map.world.Alaska;
 			Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData['NorthWestTerritory'].path).attr(attr);
@@ -173,18 +181,85 @@ var Map = {
             *           the medium size map                         *
             *********************************************************
             */
-        }else{
-            /*
+        }
+		else{
+			/*
             *********************************************************
-            *        This ocde contains the map                     *
+            *        This code contains the map                     *
             *              making for                               *
-            *           the easy size map                           *
+            *           the small sized map                         *
             *********************************************************
             */
-            
-            
-        }
+			
+			Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData_Easy['NorthWestTerritory'].path).attr(attr);
+			TerritoryData['NorthWestTerritory'].path = Map.world.NorthWestTerritory;
+			Map.world.Alberta = Map.R.path(TerritoryPathData_Easy['Alberta'].path).attr(attr);
+			TerritoryData['Alberta'].path = Map.world.Alberta;
+			Map.world.EasternUnitedStates = Map.R.path(TerritoryPathData_Easy['EasternUnitedStates'].path).attr(attr);
+			TerritoryData['EasternUnitedStates'].path = Map.world.EasternUnitedStates;
+			Map.world.CentralAmerica = Map.R.path(TerritoryPathData_Easy['CentralAmerica'].path).attr(attr);
+			TerritoryData['CentralAmerica'].path = Map.world.CentralAmerica;
+			Map.world.Peru = Map.R.path(TerritoryPathData_Easy['Peru'].path).attr(attr);
+			TerritoryData['Peru'].path = Map.world.Peru;
+			Map.world.Brazil = Map.R.path(TerritoryPathData_Easy['Brazil'].path).attr(attr);
+			TerritoryData['Brazil'].path = Map.world.Brazil;
+			Map.world.Argentina = Map.R.path(TerritoryPathData_Easy['Argentina'].path).attr(attr);
+			TerritoryData['Argentina'].path = Map.world.Argentina;
+			Map.world.NorthAfrica = Map.R.path(TerritoryPathData_Easy['NorthAfrica'].path).attr(attr);
+			TerritoryData['NorthAfrica'].path = Map.world.NorthAfrica;
+			Map.world.EastAfrica = Map.R.path(TerritoryPathData_Easy['EastAfrica'].path).attr(attr);
+			TerritoryData['EastAfrica'].path = Map.world.EastAfrica;
+			Map.world.SouthAfrica = Map.R.path(TerritoryPathData_Easy['SouthAfrica'].path).attr(attr);
+			TerritoryData['SouthAfrica'].path = Map.world.SouthAfrica;
+			Map.world.GreatBritain = Map.R.path(TerritoryPathData_Easy['GreatBritain'].path).attr(attr);
+			TerritoryData['GreatBritain'].path = Map.world.GreatBritain;
+			Map.world.Ural = Map.R.path(TerritoryPathData_Easy['Ural'].path).attr(attr);
+			TerritoryData['Ural'].path = Map.world.Ural;
+			Map.world.Scandinavia = Map.R.path(TerritoryPathData_Easy['Scandinavia'].path).attr(attr);
+			TerritoryData['Scandinavia'].path = Map.world.Scandinavia;
+			Map.world.WesternEurope = Map.R.path(TerritoryPathData_Easy['WesternEurope'].path).attr(attr);
+			TerritoryData['WesternEurope'].path = Map.world.WesternEurope;
+			Map.world.NorthernEurope = Map.R.path(TerritoryPathData_Easy['NorthernEurope'].path).attr(attr);
+			TerritoryData['NorthernEurope'].path = Map.world.NorthernEurope;
+			Map.world.Madagascar = Map.R.path(TerritoryPathData_Easy['Madagascar'].path).attr(attr);
+			TerritoryData['Madagascar'].path = Map.world.Madagascar;
+			Map.world.Ukraine = Map.R.path(TerritoryPathData_Easy['Ukraine'].path).attr(attr);
+			TerritoryData['Ukraine'].path = Map.world.Ukraine;
+			Map.world.MiddleEast = Map.R.path(TerritoryPathData_Easy['MiddleEast'].path).attr(attr);
+			TerritoryData['MiddleEast'].path = Map.world.MiddleEast;
+			Map.world.Greenland = Map.R.path(TerritoryPathData_Easy['Greenland'].path).attr(attr);
+			TerritoryData['Greenland'].path = Map.world.Greenland;
+			Map.world.India = Map.R.path(TerritoryPathData_Easy['India'].path).attr(attr);
+			TerritoryData['India'].path = Map.world.India;
+			Map.world.China = Map.R.path(TerritoryPathData_Easy['China'].path).attr(attr);
+			TerritoryData['China'].path = Map.world.China;
+			Map.world.Siberia = Map.R.path(TerritoryPathData_Easy['Siberia'].path).attr(attr);
+			TerritoryData['Siberia'].path = Map.world.Siberia;
+			Map.world.Kamchatka = Map.R.path(TerritoryPathData_Easy['Kamchatka'].path).attr(attr);
+			TerritoryData['Kamchatka'].path = Map.world.Kamchatka;
+			Map.world.NewGuinea = Map.R.path(TerritoryPathData_Easy['NewGuinea'].path).attr(attr);
+			TerritoryData['NewGuinea'].path = Map.world.NewGuinea;
+			Map.world.WesternAustralia = Map.R.path(TerritoryPathData_Easy['WesternAustralia'].path).attr(attr);
+			TerritoryData['WesternAustralia'].path = Map.world.WesternAustralia;
+			Map.world.EasternAustralia = Map.R.path(TerritoryPathData_Easy['EasternAustralia'].path).attr(attr);
+			TerritoryData['EasternAustralia'].path = Map.world.EasternAustralia;
 
+			var attr_text = {
+				"font-size": 20,
+				"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
+				width: 2
+			};
+			for (id in TerritoryNames) {
+
+				var textObject = Map.R.text(ArmyCountCoords_Easy[id].x, ArmyCountCoords_Easy[id].y, 2).attr(attr_text);
+				TerritoryData[id].name = id;
+				TerritoryData[id].text = textObject;
+				TerritoryData[id].color = "gray";
+				TerritoryData[id].neighbours = Neighbours_Easy[id];
+				TerritoryData[id].armyNum = "2";
+				TerritoryData[id].owner = "Neutral";
+			}
+        }
     },
 
 
@@ -424,7 +499,9 @@ var Map = {
                                         do {
                                             atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
                                         } while (atkcount <= 0 || atkcount >= orgcount);
-                                        // Attacking conditions
+                                        /* 
+										Attacking conditions 
+										*/
                                         percentAtkCount = 0.6 * atkcount;
                                         percentAtkCount = Math.floor(percentAtkCount);
                                         percentAtkdCount = 0.7 * atkdcntrycount;
@@ -540,29 +617,36 @@ var Map = {
                             Map.R.setStart();
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
                                 if(mapsize == "large"){
-                                        Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);                    
+									/*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   large size                          *
+									*                       map                             *
+									*********************************************************
+									*/
+
+                                    Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);                    
                                 }
 								else if(mapsize == "medium"){
-                                     /*
-                                        *********************************************************
-                                        *               Operation   for                         *             
-                                        *                   medium size                         *
-                                        *                       map                             *
-                                        *********************************************************
-                                        */
+									/*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   medium size                         *
+									*                       map                             *
+									*********************************************************
+									*/
                                     
                                 }
 								else{
-                                    
-                                       /*
-                                        *********************************************************
-                                        *               Operation   for                         *             
-                                        *                   easy size                         *
-                                        *                       map                             *
-                                        *********************************************************
-                                        */
-                                    
-                                    
+									/*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   small size                          *
+									*                       map                             *
+									*********************************************************
+									*/
+
+                                    Raphael.fn.arrow(ArmyCountCoords_Easy[current].x, ArmyCountCoords_Easy[current].y, ArmyCountCoords_Easy[TerritoryData[current].neighbours[index]].x, ArmyCountCoords_Easy[TerritoryData[current].neighbours[index]].y, 15);  
                                 }
                                 
                             }
@@ -679,7 +763,9 @@ var Map = {
                                         do {
                                             atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
                                         } while (atkcount <= 0 || atkcount >= orgcount);
-                                        // Attacking conditions
+                                        /*
+										Attacking conditions
+										*/
                                         percentAtkCount = 0.6 * atkcount;
                                         percentAtkCount = Math.floor(percentAtkCount);
                                         percentAtkdCount = 0.7 * atkdcntrycount;
@@ -797,30 +883,36 @@ var Map = {
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
                                 
                                 if(mapsize == "large"){
-                                    
+                                     /*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   large size                          *
+									*                       map                             *
+									*********************************************************
+									*/
+									
                                     Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
                                 }
-								else if(mapsize == "medium"){
-                                            
-                                             /*
-                                        *********************************************************
-                                        *               Operation   for                         *             
-                                        *                   medium size                         *
-                                        *                       map                             *
-                                        *********************************************************
-                                        */
+								else if(mapsize == "medium"){  
+									/*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   medium size                         *
+									*                       map                             *
+									*********************************************************
+									*/
                                     
                                 }
 								else{
-                                    
-                                         /*
-                                        *********************************************************
-                                        *               Operation   for                         *             
-                                        *                   easy size                         *
-                                        *                       map                             *
-                                        *********************************************************
-                                        */
-                                    
+									 /*
+									*********************************************************
+									*               Operation   for                         *             
+									*                   small size                          *
+									*                       map                             *
+									*********************************************************
+									*/
+
+                                    Raphael.fn.arrow(ArmyCountCoords_Easy[current].x, ArmyCountCoords_Easy[current].y, ArmyCountCoords_Easy[TerritoryData[current].neighbours[index]].x, ArmyCountCoords_Easy[TerritoryData[current].neighbours[index]].y, 15);
                                 }
                                 
                             }
@@ -880,7 +972,4 @@ var Map = {
         }
         return result;
     },
-
-
-
 }
