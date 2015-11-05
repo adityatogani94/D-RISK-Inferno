@@ -63,6 +63,9 @@ var Map = {
             "stroke-width": 1.5,
             "stroke-linejoin": "round"
         };
+        if(mapsize == "large"){
+            
+        
         Map.world.Alaska = Map.R.path(TerritoryPathData['Alaska'].path).attr(attr);
         TerritoryData['Alaska'].path = Map.world.Alaska;
         Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData['NorthWestTerritory'].path).attr(attr);
@@ -162,6 +165,25 @@ var Map = {
             TerritoryData[id].neighbours = Neighbours[id];
             TerritoryData[id].armyNum = "2";
             TerritoryData[id].owner = "Neutral";
+        }
+        }else if(mapsize == "medium"){
+            /*
+            *********************************************************
+            *        This code contains the map                     *
+            *              making for                               *
+            *           the medium size map                         *
+            *********************************************************
+            */
+        }else{
+            /*
+            *********************************************************
+            *        This ocde contains the map                     *
+            *              making for                               *
+            *           the easy size map                           *
+            *********************************************************
+            */
+            
+            
         }
 
     },
@@ -506,7 +528,30 @@ var Map = {
                             current = country;
                             Map.R.setStart();
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-                                Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+                                if(mapsize == "large"){
+                                        Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);                    
+                                }else if(mapsize == "medium"){
+                                     /*
+                                        *********************************************************
+                                        *               Operation   for                         *             
+                                        *                   medium size                         *
+                                        *                       map                             *
+                                        *********************************************************
+                                        */
+                                    
+                                }else{
+                                    
+                                       /*
+                                        *********************************************************
+                                        *               Operation   for                         *             
+                                        *                   easy size                         *
+                                        *                       map                             *
+                                        *********************************************************
+                                        */
+                                    
+                                    
+                                }
+                                
                             }
                             arrow1 = Map.R.setFinish();
                             atkcntry = country;
@@ -731,8 +776,32 @@ var Map = {
 
                             Map.R.setStart();
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
-
-                                Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+                                
+                                if(mapsize == "large"){
+                                    
+                                    Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
+                                }else if(mapsize == "medium"){
+                                            
+                                             /*
+                                        *********************************************************
+                                        *               Operation   for                         *             
+                                        *                   medium size                         *
+                                        *                       map                             *
+                                        *********************************************************
+                                        */
+                                    
+                                }else{
+                                    
+                                         /*
+                                        *********************************************************
+                                        *               Operation   for                         *             
+                                        *                   easy size                         *
+                                        *                       map                             *
+                                        *********************************************************
+                                        */
+                                    
+                                }
+                                
                             }
                             arrow1 = Map.R.setFinish();
                             atkcntry = country;
