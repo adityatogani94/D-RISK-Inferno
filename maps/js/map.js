@@ -227,12 +227,13 @@ var Map = {
     },
 
     runStages: function() {
+
         $("#popup").append("Current Stage: None, Click on buttons to begin stage !");
         var deploycheck = true;
         deploy = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn !");
+                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
             }
             if (Map.state == "active") {
                 if (deploycheck){
@@ -251,9 +252,12 @@ var Map = {
         attack = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn !");
+                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
             }
-            deploycheck = false;
+            if (Map.state == "active"){
+                deploycheck = false;
+            }
+
             if (Map.state == "active") {
                 Map.stage = "attack";
                 $("#popup").empty();
@@ -265,12 +269,14 @@ var Map = {
         commit = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn !");
+                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
             }
-            deploycheck = true;
+            if (Map.state == "active"){
+                deploycheck = true;
+            }
             if (Map.state == "active") {
                 $("#popup").empty();
-                $("#popup").append( "Your turn has been executed");
+                $("#popup").append( "Your turn has been executed. Wait till your turn comes again !");
                 socket.emit('executedTurn', {
                     gameId: gameId,
                     name: username,
@@ -349,7 +355,7 @@ var Map = {
                             current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
-                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             socket.emit('deploy', {
                                 gameId: gameId,
                                 country: current,
@@ -358,7 +364,7 @@ var Map = {
                             });
                         } else {
                             $("#popup").empty();
-                            $("#popup").append("Deploy limit reached. Proceed to attack !");
+                            $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
                         }
 
 
@@ -524,7 +530,7 @@ var Map = {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
                             document.getElementById(country).style.display = "block";
-                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             current = country;
                             Map.R.setStart();
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
@@ -575,7 +581,7 @@ var Map = {
                     }, 500);
 
                     document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                    document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
 
                 }
@@ -603,7 +609,7 @@ var Map = {
                             current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
-                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             socket.emit('deploy', {
                                 gameId: gameId,
                                 country: current,
@@ -612,7 +618,7 @@ var Map = {
                             });
                         } else {
                             $("#popup").empty();
-                            $("#popup").append("Deploy limit reached. Proceed to attack !");
+                            $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
                         }
                     }
                     if (Map.state == "active" && Map.stage == "attack") {
@@ -771,7 +777,7 @@ var Map = {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
                             document.getElementById(country).style.display = "block";
-                            document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             current = country;
 
                             Map.R.setStart();
@@ -823,7 +829,7 @@ var Map = {
                     }, 500);
 
                     document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h2>" + country + "</h2><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                    document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
 
                 };
@@ -850,7 +856,7 @@ var Map = {
                 totalTerritoriesOwned += 1;
             }
         }
-        if (totalTerritoriesOwned == 5){
+        if (totalTerritoriesOwned == 42){
             socket.emit('gameOver', {
                 gameId: gameId,
                 name: username

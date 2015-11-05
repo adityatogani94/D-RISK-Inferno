@@ -8,8 +8,9 @@ FILE_MANAGER.queueDownload('sound/3.mp3');
 FILE_MANAGER.queueDownload('sound/4.mp3');
 
 var socket = io('ws://localhost:8080/');
-//Map.setColor()
 var players = [];
+var usercolors = {};
+
 FILE_MANAGER.downloadAll(function() {
 
 
@@ -67,6 +68,12 @@ FILE_MANAGER.downloadAll(function() {
 
 	socket.on('updateUserData', function(users){
 		players = users;
+		usercolors.user[0] = "red";
+		usercolors.user[0] = "blue";
+		usercolors.user[0] = "green";
+		usercolors.user[0] = "red";
+		usercolors.user[0] = "red";
+		usercolors.user[0] = "red";
 	});
 
 
@@ -75,7 +82,7 @@ FILE_MANAGER.downloadAll(function() {
 		console.log(name);
 		console.log(name1);
 		$("#turnIndicator").empty();
-		$("#turnIndicator").append(name1+"'s turn");
+		$("#turnIndicator").append(name1+"'s Turn");
 
 		if (name == name1){
 			Map.state = state1;
