@@ -6,11 +6,11 @@
  
  /* 
 *******************************************	
-*										  *
-*										  *										  
-*	    The territory data   for          *
-*          large sized map				  *
-*										  *										 
+*					  *
+*					  *										  
+*	    The territory data   for      *
+*          large sized map		  *
+*					  *										 
 *******************************************
 */
 
@@ -70,11 +70,11 @@ var ArmyCountCoords =
 
 /* 
 *******************************************	
-*										  *
-*										  *										  
-*	    The territory data   for          *
-*          large sized map				  *
-*										  *										 
+*					  *
+*					  *										  
+*	    The territory data   for      *
+*          large sized map		  *
+*					  *										 
 *******************************************
 */
 
@@ -185,7 +185,7 @@ var Neighbours = {
     Irkutsk: ['Kamchatka', 'Yakutsk', 'Siberia', 'Mongolia'],
     Yakutsk: ['Kamchatka', 'Irkutsk', 'Siberia'],
     Siberia: ['Ural', 'China', 'Mongolia', 'Irkutsk', 'Yakutsk'],
-    Kamchatka: ['Alaska', 'Japan', 'Mongolia', 'Irkutsk', 'Yakutsk'],
+    Kamchatka: ['Japan', 'Mongolia', 'Irkutsk', 'Yakutsk'],
     Japan: ['Kamchatka', 'Mongolia'],
     Indonesia: ['Siam', 'NewGuinea', 'WesternAustralia'],
     NewGuinea: ['Indonesia', 'WesternAustralia', 'EasternAustralia'],
@@ -195,11 +195,11 @@ var Neighbours = {
 
 /* 
 *******************************************	
-*										  *
-*										  *										  
-*	    The territory data   for          *
-*          large sized map				  *
-*										  *										 
+*					  *
+*					  *										  
+*	    The territory data   for      *
+*          large sized map		  *
+*					  *										 
 *******************************************
 */
 
