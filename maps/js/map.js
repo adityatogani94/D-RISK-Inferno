@@ -64,109 +64,108 @@ var Map = {
             "stroke-linejoin": "round"
         };
         if(mapsize == "large"){
-            
-        
-        Map.world.Alaska = Map.R.path(TerritoryPathData['Alaska'].path).attr(attr);
-        TerritoryData['Alaska'].path = Map.world.Alaska;
-        Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData['NorthWestTerritory'].path).attr(attr);
-        TerritoryData['NorthWestTerritory'].path = Map.world.NorthWestTerritory;
-        Map.world.Alberta = Map.R.path(TerritoryPathData['Alberta'].path).attr(attr);
-        TerritoryData['Alberta'].path = Map.world.Alberta;
-        Map.world.Ontario = Map.R.path(TerritoryPathData['Ontario'].path).attr(attr);
-        TerritoryData['Ontario'].path = Map.world.Ontario;
-        Map.world.Greenland = Map.R.path(TerritoryPathData['Greenland'].path).attr(attr);
-        TerritoryData['Greenland'].path = Map.world.Greenland;
-        Map.world.Quebec = Map.R.path(TerritoryPathData['Quebec'].path).attr(attr);
-        TerritoryData['Quebec'].path = Map.world.Quebec;
-        Map.world.WesternUnitedStates = Map.R.path(TerritoryPathData['WesternUnitedStates'].path).attr(attr);
-        TerritoryData['WesternUnitedStates'].path = Map.world.WesternUnitedStates;
-        Map.world.EasternUnitedStates = Map.R.path(TerritoryPathData['EasternUnitedStates'].path).attr(attr);
-        TerritoryData['EasternUnitedStates'].path = Map.world.EasternUnitedStates;
-        Map.world.CentralAmerica = Map.R.path(TerritoryPathData['CentralAmerica'].path).attr(attr);
-        TerritoryData['CentralAmerica'].path = Map.world.CentralAmerica;
-        Map.world.Peru = Map.R.path(TerritoryPathData['Peru'].path).attr(attr);
-        TerritoryData['Peru'].path = Map.world.Peru;
-        Map.world.Brazil = Map.R.path(TerritoryPathData['Brazil'].path).attr(attr);
-        TerritoryData['Brazil'].path = Map.world.Brazil;
-        Map.world.Venezuela = Map.R.path(TerritoryPathData['Venezuela'].path).attr(attr);
-        TerritoryData['Venezuela'].path = Map.world.Venezuela;
-        Map.world.Argentina = Map.R.path(TerritoryPathData['Argentina'].path).attr(attr);
-        TerritoryData['Argentina'].path = Map.world.Argentina;
-        Map.world.NorthAfrica = Map.R.path(TerritoryPathData['NorthAfrica'].path).attr(attr);
-        TerritoryData['NorthAfrica'].path = Map.world.NorthAfrica;
-        Map.world.Egypt = Map.R.path(TerritoryPathData['Egypt'].path).attr(attr);
-        TerritoryData['Egypt'].path = Map.world.Egypt;
-        Map.world.Congo = Map.R.path(TerritoryPathData['Congo'].path).attr(attr);
-        TerritoryData['Congo'].path = Map.world.Congo;
-        Map.world.EastAfrica = Map.R.path(TerritoryPathData['EastAfrica'].path).attr(attr);
-        TerritoryData['EastAfrica'].path = Map.world.EastAfrica;
-        Map.world.SouthAfrica = Map.R.path(TerritoryPathData['SouthAfrica'].path).attr(attr);
-        TerritoryData['SouthAfrica'].path = Map.world.SouthAfrica;
-        Map.world.Iceland = Map.R.path(TerritoryPathData['Iceland'].path).attr(attr);
-        TerritoryData['Iceland'].path = Map.world.Iceland;
-        Map.world.GreatBritain = Map.R.path(TerritoryPathData['GreatBritain'].path).attr(attr);
-        TerritoryData['GreatBritain'].path = Map.world.GreatBritain;
-        Map.world.WesternEurope = Map.R.path(TerritoryPathData['WesternEurope'].path).attr(attr);
-        TerritoryData['WesternEurope'].path = Map.world.WesternEurope;
-        Map.world.NorthernEurope = Map.R.path(TerritoryPathData['NorthernEurope'].path).attr(attr);
-        TerritoryData['NorthernEurope'].path = Map.world.NorthernEurope;
-        Map.world.SouthernEurope = Map.R.path(TerritoryPathData['SouthernEurope'].path).attr(attr);
-        TerritoryData['SouthernEurope'].path = Map.world.SouthernEurope;
-        Map.world.Scandinavia = Map.R.path(TerritoryPathData['Scandinavia'].path).attr(attr);
-        TerritoryData['Scandinavia'].path = Map.world.Scandinavia;
-        Map.world.Madagascar = Map.R.path(TerritoryPathData['Madagascar'].path).attr(attr);
-        TerritoryData['Madagascar'].path = Map.world.Madagascar;
-        Map.world.Ukraine = Map.R.path(TerritoryPathData['Ukraine'].path).attr(attr);
-        TerritoryData['Ukraine'].path = Map.world.Ukraine;
-        Map.world.MiddleEast = Map.R.path(TerritoryPathData['MiddleEast'].path).attr(attr);
-        TerritoryData['MiddleEast'].path = Map.world.MiddleEast;
-        Map.world.Afghanistan = Map.R.path(TerritoryPathData['Afghanistan'].path).attr(attr);
-        TerritoryData['Afghanistan'].path = Map.world.Afghanistan;
-        Map.world.Ural = Map.R.path(TerritoryPathData['Ural'].path).attr(attr);
-        TerritoryData['Ural'].path = Map.world.Ural;
-        Map.world.India = Map.R.path(TerritoryPathData['India'].path).attr(attr);
-        TerritoryData['India'].path = Map.world.India;
-        Map.world.Siam = Map.R.path(TerritoryPathData['Siam'].path).attr(attr);
-        TerritoryData['Siam'].path = Map.world.Siam;
-        Map.world.China = Map.R.path(TerritoryPathData['China'].path).attr(attr);
-        TerritoryData['China'].path = Map.world.China;
-        Map.world.Mongolia = Map.R.path(TerritoryPathData['Mongolia'].path).attr(attr);
-        TerritoryData['Mongolia'].path = Map.world.Mongolia;
-        Map.world.Irkutsk = Map.R.path(TerritoryPathData['Irkutsk'].path).attr(attr);
-        TerritoryData['Irkutsk'].path = Map.world.Irkutsk;
-        Map.world.Yakutsk = Map.R.path(TerritoryPathData['Yakutsk'].path).attr(attr);
-        TerritoryData['Yakutsk'].path = Map.world.Yakutsk;
-        Map.world.Siberia = Map.R.path(TerritoryPathData['Siberia'].path).attr(attr);
-        TerritoryData['Siberia'].path = Map.world.Siberia;
-        Map.world.Kamchatka = Map.R.path(TerritoryPathData['Kamchatka'].path).attr(attr);
-        TerritoryData['Kamchatka'].path = Map.world.Kamchatka;
-        Map.world.Japan = Map.R.path(TerritoryPathData['Japan'].path).attr(attr);
-        TerritoryData['Japan'].path = Map.world.Japan;
-        Map.world.Indonesia = Map.R.path(TerritoryPathData['Indonesia'].path).attr(attr);
-        TerritoryData['Indonesia'].path = Map.world.Indonesia;
-        Map.world.NewGuinea = Map.R.path(TerritoryPathData['NewGuinea'].path).attr(attr);
-        TerritoryData['NewGuinea'].path = Map.world.NewGuinea;
-        Map.world.WesternAustralia = Map.R.path(TerritoryPathData['WesternAustralia'].path).attr(attr);
-        TerritoryData['WesternAustralia'].path = Map.world.WesternAustralia;
-        Map.world.EasternAustralia = Map.R.path(TerritoryPathData['EasternAustralia'].path).attr(attr);
-        TerritoryData['EasternAustralia'].path = Map.world.EasternAustralia;
+			Map.world.Alaska = Map.R.path(TerritoryPathData['Alaska'].path).attr(attr);
+			TerritoryData['Alaska'].path = Map.world.Alaska;
+			Map.world.NorthWestTerritory = Map.R.path(TerritoryPathData['NorthWestTerritory'].path).attr(attr);
+			TerritoryData['NorthWestTerritory'].path = Map.world.NorthWestTerritory;
+			Map.world.Alberta = Map.R.path(TerritoryPathData['Alberta'].path).attr(attr);
+			TerritoryData['Alberta'].path = Map.world.Alberta;
+			Map.world.Ontario = Map.R.path(TerritoryPathData['Ontario'].path).attr(attr);
+			TerritoryData['Ontario'].path = Map.world.Ontario;
+			Map.world.Greenland = Map.R.path(TerritoryPathData['Greenland'].path).attr(attr);
+			TerritoryData['Greenland'].path = Map.world.Greenland;
+			Map.world.Quebec = Map.R.path(TerritoryPathData['Quebec'].path).attr(attr);
+			TerritoryData['Quebec'].path = Map.world.Quebec;
+			Map.world.WesternUnitedStates = Map.R.path(TerritoryPathData['WesternUnitedStates'].path).attr(attr);
+			TerritoryData['WesternUnitedStates'].path = Map.world.WesternUnitedStates;
+			Map.world.EasternUnitedStates = Map.R.path(TerritoryPathData['EasternUnitedStates'].path).attr(attr);
+			TerritoryData['EasternUnitedStates'].path = Map.world.EasternUnitedStates;
+			Map.world.CentralAmerica = Map.R.path(TerritoryPathData['CentralAmerica'].path).attr(attr);
+			TerritoryData['CentralAmerica'].path = Map.world.CentralAmerica;
+			Map.world.Peru = Map.R.path(TerritoryPathData['Peru'].path).attr(attr);
+			TerritoryData['Peru'].path = Map.world.Peru;
+			Map.world.Brazil = Map.R.path(TerritoryPathData['Brazil'].path).attr(attr);
+			TerritoryData['Brazil'].path = Map.world.Brazil;
+			Map.world.Venezuela = Map.R.path(TerritoryPathData['Venezuela'].path).attr(attr);
+			TerritoryData['Venezuela'].path = Map.world.Venezuela;
+			Map.world.Argentina = Map.R.path(TerritoryPathData['Argentina'].path).attr(attr);
+			TerritoryData['Argentina'].path = Map.world.Argentina;
+			Map.world.NorthAfrica = Map.R.path(TerritoryPathData['NorthAfrica'].path).attr(attr);
+			TerritoryData['NorthAfrica'].path = Map.world.NorthAfrica;
+			Map.world.Egypt = Map.R.path(TerritoryPathData['Egypt'].path).attr(attr);
+			TerritoryData['Egypt'].path = Map.world.Egypt;
+			Map.world.Congo = Map.R.path(TerritoryPathData['Congo'].path).attr(attr);
+			TerritoryData['Congo'].path = Map.world.Congo;
+			Map.world.EastAfrica = Map.R.path(TerritoryPathData['EastAfrica'].path).attr(attr);
+			TerritoryData['EastAfrica'].path = Map.world.EastAfrica;
+			Map.world.SouthAfrica = Map.R.path(TerritoryPathData['SouthAfrica'].path).attr(attr);
+			TerritoryData['SouthAfrica'].path = Map.world.SouthAfrica;
+			Map.world.Iceland = Map.R.path(TerritoryPathData['Iceland'].path).attr(attr);
+			TerritoryData['Iceland'].path = Map.world.Iceland;
+			Map.world.GreatBritain = Map.R.path(TerritoryPathData['GreatBritain'].path).attr(attr);
+			TerritoryData['GreatBritain'].path = Map.world.GreatBritain;
+			Map.world.WesternEurope = Map.R.path(TerritoryPathData['WesternEurope'].path).attr(attr);
+			TerritoryData['WesternEurope'].path = Map.world.WesternEurope;
+			Map.world.NorthernEurope = Map.R.path(TerritoryPathData['NorthernEurope'].path).attr(attr);
+			TerritoryData['NorthernEurope'].path = Map.world.NorthernEurope;
+			Map.world.SouthernEurope = Map.R.path(TerritoryPathData['SouthernEurope'].path).attr(attr);
+			TerritoryData['SouthernEurope'].path = Map.world.SouthernEurope;
+			Map.world.Scandinavia = Map.R.path(TerritoryPathData['Scandinavia'].path).attr(attr);
+			TerritoryData['Scandinavia'].path = Map.world.Scandinavia;
+			Map.world.Madagascar = Map.R.path(TerritoryPathData['Madagascar'].path).attr(attr);
+			TerritoryData['Madagascar'].path = Map.world.Madagascar;
+			Map.world.Ukraine = Map.R.path(TerritoryPathData['Ukraine'].path).attr(attr);
+			TerritoryData['Ukraine'].path = Map.world.Ukraine;
+			Map.world.MiddleEast = Map.R.path(TerritoryPathData['MiddleEast'].path).attr(attr);
+			TerritoryData['MiddleEast'].path = Map.world.MiddleEast;
+			Map.world.Afghanistan = Map.R.path(TerritoryPathData['Afghanistan'].path).attr(attr);
+			TerritoryData['Afghanistan'].path = Map.world.Afghanistan;
+			Map.world.Ural = Map.R.path(TerritoryPathData['Ural'].path).attr(attr);
+			TerritoryData['Ural'].path = Map.world.Ural;
+			Map.world.India = Map.R.path(TerritoryPathData['India'].path).attr(attr);
+			TerritoryData['India'].path = Map.world.India;
+			Map.world.Siam = Map.R.path(TerritoryPathData['Siam'].path).attr(attr);
+			TerritoryData['Siam'].path = Map.world.Siam;
+			Map.world.China = Map.R.path(TerritoryPathData['China'].path).attr(attr);
+			TerritoryData['China'].path = Map.world.China;
+			Map.world.Mongolia = Map.R.path(TerritoryPathData['Mongolia'].path).attr(attr);
+			TerritoryData['Mongolia'].path = Map.world.Mongolia;
+			Map.world.Irkutsk = Map.R.path(TerritoryPathData['Irkutsk'].path).attr(attr);
+			TerritoryData['Irkutsk'].path = Map.world.Irkutsk;
+			Map.world.Yakutsk = Map.R.path(TerritoryPathData['Yakutsk'].path).attr(attr);
+			TerritoryData['Yakutsk'].path = Map.world.Yakutsk;
+			Map.world.Siberia = Map.R.path(TerritoryPathData['Siberia'].path).attr(attr);
+			TerritoryData['Siberia'].path = Map.world.Siberia;
+			Map.world.Kamchatka = Map.R.path(TerritoryPathData['Kamchatka'].path).attr(attr);
+			TerritoryData['Kamchatka'].path = Map.world.Kamchatka;
+			Map.world.Japan = Map.R.path(TerritoryPathData['Japan'].path).attr(attr);
+			TerritoryData['Japan'].path = Map.world.Japan;
+			Map.world.Indonesia = Map.R.path(TerritoryPathData['Indonesia'].path).attr(attr);
+			TerritoryData['Indonesia'].path = Map.world.Indonesia;
+			Map.world.NewGuinea = Map.R.path(TerritoryPathData['NewGuinea'].path).attr(attr);
+			TerritoryData['NewGuinea'].path = Map.world.NewGuinea;
+			Map.world.WesternAustralia = Map.R.path(TerritoryPathData['WesternAustralia'].path).attr(attr);
+			TerritoryData['WesternAustralia'].path = Map.world.WesternAustralia;
+			Map.world.EasternAustralia = Map.R.path(TerritoryPathData['EasternAustralia'].path).attr(attr);
+			TerritoryData['EasternAustralia'].path = Map.world.EasternAustralia;
 
-        var attr_text = {
-            "font-size": 20,
-            "font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
-            width: 2
-        };
-        for (id in TerritoryNames) {
+			var attr_text = {
+				"font-size": 20,
+				"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
+				width: 2
+			};
+			for (id in TerritoryNames) {
 
-            var textObject = Map.R.text(ArmyCountCoords[id].x, ArmyCountCoords[id].y, 2).attr(attr_text);
-            TerritoryData[id].name = id;
-            TerritoryData[id].text = textObject;
-            TerritoryData[id].color = "gray";
-            TerritoryData[id].neighbours = Neighbours[id];
-            TerritoryData[id].armyNum = "2";
-            TerritoryData[id].owner = "Neutral";
+				var textObject = Map.R.text(ArmyCountCoords[id].x, ArmyCountCoords[id].y, 2).attr(attr_text);
+				TerritoryData[id].name = id;
+				TerritoryData[id].text = textObject;
+				TerritoryData[id].color = "gray";
+				TerritoryData[id].neighbours = Neighbours[id];
+				TerritoryData[id].armyNum = "2";
+				TerritoryData[id].owner = "Neutral";
+			}
         }
-        }else if(mapsize == "medium"){
+		else if(mapsize == "medium"){
             /*
             *********************************************************
             *        This code contains the map                     *
@@ -362,7 +361,8 @@ var Map = {
                                 count: Map.getArmyCount(current),
                                 name: username
                             });
-                        } else {
+                        } 
+						else {
                             $("#popup").empty();
                             $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
                         }
@@ -418,7 +418,8 @@ var Map = {
                                             name: username
                                         });
                                         Map.checkGameOver();
-                                    } else {
+                                    } 
+									else {
 
                                         do {
                                             atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
@@ -460,7 +461,8 @@ var Map = {
                                                 name: username
                                             });
                                             Map.checkGameOver();
-                                        } else if (percentAtkCount == percentAtkdCount) {
+                                        } 
+										else if (percentAtkCount == percentAtkdCount) {
                                             orgcount = orgcount - atkcount;
                                             Map.setArmyCount(atkcntry, orgcount);
                                             Map.setArmyCount(current, 1);
@@ -490,7 +492,8 @@ var Map = {
                                                 country: current
                                             });
                                             Map.checkGameOver();
-                                        } else {
+                                        } 
+										else {
                                             orgcount = orgcount - atkcount;
                                             leftArmyCount = percentAtkdCount - percentAtkCount;
                                             Map.setArmyCount(atkcntry, orgcount);
@@ -521,12 +524,14 @@ var Map = {
                                             Map.checkGameOver();
                                         }
                                     }
-                                } else {
+                                } 
+								else {
                                     arrow1.remove();
                                 }
                             }
                             atkcntry = null;
-                        } else if (Map.getOwner(country) == username) {
+                        } 
+						else if (Map.getOwner(country) == username) {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
                             document.getElementById(country).style.display = "block";
@@ -536,7 +541,8 @@ var Map = {
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
                                 if(mapsize == "large"){
                                         Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);                    
-                                }else if(mapsize == "medium"){
+                                }
+								else if(mapsize == "medium"){
                                      /*
                                         *********************************************************
                                         *               Operation   for                         *             
@@ -545,7 +551,8 @@ var Map = {
                                         *********************************************************
                                         */
                                     
-                                }else{
+                                }
+								else{
                                     
                                        /*
                                         *********************************************************
@@ -616,7 +623,8 @@ var Map = {
                                 count: Map.getArmyCount(current),
                                 name: username
                             });
-                        } else {
+                        } 
+						else {
                             $("#popup").empty();
                             $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
                         }
@@ -666,7 +674,8 @@ var Map = {
                                             country: current
                                         });
                                         Map.checkGameOver();
-                                    } else {
+                                    } 
+									else {
                                         do {
                                             atkcount = prompt("Please enter the number of armies to attack. You should leave atleast one army behind", "0");
                                         } while (atkcount <= 0 || atkcount >= orgcount);
@@ -707,7 +716,8 @@ var Map = {
                                                 country: current
                                             });
                                             Map.checkGameOver();
-                                        } else if (percentAtkCount == percentAtkdCount) {
+                                        } 
+										else if (percentAtkCount == percentAtkdCount) {
                                             orgcount = orgcount - atkcount;
                                             Map.setArmyCount(atkcntry, orgcount);
                                             Map.setArmyCount(current, 1);
@@ -737,7 +747,8 @@ var Map = {
                                                 country: current
                                             });
                                             Map.checkGameOver();
-                                        } else {
+                                        } 
+										else {
                                             orgcount = orgcount - atkcount;
                                             leftArmyCount = percentAtkdCount - percentAtkCount;
                                             Map.setArmyCount(atkcntry, orgcount);
@@ -768,12 +779,14 @@ var Map = {
                                             Map.checkGameOver();
                                         }
                                     }
-                                } else {
+                                } 
+								else {
                                     arrow1.remove();
                                 }
                             }
                             atkcntry = null;
-                        } else if (Map.getOwner(country) == username) {
+                        } 
+						else if (Map.getOwner(country) == username) {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
                             document.getElementById(country).style.display = "block";
@@ -786,7 +799,8 @@ var Map = {
                                 if(mapsize == "large"){
                                     
                                     Raphael.fn.arrow(ArmyCountCoords[current].x, ArmyCountCoords[current].y, ArmyCountCoords[TerritoryData[current].neighbours[index]].x, ArmyCountCoords[TerritoryData[current].neighbours[index]].y, 15);
-                                }else if(mapsize == "medium"){
+                                }
+								else if(mapsize == "medium"){
                                             
                                              /*
                                         *********************************************************
@@ -796,7 +810,8 @@ var Map = {
                                         *********************************************************
                                         */
                                     
-                                }else{
+                                }
+								else{
                                     
                                          /*
                                         *********************************************************
