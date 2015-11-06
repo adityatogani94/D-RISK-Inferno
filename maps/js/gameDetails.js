@@ -487,6 +487,79 @@ var Neighbours_Easy = {
 }
 
 
+/* 
+*******************************************	
+*										  *
+*										  *										  
+*	    The    continents   for           *
+*          large level map				  *
+*										  *										 
+*******************************************
+*/
+
+/*
+******************************
+*This contains 42 territories*
+******************************
+
+*/
+var Continents = {
+	NorthAmerica: ['Alaska','NorthWestTerritory','Alberta','Ontario','Greenland','Quebec','WesternUnitedStates','EasternUnitedStates','CentralAmerica'],
+    SouthAmerica: ['Peru','Brazil','Venezuela','Argentina'],
+	Africa: ['NorthAfrica','Egypt','Congo','EastAfrica','SouthAfrica','Madagascar'],
+	Europe: ['Iceland','GreatBritain','WesternEurope','NorthernEurope','SouthernEurope','Scandinavia','Ukraine','Ural'],
+    Asia: ['MiddleEast','Afghanistan','India','Siam','China','Mongolia','Irkutsk','Yakutsk','Siberia','Kamchatka','Japan'],
+    Australia: ['Indonesia','NewGuinea','WesternAustralia','EasternAustralia'],
+}
+
+/* 
+*******************************************	
+*										  *
+*										  *										  
+*	    The    continents   for           *
+*          medium level map				  *
+*										  *										 
+*******************************************
+*/
+
+/*
+******************************
+*This contains 33 territories*
+******************************
+
+*/
+var Continents = {
+	NorthAmerica: ['Alaska','Alberta','Greenland','Quebec','WesternUnitedStates','EasternUnitedStates','CentralAmerica'],
+	SouthAmerica: ['Peru','Brazil','Argentina'],
+	Africa: ['NorthAfrica','Congo','EastAfrica','SouthAfrica','Madagascar'],
+	Europe: ['Iceland','GreatBritain','WesternEurope','EasternEurope','Ukraine'],
+	Asia: ['MiddleEast','Afghanistan','India','Siam','China','Mongolia','Irkutsk','Yakutsk','Siberia','Kamchatka','Japan','NewGuinea'],
+}
+
+/* 
+*******************************************	
+*										  *
+*										  *										  
+*	    The    continents   for           *
+*          easy level map				  *
+*										  *										 
+*******************************************
+*/
+
+/*
+******************************
+*This contains 26 territories*
+******************************
+
+*/
+var Continents = {
+	NorthAmerica: ['NorthWestTerritory','Alberta','Greenland','Eastern United States','CentralAmerica'],
+    SouthAmerica: ['Peru','Brazil','Argentina'],
+	Africa: ['NorthAfrica','EastAfrica','SouthAfrica','Madagascar'],
+	Europe: ['GreatBritain','WesternEurope','NorthernEurope','Scandinavia','Ukraine','Ural'],
+    Asia: ['MiddleEast','India','China','Siberia','Kamchatka'],
+    Australia: ['NewGuinea','WesternAustralia','EasternAustralia'],
+}
 
 /* 
 *******************************************	
