@@ -22,17 +22,60 @@ socket.on('updateDetails', function(data) {
 
 
 
+if (mapsize == "large"){
+		for (var id in TerritoryNames) {
+		    var data = {}
+		    data["name"] = null;
+		    data["path"] = null;
+		    data["text"] = null;
+		    data["color"] = null;
+		    data["neighbours"] = null;
+		    data["armyNum"] = null;
+		    data["owner"] = null;
+		    TerritoryData[id] = data;
+		}
+	
+}else if(mapsize == "medium"){
+		*****************************
+		*	initializing data   *
+		*	   for medium	    *	
+		*	   sized map        *
+		*			    *
+		*****************************
+		
+		for (var id in TerritoryNames_Medium) {
+			var data = {}
+			data["name"] = null;
+			data["path"] = null;
+			data["text"] = null;
+			data["color"] = null;
+			data["neighbours"] = null;
+			data["armyNum"] = null;
+			data["owner"] = null;
+			TerritoryData[id] = data;
+		}
 
-for (var id in TerritoryNames) {
-    var data = {}
-    data["name"] = null;
-    data["path"] = null;
-    data["text"] = null;
-    data["color"] = null;
-    data["neighbours"] = null;
-    data["armyNum"] = null;
-    data["owner"] = null;
-    TerritoryData[id] = data;
+}else{
+	
+		*****************************
+		*	initializing data   *
+		*	   for medium	    *	
+		*	   sized map        *
+		*			    *
+		*****************************
+		
+		for (var id in TerritoryNames_Easy) {
+			var data = {}
+			data["name"] = null;
+			data["path"] = null;
+			data["text"] = null;
+			data["color"] = null;
+			data["neighbours"] = null;
+			data["armyNum"] = null;
+			data["owner"] = null;
+			TerritoryData[id] = data;
+		}
+	
 }
 
 
