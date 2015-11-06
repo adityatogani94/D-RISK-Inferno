@@ -59,7 +59,7 @@ if (mapsize == "large"){
 	
 		*****************************
 		*	initializing data   *
-		*	   for medium	    *	
+		*	   for easy	    *	
 		*	   sized map        *
 		*			    *
 		*****************************
