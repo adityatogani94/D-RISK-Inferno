@@ -225,127 +225,126 @@ var Map = {
             *********************************************************
             */
             
-        			var attr = {fill: "gray",stroke: "#666","stroke-width": 1.5,"stroke-linejoin": "round"};
+        	var attr = {fill: "gray",stroke: "#666","stroke-width": 1.5,"stroke-linejoin": "round"};
         			
-				Map.world.Alaska = Map.R.path(TerritoryPathData_Medium['Alaska'].path).attr(attr);
-				TerritoryData['Alaska'].path = Map.world.Alaska;
+			Map.world.Alaska = Map.R.path(TerritoryPathData_Medium['Alaska'].path).attr(attr);
+			TerritoryData['Alaska'].path = Map.world.Alaska;
+			
+			Map.world.Alberta = Map.R.path(TerritoryPathData_Medium['Alberta'].path).attr(attr);
+			TerritoryData['Alberta'].path = Map.world.Alberta;
+			
+			Map.world.Quebec = Map.R.path(TerritoryPathData_Medium['Quebec'].path).attr(attr);
+			TerritoryData['Quebec'].path = Map.world.Quebec;
+			
+			Map.world.WesternUnitedStates = Map.R.path(TerritoryPathData_Medium['WesternUnitedStates'].path).attr(attr);
+			TerritoryData['WesternUnitedStates'].path = Map.world.WesternUnitedStates;
+			
+			Map.world.EasternUnitedStates = Map.R.path(TerritoryPathData_Medium['EasternUnitedStates'].path).attr(attr);
+			TerritoryData['EasternUnitedStates'].path = Map.world.EasternUnitedStates;
+			
+			Map.world.CentralAmerica = Map.R.path(TerritoryPathData_Medium['CentralAmerica'].path).attr(attr);
+			TerritoryData['CentralAmerica'].path = Map.world.CentralAmerica;
+			
+			Map.world.Peru = Map.R.path(TerritoryPathData_Medium['Peru'].path).attr(attr);
+			TerritoryData['Peru'].path = Map.world.Peru;
+			
+			Map.world.Brazil = Map.R.path(TerritoryPathData_Medium['Brazil'].path).attr(attr);
+			TerritoryData['Brazil'].path = Map.world.Brazil;
+			
+			Map.world.Argentina = Map.R.path(TerritoryPathData_Medium['Argentina'].path).attr(attr);
+			TerritoryData['Argentina'].path = Map.world.Argentina;
+			
+			Map.world.NorthAfrica = Map.R.path(TerritoryPathData_Medium['NorthAfrica'].path).attr(attr);
+			TerritoryData['NorthAfrica'].path = Map.world.NorthAfrica;
+			
+			Map.world.Congo = Map.R.path(TerritoryPathData_Medium['Congo'].path).attr(attr);
+			TerritoryData['Congo'].path = Map.world.Congo;
+			
+			Map.world.EastAfrica = Map.R.path(TerritoryPathData_Medium['EastAfrica'].path).attr(attr);
+			TerritoryData['EastAfrica'].path = Map.world.EastAfrica;
+			
+			Map.world.SouthAfrica = Map.R.path(TerritoryPathData_Medium['SouthAfrica'].path).attr(attr);
+			TerritoryData['SouthAfrica'].path = Map.world.SouthAfrica;
+			
+			Map.world.Iceland = Map.R.path(TerritoryPathData_Medium['Iceland'].path).attr(attr);
+			TerritoryData['Iceland'].path = Map.world.Iceland;
+			
+			Map.world.GreatBritain = Map.R.path(TerritoryPathData_Medium['GreatBritain'].path).attr(attr);
+			TerritoryData['GreatBritain'].path = Map.world.GreatBritain;
+			
+			Map.world.WesternEurope = Map.R.path(TerritoryPathData_Medium['WesternEurope'].path).attr(attr);
+			TerritoryData['WesternEurope'].path = Map.world.WesternEurope;
+			
+			Map.world.EasternEurope = Map.R.path(TerritoryPathData_Medium['EasternEurope'].path).attr(attr);
+			TerritoryData['EasternEurope'].path = Map.world.EasternEurope;
+			
+			Map.world.Madagascar = Map.R.path(TerritoryPathData_Medium['Madagascar'].path).attr(attr);
+			TerritoryData['Madagascar'].path = Map.world.Madagascar;
+			
+			Map.world.Ukraine = Map.R.path(TerritoryPathData_Medium['Ukraine'].path).attr(attr);
+			TerritoryData['Ukraine'].path = Map.world.Ukraine;
+			
+			Map.world.MiddleEast = Map.R.path(TerritoryPathData_Medium['MiddleEast'].path).attr(attr);
+			TerritoryData['MiddleEast'].path = Map.world.MiddleEast;
+			
+			Map.world.Afghanistan = Map.R.path(TerritoryPathData_Medium['Afghanistan'].path).attr(attr);
+			TerritoryData['Afghanistan'].path = Map.world.Afghanistan;
+			
+				Map.world.Greenland = Map.R.path(TerritoryPathData_Medium['Greenland'].path).attr(attr);
+			TerritoryData['Greenland'].path = Map.world.Greenland;
+			
+			Map.world.India = Map.R.path(TerritoryPathData_Medium['India'].path).attr(attr);
+			TerritoryData['India'].path = Map.world.India;
+			
+			Map.world.Siam = Map.R.path(TerritoryPathData_Medium['Siam'].path).attr(attr);
+			TerritoryData['Siam'].path = Map.world.Siam;
+			
+			Map.world.China = Map.R.path(TerritoryPathData_Medium['China'].path).attr(attr);
+			TerritoryData['China'].path = Map.world.China;
+			
+			Map.world.Mongolia = Map.R.path(TerritoryPathData_Medium['Mongolia'].path).attr(attr);
+			TerritoryData['Mongolia'].path = Map.world.Mongolia;
+			
+			Map.world.Irkutsk = Map.R.path(TerritoryPathData_Medium['Irkutsk'].path).attr(attr);
+			TerritoryData['Irkutsk'].path = Map.world.Irkutsk;
+			
+			Map.world.Yakutsk = Map.R.path(TerritoryPathData_Medium['Yakutsk'].path).attr(attr);
+			TerritoryData['Yakutsk'].path = Map.world.Yakutsk;
+			
+			Map.world.Siberia = Map.R.path(TerritoryPathData_Medium['Siberia'].path).attr(attr);
+			TerritoryData['Siberia'].path = Map.world.Siberia;
+			
+			Map.world.Kamchatka = Map.R.path(TerritoryPathData_Medium['Kamchatka'].path).attr(attr);
+			TerritoryData['Kamchatka'].path = Map.world.Kamchatka;
+			
+			Map.world.Japan = Map.R.path(TerritoryPathData_Medium['Japan'].path).attr(attr);
+			TerritoryData['Japan'].path = Map.world.Japan;
+			
+			Map.world.NewGuinea = Map.R.path(TerritoryPathData_Medium['NewGuinea'].path).attr(attr);
+			TerritoryData['NewGuinea'].path = Map.world.NewGuinea;
+			
+			Map.world.Australia = Map.R.path(TerritoryPathData_Medium['Australia'].path).attr(attr);
+			TerritoryData['Australia'].path = Map.world.Australia;
+			
+			
+			var attr_text = {
+					"font-size": 20,
+					"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
+					width: 2
 				
-				Map.world.Alberta = Map.R.path(TerritoryPathData_Medium['Alberta'].path).attr(attr);
-				TerritoryData['Alberta'].path = Map.world.Alberta;
-				
-				Map.world.Quebec = Map.R.path(TerritoryPathData_Medium['Quebec'].path).attr(attr);
-				TerritoryData['Quebec'].path = Map.world.Quebec;
-				
-				Map.world.WesternUnitedStates = Map.R.path(TerritoryPathData_Medium['WesternUnitedStates'].path).attr(attr);
-				TerritoryData['WesternUnitedStates'].path = Map.world.WesternUnitedStates;
-				
-				Map.world.EasternUnitedStates = Map.R.path(TerritoryPathData_Medium['EasternUnitedStates'].path).attr(attr);
-				TerritoryData['EasternUnitedStates'].path = Map.world.EasternUnitedStates;
-				
-				Map.world.CentralAmerica = Map.R.path(TerritoryPathData_Medium['CentralAmerica'].path).attr(attr);
-				TerritoryData['CentralAmerica'].path = Map.world.CentralAmerica;
-				
-				Map.world.Peru = Map.R.path(TerritoryPathData_Medium['Peru'].path).attr(attr);
-				TerritoryData['Peru'].path = Map.world.Peru;
-				
-				Map.world.Brazil = Map.R.path(TerritoryPathData_Medium['Brazil'].path).attr(attr);
-				TerritoryData['Brazil'].path = Map.world.Brazil;
-				
-				Map.world.Argentina = Map.R.path(TerritoryPathData_Medium['Argentina'].path).attr(attr);
-				TerritoryData['Argentina'].path = Map.world.Argentina;
-				
-				Map.world.NorthAfrica = Map.R.path(TerritoryPathData_Medium['NorthAfrica'].path).attr(attr);
-				TerritoryData['NorthAfrica'].path = Map.world.NorthAfrica;
-				
-				Map.world.Congo = Map.R.path(TerritoryPathData_Medium['Congo'].path).attr(attr);
-				TerritoryData['Congo'].path = Map.world.Congo;
-				
-				Map.world.EastAfrica = Map.R.path(TerritoryPathData_Medium['EastAfrica'].path).attr(attr);
-				TerritoryData['EastAfrica'].path = Map.world.EastAfrica;
-				
-				Map.world.SouthAfrica = Map.R.path(TerritoryPathData_Medium['SouthAfrica'].path).attr(attr);
-				TerritoryData['SouthAfrica'].path = Map.world.SouthAfrica;
-				
-				Map.world.Iceland = Map.R.path(TerritoryPathData_Medium['Iceland'].path).attr(attr);
-				TerritoryData['Iceland'].path = Map.world.Iceland;
-				
-				Map.world.GreatBritain = Map.R.path(TerritoryPathData_Medium['GreatBritain'].path).attr(attr);
-				TerritoryData['GreatBritain'].path = Map.world.GreatBritain;
-				
-				Map.world.WesternEurope = Map.R.path(TerritoryPathData_Medium['WesternEurope'].path).attr(attr);
-				TerritoryData['WesternEurope'].path = Map.world.WesternEurope;
-				
-				Map.world.EasternEurope = Map.R.path(TerritoryPathData_Medium['EasternEurope'].path).attr(attr);
-				TerritoryData['EasternEurope'].path = Map.world.EasternEurope;
-				
-				Map.world.Madagascar = Map.R.path(TerritoryPathData_Medium['Madagascar'].path).attr(attr);
-				TerritoryData['Madagascar'].path = Map.world.Madagascar;
-				
-				Map.world.Ukraine = Map.R.path(TerritoryPathData_Medium['Ukraine'].path).attr(attr);
-				TerritoryData['Ukraine'].path = Map.world.Ukraine;
-				
-				Map.world.MiddleEast = Map.R.path(TerritoryPathData_Medium['MiddleEast'].path).attr(attr);
-				TerritoryData['MiddleEast'].path = Map.world.MiddleEast;
-				
-				Map.world.Afghanistan = Map.R.path(TerritoryPathData_Medium['Afghanistan'].path).attr(attr);
-				TerritoryData['Afghanistan'].path = Map.world.Afghanistan;
-				
-			        Map.world.Greenland = Map.R.path(TerritoryPathData_Medium['Greenland'].path).attr(attr);
-				TerritoryData['Greenland'].path = Map.world.Greenland;
-				
-				Map.world.India = Map.R.path(TerritoryPathData_Medium['India'].path).attr(attr);
-				TerritoryData['India'].path = Map.world.India;
-				
-				Map.world.Siam = Map.R.path(TerritoryPathData_Medium['Siam'].path).attr(attr);
-				TerritoryData['Siam'].path = Map.world.Siam;
-				
-				Map.world.China = Map.R.path(TerritoryPathData_Medium['China'].path).attr(attr);
-				TerritoryData['China'].path = Map.world.China;
-				
-				Map.world.Mongolia = Map.R.path(TerritoryPathData_Medium['Mongolia'].path).attr(attr);
-				TerritoryData['Mongolia'].path = Map.world.Mongolia;
-				
-				Map.world.Irkutsk = Map.R.path(TerritoryPathData_Medium['Irkutsk'].path).attr(attr);
-				TerritoryData['Irkutsk'].path = Map.world.Irkutsk;
-				
-				Map.world.Yakutsk = Map.R.path(TerritoryPathData_Medium['Yakutsk'].path).attr(attr);
-				TerritoryData['Yakutsk'].path = Map.world.Yakutsk;
-				
-				Map.world.Siberia = Map.R.path(TerritoryPathData_Medium['Siberia'].path).attr(attr);
-				TerritoryData['Siberia'].path = Map.world.Siberia;
-				
-				Map.world.Kamchatka = Map.R.path(TerritoryPathData_Medium['Kamchatka'].path).attr(attr);
-				TerritoryData['Kamchatka'].path = Map.world.Kamchatka;
-				
-				Map.world.Japan = Map.R.path(TerritoryPathData_Medium['Japan'].path).attr(attr);
-				TerritoryData['Japan'].path = Map.world.Japan;
-				
-				Map.world.NewGuinea = Map.R.path(TerritoryPathData_Medium['NewGuinea'].path).attr(attr);
-				TerritoryData['NewGuinea'].path = Map.world.NewGuinea;
-				
-				Map.world.Australia = Map.R.path(TerritoryPathData_Medium['Australia'].path).attr(attr);
-				TerritoryData['Australia'].path = Map.world.Australia;
-				
-				
-				var attr_text = {
-						"font-size": 20,
-						"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
-						width: 2
+			};
 					
-						};
-						
-				for (id in TerritoryNames_Medium) {
+			for (id in TerritoryNames_Medium) {
 
-					var textObject = Map.R.text(ArmyCountCoords_Medium[id].x, ArmyCountCoords_Medium[id].y, 2).attr(attr_text);
-					TerritoryData[id].name = id;
-					TerritoryData[id].text = textObject;
-					TerritoryData[id].color = "gray";
-					TerritoryData[id].neighbours = Neighbours_Medium[id];
-					TerritoryData[id].armyNum = "2";
-					TerritoryData[id].owner = "Neutral";
-					
-		}
-            
+				var textObject = Map.R.text(ArmyCountCoords_Medium[id].x, ArmyCountCoords_Medium[id].y, 2).attr(attr_text);
+				TerritoryData[id].name = id;
+				TerritoryData[id].text = textObject;
+				TerritoryData[id].color = "gray";
+				TerritoryData[id].neighbours = Neighbours_Medium[id];
+				TerritoryData[id].armyNum = "2";
+				TerritoryData[id].owner = "Neutral";
+				
+			}
         }
 		else{
 			/*
