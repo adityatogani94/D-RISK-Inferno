@@ -546,18 +546,47 @@ var Map = {
         var deploycheck = true;
         deploy = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
+                $.noty.defaults.killer = true;
+
+                noty({
+                    text: 'This is not your turn, Wait for your turn and then perform actions !',
+                    layout: 'center',
+                    closeWith: ['click', 'hover'],
+                    type: 'alert',
+                    timeout: 1000
+                });
                 $("#popup").empty();
                 $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
             }
             if (Map.state == "active") {
                 if (deploycheck){
                     Map.stage = "deploy";
+                    $.noty.defaults.killer = true;
+
+                    noty({
+                        text: 'Current Stage: Deploy, Proceed to attack once done !',
+                        layout: 'center',
+                        closeWith: ['click', 'hover'],
+                        type: 'alert',
+                        timeout: 1000
+                    });
                     $("#popup").empty();
                     $("#popup").append("Current Stage: Deploy, Proceed to attack once done !");
+
                 }
                 else {
+                    $.noty.defaults.killer = true;
+
+                    noty({
+                        text: 'You have already deployed for this turn, proceed to attack',
+                        layout: 'center',
+                        closeWith: ['click', 'hover'],
+                        type: 'alert',
+                        timeout: 1000
+                    });
                     $("#popup").empty();
                     $("#popup").append("You have already deployed for this turn, proceed to attack");
+
                 }
             }
 
@@ -565,8 +594,18 @@ var Map = {
 
         attack = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
+                $.noty.defaults.killer = true;
+
+                noty({
+                    text: 'This is not your turn, Wait for your turn and then perform actions !',
+                    layout: 'center',
+                    closeWith: ['click', 'hover'],
+                    type: 'alert',
+                    timeout: 1000
+                });
                 $("#popup").empty();
                 $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
+
             }
             if (Map.state == "active"){
                 deploycheck = false;
@@ -574,21 +613,50 @@ var Map = {
 
             if (Map.state == "active") {
                 Map.stage = "attack";
+                $.noty.defaults.killer = true;
+
+                noty({
+                    text: 'Current Stage: Attack / Transfer, Execute your turn after this !',
+                    layout: 'center',
+                    closeWith: ['click', 'hover'],
+                    type: 'alert',
+                    timeout: 1000
+                });
                 $("#popup").empty();
                 $("#popup").append( "Current Stage: Attack / Transfer, Execute your turn after this !");
+
             }
 
         }
 
         commit = function(IDS) {
             if (Map.state == "inactive" || Map.state == null){
+                $.noty.defaults.killer = true;
+
+                noty({
+                    text: 'This is not your turn, Wait for your turn and then perform actions !',
+                    layout: 'center',
+                    closeWith: ['click', 'hover'],
+                    type: 'alert',
+                    timeout: 1000
+                });
                 $("#popup").empty();
                 $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
+
             }
             if (Map.state == "active"){
                 deploycheck = true;
             }
             if (Map.state == "active") {
+                $.noty.defaults.killer = true;
+
+                noty({
+                    text: 'Your turn has been executed. Wait till your turn comes again !',
+                    layout: 'center',
+                    closeWith: ['click', 'hover'],
+                    type: 'confirm',
+                    timeout: 1000
+                });
                 $("#popup").empty();
                 $("#popup").append( "Your turn has been executed. Wait till your turn comes again !");
                 socket.emit('executedTurn', {
