@@ -746,8 +746,14 @@ var Map = {
                             });
                         } 
 						else {
-                            $("#popup").empty();
-                            $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
+                            $.noty.defaults.killer = true;
+                            noty({
+                                text: 'You can only deploy a maximum of 5 units a turn. Proceed to attack now !!',
+                                layout: 'center',
+                                closeWith: ['click', 'hover'],
+                                type: 'alert',
+                                timeout: 1500
+                            });
                         }
 
 
@@ -1019,8 +1025,14 @@ var Map = {
                             });
                         } 
 						else {
-                            $("#popup").empty();
-                            $("#popup").append("You can only deploy 5 units in a turn. Proceed to attack !");
+                            $.noty.defaults.killer = true;
+                            noty({
+                                text: 'You can only deploy a maximum of 5 units a turn. Proceed to attack now !!',
+                                layout: 'center',
+                                closeWith: ['click', 'hover'],
+                                type: 'alert',
+                                timeout: 1500
+                            });
                         }
                     }
                     if (Map.state == "active" && Map.stage == "attack") {
