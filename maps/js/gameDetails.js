@@ -528,7 +528,7 @@ var Continents = {
 ******************************
 
 */
-var Continents = {
+var Continents_Medium = {
 	NorthAmerica: ['Alaska','Alberta','Greenland','Quebec','WesternUnitedStates','EasternUnitedStates','CentralAmerica'],
 	SouthAmerica: ['Peru','Brazil','Argentina'],
 	Africa: ['NorthAfrica','Congo','EastAfrica','SouthAfrica','Madagascar'],
@@ -552,7 +552,7 @@ var Continents = {
 ******************************
 
 */
-var Continents = {
+var Continents_Easy = {
 	NorthAmerica: ['NorthWestTerritory','Alberta','Greenland','Eastern United States','CentralAmerica'],
     SouthAmerica: ['Peru','Brazil','Argentina'],
 	Africa: ['NorthAfrica','EastAfrica','SouthAfrica','Madagascar'],
