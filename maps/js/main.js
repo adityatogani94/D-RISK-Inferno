@@ -105,17 +105,40 @@ FILE_MANAGER.downloadAll(function() {
 
 	jQuery(function($) {
 		$("#btnCreateSubmit").click(function () {
-			$('#HomeScreenWrapper').hide();
-			$('#CreateScreenWrapper').show();
-			socket.emit('createNewGame', {name: $('#name').val()});
-			isHost = true;
+			console.log($('#name').val());
+			if ($('#name').val() == ""){
+				$('#Error1').empty();
+				$("#Error1").append("Enter a Nickname !!");
+				$('#Error1').show();
+			}
+			else {
+				$('#HomeScreenWrapper').hide();
+				$('#CreateScreenWrapper').show();
+				socket.emit('createNewGame', {name: $('#name').val()});
+				isHost = true;
+			}
+
 		});
 
 		$("#btnJoinSubmit").click(function () {
-			$('#HomeScreenWrapper').hide();
-			$('#LobbyScreenWrapper').show();
-			name = $('#name2').val();
-			socket.emit("joingamelobby", {gameId: $('#enteredgameid').val(), name: $('#name2').val(), socketid: mySocketId})
+			if ($('#name2').val() == "") {
+				$('#Error2').empty();
+				$("#Error2").append("Enter a Nickname !!");
+				$('#Error2').show();
+			}
+			else if ($('#enteredgameid').val() == ""){
+				$('#Error2').empty();
+				$('#Error3').empty();
+				$("#Error3").append("Enter a gameid !!");
+				$('#Error3').show();
+			}
+			else {
+				$('#HomeScreenWrapper').hide();
+				$('#LobbyScreenWrapper').show();
+				name = $('#name2').val();
+				socket.emit("joingamelobby", {gameId: $('#enteredgameid').val(), name: $('#name2').val(), socketid: mySocketId})
+			}
+
 
 		});
 

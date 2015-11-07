@@ -207,14 +207,71 @@
             color: maroon;
             font-weight: bold;
         }
-        #userdetails{
+        #user1details{
             text-align: center;
             top: 0px;
             font-family: 'Oswald', serif;
-            font-size: 14px;
+            font-size: 16px;
             color: maroon;
             font-weight: bold;
+            margin-left: 8px;
+
         }
+        #user2details{
+            text-align: center;
+            top: 0px;
+            font-family: 'Oswald', serif;
+            font-size: 16px;
+            color: maroon;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #user3details{
+            text-align: center;
+            top: 0px;
+            font-family: 'Oswald', serif;
+            font-size: 16px;
+            color: maroon;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #user4details{
+            text-align: center;
+            top: 0px;
+            font-family: 'Oswald', serif;
+            font-size: 16px;
+            color: maroon;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #user5details{
+            text-align: center;
+            top: 0px;
+            font-family: 'Oswald', serif;
+            font-size: 16px;
+            color: maroon;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #user6details{
+            text-align: center;
+            top: 0px;
+            font-family: 'Oswald', serif;
+            font-size: 16px;
+            color: maroon;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #Error1 {
+          color: red;
+        }
+        #Error2 {
+          color: red;
+        }
+        #Error3 {
+          color: red;
+        }
+
     </style>
 
 
@@ -241,7 +298,8 @@
 <body>
 
 <div id="HomeScreenWrapper">
-    Name:            <input type="text" name="name" id ="name" />
+    Nick:           <input id = "name" type="text" name="usrname" required>
+  <div id ="Error1"> </div>
     <br />
     <br />
     <input id="btnCreateSubmit" type="submit" value="Create Game" />
@@ -252,8 +310,10 @@
     Already have game id, Enter Game id !             <br />
     <br />
 
-    Name:             <input type="text" name="name" id = "name2" /> <br> <br>
-    Game Id:             <input type="text" name="gameid" id = "enteredgameid" />
+    Nick:             <input type="text" name="name" id = "name2" required/>
+  <div id ="Error2"> </div><br> <br>
+    Game Id:             <input type="text" name="gameid" id = "enteredgameid" required />
+  <div id ="Error3"> </div>
     <br />
     <br />
     <input id="btnJoinSubmit" type="submit" value="Join Game" />
@@ -358,11 +418,12 @@
     <div id="actionInfo" style="font-family: 'Oswald', serif; overflow:auto; height:180px; left: 22px; width: 300px"></div><hr>
         <div id = "hello"></div>
         <div id = "playerdetails">PLAYER DETAILS<hr>
-            <div id = "userdetails">
-            User1:      User2:  User3:  <br>
-            User4:      User5:  User6: <br>
-
-                </div>
+            <div id = "user1details" style = "float: left"></div>
+            <div id = "user3details"style = "float: left"></div>
+            <div id = "user5details" style = "float:left"></div> <br>
+            <div id = "user2details"style = "float: left"></div>
+            <div id = "user4details"style = "float: left"></div>
+            <div id = "user6details" style = "float:left"></div> <br>
             </div>
         </div>
     </div>
