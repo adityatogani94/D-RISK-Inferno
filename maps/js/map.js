@@ -225,7 +225,7 @@ var Map = {
             *********************************************************
             */
             
-        	var attr = {fill: "gray",stroke: "#666","stroke-width": 1.5,"stroke-linejoin": "round"};
+        	//var attr = {fill: "gray",stroke: "#666","stroke-width": 1.5,"stroke-linejoin": "round"};
         			
 			Map.world.Alaska = Map.R.path(TerritoryPathData_Medium['Alaska'].path).attr(attr);
 			TerritoryData['Alaska'].path = Map.world.Alaska;
@@ -799,6 +799,8 @@ var Map = {
 									*                       map                             *
 									*********************************************************
 									*/
+									
+				    Raphael.fn.arrow(ArmyCountCoords_Medium[current].x, ArmyCountCoords_Medium[current].y, ArmyCountCoords_Medium[TerritoryData[current].neighbours[index]].x, ArmyCountCoords_Medium[TerritoryData[current].neighbours[index]].y, 15);
                                     
                                 }
 								else{
@@ -1065,6 +1067,8 @@ var Map = {
 									*                       map                             *
 									*********************************************************
 									*/
+									
+				    Raphael.fn.arrow(ArmyCountCoords_Medium[current].x, ArmyCountCoords_Medium[current].y, ArmyCountCoords_Medium[TerritoryData[current].neighbours[index]].x, ArmyCountCoords_Medium[TerritoryData[current].neighbours[index]].y, 15);					
                                     
                                 }
 								else{
