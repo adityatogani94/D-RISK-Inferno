@@ -1343,17 +1343,19 @@ var Map = {
 				for (numofcontries = 0; numofcontries <Continents[id].length; numofcontries++ ){
 					console.log (Map.getOwner(Continents[id][numofcontries]));
 					if(Map.getOwner(Continents[id][numofcontries]) == username){
-						console.log ("hi");
+						console.log (Continents[id][numofcontries]);
+						console.log ("result = true");
 						result = true;
 					}
 					else{
-						console.log ("hello");
+						console.log (Continents[id][numofcontries]);
+						console.log ("result = false");
 						result = false;
 						break;
 					}
 				}
 				if (result == true){
-					console.log ("hi");
+					console.log ("Increasing deploy count");
 					deploylimit += cntry_count;
 				}
 			
@@ -1365,29 +1367,32 @@ var Map = {
 				for (numofcontries = 0; numofcontries <Continents_Medium[id].length; numofcontries++ ){
 					console.log (Map.getOwner(Continents_Medium[id][numofcontries]));
 					if(Map.getOwner(Continents_Medium[id][numofcontries]) == username){
-						console.log ("hi");
+						console.log (Continents_Medium[id][numofcontries]);
+						console.log ("result = true");
 						result = true;
 					}
 					else{
-						console.log ("hello");
+						console.log (Continents_Medium[id][numofcontries]);
+						console.log ("result = false");
 						result = false;
 						break;
 					}
 				}
 				if (result == true){
-					console.log ("hi");
+					console.log ("Increasing deploy count");
 					deploylimit += cntry_count;
 				}
 			
 			}
 		}
 		else{
-			for (id1 in Continents_Easy) {
-				cntry_count = Continents_Easy[id1].length;
-				for (numofcontries = 0; numofcontries <Continents_Easy[id1].length; numofcontries++ ){
-					console.log (Map.getOwner(Continents_Easy[id1][numofcontries]));
-					if(Map.getOwner(Continents_Easy[id1][numofcontries]) == username){
-						console.log ("hi");
+			for (id in Continents_Easy) {
+				cntry_count = Continents_Easy[id].length;
+				for (numofcontries = 0; numofcontries <Continents_Easy[id].length; numofcontries++ ){
+					console.log (Map.getOwner(Continents_Easy[id][numofcontries]));
+					if(Map.getOwner(Continents_Easy[id][numofcontries]) == username){
+						console.log (Continents_Easy[id][numofcontries]);
+						console.log ("result = true");
 						result = true;
 					}
 					else{
