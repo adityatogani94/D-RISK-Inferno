@@ -9,7 +9,7 @@ FILE_MANAGER.queueDownload('sound/4.mp3');
 
 var socket = io('ws://localhost:8080/');
 var players = [];
-
+var isHost = false;
 
 FILE_MANAGER.downloadAll(function() {
 
@@ -19,7 +19,7 @@ FILE_MANAGER.downloadAll(function() {
 	var mySocketId = "";
 	var message = "";
 	var gameId = "";
-	var isHost = false;
+
 	var name = "";
 
 
@@ -81,13 +81,28 @@ FILE_MANAGER.downloadAll(function() {
 		console.log(name1);
 		$("#turnIndicator").empty();
 		$("#turnIndicator").append(name1+"'s Turn");
-
+		count = 1;
 		if (name == name1){
 			Map.state = state1;
 			console.log(Map.state);
 			$("#popup").empty();
 			$("#popup").append("Current Stage: None, Click on buttons to begin stage !");
 
+			if (isHost && count == 1) {
+
+			}
+			else {
+			$.noty.defaults.killer = true;
+			noty({
+				text: 'Its your turn to play. !! Go to the buttons on the left ' +
+				'to begin with your turn. You can begin with deploy stage and then proceed to attack once done',
+				layout: 'center',
+				closeWith: ['click', 'hover'],
+				type: 'alert',
+				timeout: 5000
+			});
+				count += 1;
+			}
 
 
 		}

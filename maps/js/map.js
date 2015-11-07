@@ -215,6 +215,32 @@ var Map = {
 				TerritoryData[id].armyNum = "2";
 				TerritoryData[id].owner = "Neutral";
 			}
+			
+			if (isHost){
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You are the HOST and hence it is your turn to act first !!' +
+                'Go to the buttons on the left and begin your game. ALL THE BEST !',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+        }
+        else {
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You must wait for your turn. Once' +
+                ' your turn comes, begin your game by using the buttons on the left. ALL THE BEST!',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+
+        }
         }
 		else if(mapsize == "medium"){
             /*
@@ -345,6 +371,31 @@ var Map = {
 				TerritoryData[id].owner = "Neutral";
 				
 			}
+			if (isHost){
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You are the HOST and hence it is your turn to act first !!' +
+                'Go to the buttons on the left and begin your game. ALL THE BEST !',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+        }
+        else {
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You must wait for your turn. Once' +
+                ' your turn comes, begin your game by using the buttons on the left. ALL THE BEST!',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+
+        }
         }
 		else{
 			/*
@@ -423,6 +474,31 @@ var Map = {
 				TerritoryData[id].armyNum = "2";
 				TerritoryData[id].owner = "Neutral";
 			}
+			if (isHost){
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You are the HOST and hence it is your turn to act first !!' +
+                'Go to the buttons on the left and begin your game. ALL THE BEST !',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+        }
+        else {
+            $.noty.defaults.killer = true;
+
+            noty({
+                text: 'Welcome to DRisk !!!. You must wait for your turn. Once' +
+                ' your turn comes, begin your game by using the buttons on the left. ALL THE BEST!',
+                layout: 'center',
+                closeWith: ['click', 'hover'],
+                type: 'alert',
+                timeout: 10000
+            });
+
+        }
         }
     },
 
