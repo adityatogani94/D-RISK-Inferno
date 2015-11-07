@@ -724,6 +724,16 @@ var Map = {
                 st[0].style.cursor = "pointer";
 
                 st[0].onclick = function() {
+					if (Map.state == "inactive"){
+                        $.noty.defaults.killer = true;
+                        noty({
+                            text: 'This is Not your turn, wait for your turn !',
+                            layout: 'center',
+                            closeWith: ['click', 'hover'],
+                            type: 'alert',
+                            timeout: 1500
+                        });
+                    }
 
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
 
@@ -1006,6 +1016,16 @@ var Map = {
                 TerritoryData[country].text[0].style.cursor = "pointer";
 
                 TerritoryData[country].text[0].onclick = function() {
+					if (Map.state == "inactive"){
+                        $.noty.defaults.killer = true;
+                        noty({
+                            text: 'This is Not your turn, wait for your turn !',
+                            layout: 'center',
+                            closeWith: ['click', 'hover'],
+                            type: 'alert',
+                            timeout: 1500
+                        });
+                    }
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();
