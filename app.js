@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var mongo = require('mongodb').MongoClient,
+	url = 'mongodb://localhost:27017/users';
 //var nodemailer = require("nodemailer");
 /*
 var smtpTransport = nodemailer.createTransport("SMTP",{
@@ -17,15 +19,81 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/public');
 });
 
-var server = require('http').createServer(app).listen(process.env.PORT || 8080);
+var server = require('http').createServer(app).listen(process.env.PORT || 3000);
 var io = require('socket.io').listen(server);
 
 
+mongo.connect(url, function(err, db){
+	
+	if(err) throw err;
+
 io.sockets.on('connection', function (socket) {
 	console.log("A new User Connected");
-	socket. emit('connected', { message: "You are connected!", mySocketId:socket.id });
+	socket.emit('connected', { message: "You are connected!", mySocketId:socket.id });
 
+	
+		/*
+		-------------------------------------------------------------
+	*/
 
+		var col = db.collection('username');
+
+		socket.on('send message', function(data){
+			var name = data.name,
+			email = data.email,
+			pass = data.pass;
+			
+		col.findOne({email: data.email }, function(err, incol) {
+			if (err){ console.log('error');}
+            if (incol) {
+				io.sockets.emit('new message', "Already Exist");
+				console.log(' Email ALready exist');                 
+                    }
+			else{		
+		console.log('Someone has connected');
+		console.log(data.name + " " + data.email);
+		
+			
+		col.insert({name: name, email:email, password:pass}, function(){
+			console.log('Inserted');
+		})
+		
+		io.sockets.emit('new message', "successfully registered");
+			}
+	});
+	
+});
+		socket.on('login message', function(data){			
+			var email = data.email,
+			pass = data.pass;
+			
+			col.findOne({email: data.email }, function(err, present) { 
+			 			 
+			 if (err){ console.log('error');}
+            if (present) {
+				
+				if(present.password === data.pass){
+				io.sockets.emit('is successful login', "proceed");
+				console.log(' Hoorray User exists in DB!!!'); 
+				}
+				else{
+					sockets.emit('is successful login', "password incorrect");
+				console.log(' Incorrect Password'); 
+				}
+                    }
+			else{
+				io.sockets.emit('is successful login', "not registered");
+				console.log(' Need to register!!!'); 
+			}
+			});
+		});
+		
+	
+	
+	/*
+	-------------------------------------------------------------
+	*/
+	
 	socket.on('createNewGame', function (message) {
 		console.log("New Game Request got");
 		console.log("User who has joined is: ", message.name);
@@ -283,7 +351,7 @@ io.sockets.on('connection', function (socket) {
 
 
 });
-
+});
 
 /*
 io.on('connection', function (socket) {
