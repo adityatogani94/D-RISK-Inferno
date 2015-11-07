@@ -9,6 +9,7 @@ var atkcount;
 var orgcount;
 var atkdcntrycount;
 var deploycount = 0;
+var deploylimit = 5;
 var gameId;
 var username;
 var socket = io('ws://localhost:8080/');
@@ -23,6 +24,14 @@ socket.on('updateDetails', function(data) {
 
 
 if (mapsize == "large"){
+	/*
+		*****************************
+		*	initializing data   *
+		*	   for large	    *	
+		*	   sized map        *
+		*			            *
+		*****************************
+	*/	
 		for (var id in TerritoryNames) {
 		    var data = {}
 		    data["name"] = null;
@@ -36,13 +45,14 @@ if (mapsize == "large"){
 		}
 	
 }else if(mapsize == "medium"){
+	/*
 		*****************************
 		*	initializing data   *
 		*	   for medium	    *	
 		*	   sized map        *
-		*			    *
+		*			            *
 		*****************************
-		
+	*/	
 		for (var id in TerritoryNames_Medium) {
 			var data = {}
 			data["name"] = null;
@@ -56,14 +66,14 @@ if (mapsize == "large"){
 		}
 
 }else{
-	
+	/*
 		*****************************
-		*	initializing data   *
-		*	   for easy	    *	
-		*	   sized map        *
-		*			    *
+		*	initializing data       *
+		*	   for easy	            *	
+		*	   sized map            *
+		*			                *
 		*****************************
-		
+	*/	
 		for (var id in TerritoryNames_Easy) {
 			var data = {}
 			data["name"] = null;
@@ -739,7 +749,7 @@ var Map = {
 
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();
-                        if (deploycount < 5) {
+                        if (deploycount < deploylimit) {
 
                             var a = Map.getArmyCount(country);
                             a = a + 1;
@@ -1029,7 +1039,7 @@ var Map = {
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();
-                        if (deploycount < 5) {
+                        if (deploycount < deploylimit) {
                             var a = Map.getArmyCount(country);
                             a = a + 1;
                             deploycount++;
@@ -1315,5 +1325,80 @@ var Map = {
             result = true;
         }
         return result;
+    },
+	
+	checknumberofcontinent: function() {
+        var totalContinentsOwned = 0;
+		var cntry_count = 0;
+        var result = false;
+		deploylimit = 5;
+        
+		if (mapsize == "large"){
+
+			for (id in Continents) {
+				cntry_count = Continents[id].length;
+				for (numofcontries = 0; numofcontries <Continents[id].length; numofcontries++ ){
+					console.log (Map.getOwner(Continents[id][numofcontries]));
+					if(Map.getOwner(Continents[id][numofcontries]) == username){
+						console.log ("hi");
+						result = true;
+					}
+					else{
+						console.log ("hello");
+						result = false;
+						break;
+					}
+				}
+				if (result == true){
+					console.log ("hi");
+					deploylimit += cntry_count;
+				}
+			
+			}
+		}
+		else if(mapsize == "medium"){
+			for (id1 in Continents_Medium) {
+				cntry_count = Continents_Medium[id].length;
+				for (numofcontries = 0; numofcontries <Continents_Medium[id].length; numofcontries++ ){
+					console.log (Map.getOwner(Continents_Medium[id][numofcontries]));
+					if(Map.getOwner(Continents_Medium[id][numofcontries]) == username){
+						console.log ("hi");
+						result = true;
+					}
+					else{
+						console.log ("hello");
+						result = false;
+						break;
+					}
+				}
+				if (result == true){
+					console.log ("hi");
+					deploylimit += cntry_count;
+				}
+			
+			}
+		}
+		else{
+			for (id1 in Continents_Easy) {
+				cntry_count = Continents_Easy[id1].length;
+				for (numofcontries = 0; numofcontries <Continents_Easy[id1].length; numofcontries++ ){
+					console.log (Map.getOwner(Continents_Easy[id1][numofcontries]));
+					if(Map.getOwner(Continents_Easy[id1][numofcontries]) == username){
+						console.log ("hi");
+						result = true;
+					}
+					else{
+						console.log ("hello");
+						result = false;
+						break;
+					}
+				}
+				if (result == true){
+					console.log ("hi");
+					deploylimit += cntry_count;
+				}
+			
+			}
+		}
     },
 }
