@@ -234,6 +234,8 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
 		}
 
 		if (users.length == 3){
@@ -243,9 +245,13 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
-			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Yellow", users[2]);
-			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Yellow", users[2]);
-			io.sockets.in(message.gameId).emit('init', "Irkutsk", "Yellow", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Irkutsk", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 3);
+
 
 		}
 
@@ -256,8 +262,12 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
 			io.sockets.in(message.gameId).emit('init', "Egypt", "Green", users[2]);
-			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Yellow", users[3]);
-			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Yellow", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[3], 2);
 		}
 
 		if (users.length ==5){
@@ -267,10 +277,15 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
 			io.sockets.in(message.gameId).emit('init', "Egypt", "Green", users[2]);
-			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Yellow", users[3]);
-			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Yellow", users[3]);
-			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Pink", users[4]);
-			io.sockets.in(message.gameId).emit('init', "NorthernEurope", "Pink", users[4]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('init', "NorthernEurope", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[3], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[4], 2);
 		}
 
 		if (users.length ==6){
@@ -280,14 +295,21 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
 			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
 			io.sockets.in(message.gameId).emit('init', "Egypt", "Green", users[2]);
-			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Yellow", users[3]);
-			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Yellow", users[3]);
-			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Pink", users[4]);
-			io.sockets.in(message.gameId).emit('init', "NorthernEurope", "Pink", users[4]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('init', "NorthernEurope", "Magenta", users[4]);
 			io.sockets.in(message.gameId).emit('init', "Argentina", "Cyan", users[5]);
 			io.sockets.in(message.gameId).emit('init', "Peru", "Cyan", users[5]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[3], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[4], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[5], 2);
 
 		}
+
 	});
 	socket.on('deploy', function (message) {
 		io.sockets.in(message.gameId).emit('deploy', message.country, message.count)
@@ -347,6 +369,11 @@ io.sockets.on('connection', function (socket) {
 		});
     socket.on('gameOver', function (message) {
         io.sockets.in(message.gameId).emit('gameFinished', message.name);
+    });
+	
+	socket.on('territoryDetails', function (message) {
+		console.log(message.name, message.count);
+        io.sockets.in(message.gameId).emit('updateTerritoryInfo', message.users, message.name, message.count);
     });
 
 

@@ -9,7 +9,7 @@ FILE_MANAGER.queueDownload('sound/4.mp3');
 
 var socket = io('ws://localhost:8080/');
 var players = [];
-var usercolors = {};
+
 
 FILE_MANAGER.downloadAll(function() {
 
@@ -21,6 +21,7 @@ FILE_MANAGER.downloadAll(function() {
 	var gameId = "";
 	var isHost = false;
 	var name = "";
+
 
 	socket.on('connected', function(data){
 		mySocketId = data.mySocketId;
@@ -68,13 +69,10 @@ FILE_MANAGER.downloadAll(function() {
 
 	socket.on('updateUserData', function(users){
 		players = users;
-		usercolors.user[0] = "red";
-		usercolors.user[0] = "blue";
-		usercolors.user[0] = "green";
-		usercolors.user[0] = "red";
-		usercolors.user[0] = "red";
-		usercolors.user[0] = "red";
+
+
 	});
+
 
 
 
@@ -101,10 +99,6 @@ FILE_MANAGER.downloadAll(function() {
 		$("#GameOver").append(name);
 		$('#GameOver').show();
 	});
-
-
-
-
 
 
 
@@ -157,6 +151,7 @@ socket.on('init', function (country, color, owner, users) {
 
 socket.on('deploy', function (country, count) {
 		Map.setArmyCount(country,count);
+
 });
 
 	socket.on('actionInfo', function (info) {
@@ -171,8 +166,58 @@ socket.on('attack', function (country, count, color, owner) {
 		Map.setArmyCount(country,count);
 		Map.setColor(country,color);
 		Map.setOwner(country,owner)
+		Map.checkGameOver();
 });
 
+
+socket.on('updateTerritoryInfo', function (users, name,count) {
+	players = users;
+	var index = users.indexOf(name);
+	var color;
+	if (index == 0){
+		color = "red";
+		$("#user1details").empty();
+		$("#user1details").css('color', color);
+		$("#user1details").append(name.toUpperCase() +" : "+ count + "/42");
+		console.log("Inside red")
+	}
+	if (index == 1){
+		color = "blue";
+		$("#user2details").empty();
+		$("#user2details").css('color', color);
+		$("#user2details").append(name.toUpperCase() +" : "+ count + "/42");
+		console.log("Inside blue")
+	}
+	if (index == 2){
+		color = "Green";
+		$("#user3details").empty();
+		$("#user3details").css('color', color);
+		$("#user3details").append(name.toUpperCase() +" : "+ count + "/42");
+	}
+	if (index == 3){
+		color = "Purple";
+		$("#user4details").empty();
+		$("#user4details").css('color', color);
+		$("#user4details").append(name.toUpperCase() +" : "+ count + "/42");
+	}
+	if (index == 4){
+		color = "Magenta";
+		$("#user5details").empty();
+		$("#user5details").css('color', color);
+		$("#user5details").append(name.toUpperCase() +" : "+ count + "/42");
+	}
+	if (index == 5){
+		color = "cyan";
+		$("#user6details").empty();
+		$("#user6details").css('color', color);
+		$("#user6details").append(name.toUpperCase() +" : "+ count + "/42");
+	}
+	console.log(color);
+
+
+
+
+	});
 
 });
 
