@@ -12,7 +12,8 @@ var deploycount = 0;
 var deploylimit = 5;
 var gameId;
 var username;
-var socket = io('ws://localhost:8080/');
+var mapsize = "large";
+var socket = io('ws://54.186.29.28:8080/');
 
 
 socket.on('updateDetails', function(data) {
@@ -474,7 +475,7 @@ var Map = {
 				"font-family": "Century Gothic', CenturyGothic, AppleGothic, sans-serif",
 				width: 2
 			};
-			for (id in TerritoryNames) {
+			for (id in TerritoryNames_Easy) {
 
 				var textObject = Map.R.text(ArmyCountCoords_Easy[id].x, ArmyCountCoords_Easy[id].y, 2).attr(attr_text);
 				TerritoryData[id].name = id;
@@ -749,7 +750,8 @@ var Map = {
 
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();
-                        if (deploycount < deploylimit) {
+                        Map.checknumberofcontinent();
+			if (deploycount < deploylimit) {
 
                             var a = Map.getArmyCount(country);
                             a = a + 1;
@@ -757,7 +759,7 @@ var Map = {
                             current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
-                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                          //  document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             socket.emit('deploy', {
                                 gameId: gameId,
                                 country: current,
@@ -945,8 +947,8 @@ var Map = {
 						else if (Map.getOwner(country) == username) {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
-                            document.getElementById(country).style.display = "block";
-                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                          //  document.getElementById(country).style.display = "block";
+                          //  document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             current = country;
                             Map.R.setStart();
                             for (index = 0; index < TerritoryData[current].neighbours.length; index++) {
@@ -1007,8 +1009,8 @@ var Map = {
 
                     }, 500);
 
-                    document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                   // document.getElementById(country).style.display = "block";
+                   //  document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
 
                 }
@@ -1017,7 +1019,7 @@ var Map = {
                     st.animate({
                         fill: TerritoryData[current].color,
                     }, 500);
-                    document.getElementById(current).style.display = "";
+                 //   document.getElementById(current).style.display = "";
 
                 };
 
@@ -1039,6 +1041,7 @@ var Map = {
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();
+			Map.checknumberofcontinent();
                         if (deploycount < deploylimit) {
                             var a = Map.getArmyCount(country);
                             a = a + 1;
@@ -1046,7 +1049,7 @@ var Map = {
                             current = country;
                             TerritoryData[current].text.attr('text', a);
                             TerritoryData[current].armyNum = a;
-                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                   //         document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             socket.emit('deploy', {
                                 gameId: gameId,
                                 country: current,
@@ -1227,8 +1230,8 @@ var Map = {
 						else if (Map.getOwner(country) == username) {
                             var audio1 = document.getElementById('soundattacked');
                             audio1.play();
-                            document.getElementById(country).style.display = "block";
-                            document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                         //   document.getElementById(country).style.display = "block";
+                         //   document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                             current = country;
 
                             Map.R.setStart();
@@ -1289,8 +1292,8 @@ var Map = {
 
                     }, 500);
 
-                    document.getElementById(country).style.display = "block";
-                    document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
+                  //  document.getElementById(country).style.display = "block";
+                  //  document.getElementById(country).innerHTML = "<h3>" + country + "</h3><p>Owner : " + Map.getOwner(country) + "<br /> Army Count : " + Map.getArmyCount(country) + " </p>";
                     current = country;
 
                 };
@@ -1300,7 +1303,7 @@ var Map = {
                         fill: TerritoryData[current].color,
 
                     }, 500);
-                    document.getElementById(current).style.display = "";
+                 //   document.getElementById(current).style.display = "";
                 };
 
             })(Map.world[country], country);

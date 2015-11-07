@@ -7,7 +7,7 @@ FILE_MANAGER.queueDownload('sound/2.mp3');
 FILE_MANAGER.queueDownload('sound/3.mp3');
 FILE_MANAGER.queueDownload('sound/4.mp3');
 
-var socket = io('ws://localhost:8080/');
+var socket = io('ws://54.186.29.28:8080/');
 var players = [];
 var isHost = false;
 
