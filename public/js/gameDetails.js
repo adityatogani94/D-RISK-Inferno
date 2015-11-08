@@ -553,7 +553,7 @@ var Continents_Medium = {
 
 */
 var Continents_Easy = {
-	NorthAmerica: ['NorthWestTerritory','Alberta','Greenland','Eastern United States','CentralAmerica'],
+	NorthAmerica: ['NorthWestTerritory','Alberta','Greenland','EasternUnitedStates','CentralAmerica'],
     SouthAmerica: ['Peru','Brazil','Argentina'],
 	Africa: ['NorthAfrica','EastAfrica','SouthAfrica','Madagascar'],
 	Europe: ['GreatBritain','WesternEurope','NorthernEurope','Scandinavia','Ukraine','Ural'],
