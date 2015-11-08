@@ -620,6 +620,7 @@ var Map = {
             }
             if (Map.state == "active"){
                 deploycheck = false;
+				deploycount = 0;
             }
 
             if (Map.state == "active") {
@@ -657,6 +658,7 @@ var Map = {
             }
             if (Map.state == "active"){
                 deploycheck = true;
+				deploycount = 0;
             }
             if (Map.state == "active") {
                 $.noty.defaults.killer = true;
@@ -1330,79 +1332,80 @@ var Map = {
         return result;
     },
 	
+	/* 
+	*******************************************	
+	*										  *
+	*										  *										  
+	*	        Finding the number            *
+	*        of armies to be deployed	      *
+	*										  *										 
+	*******************************************
+	*/
+	
 	checknumberofcontinent: function() {
         var totalContinentsOwned = 0;
 		var cntry_count = 0;
         var result = false;
 		deploylimit = 5;
-        
+        /*
+		Finding number of armies to be deployed for large map
+		*/
 		if (mapsize == "large"){
 
 			for (id in Continents) {
 				cntry_count = Continents[id].length;
 				for (numofcontries = 0; numofcontries <Continents[id].length; numofcontries++ ){
-					console.log (Map.getOwner(Continents[id][numofcontries]));
 					if(Map.getOwner(Continents[id][numofcontries]) == username){
-						console.log (Continents[id][numofcontries]);
-						console.log ("result = true");
 						result = true;
 					}
 					else{
-						console.log (Continents[id][numofcontries]);
-						console.log ("result = false");
 						result = false;
 						break;
 					}
 				}
 				if (result == true){
-					console.log ("Increasing deploy count");
 					deploylimit += cntry_count;
 				}
 			
 			}
 		}
+		/*
+		Finding number of armies to be deployed for medium map
+		*/
 		else if(mapsize == "medium"){
 			for (id1 in Continents_Medium) {
 				cntry_count = Continents_Medium[id].length;
 				for (numofcontries = 0; numofcontries <Continents_Medium[id].length; numofcontries++ ){
-					console.log (Map.getOwner(Continents_Medium[id][numofcontries]));
 					if(Map.getOwner(Continents_Medium[id][numofcontries]) == username){
-						console.log (Continents_Medium[id][numofcontries]);
-						console.log ("result = true");
 						result = true;
 					}
 					else{
-						console.log (Continents_Medium[id][numofcontries]);
-						console.log ("result = false");
 						result = false;
 						break;
 					}
 				}
 				if (result == true){
-					console.log ("Increasing deploy count");
 					deploylimit += cntry_count;
 				}
 			
 			}
 		}
+		/*
+		Finding number of armies to be deployed for small map
+		*/
 		else{
 			for (id in Continents_Easy) {
 				cntry_count = Continents_Easy[id].length;
 				for (numofcontries = 0; numofcontries <Continents_Easy[id].length; numofcontries++ ){
-					console.log (Map.getOwner(Continents_Easy[id][numofcontries]));
 					if(Map.getOwner(Continents_Easy[id][numofcontries]) == username){
-						console.log (Continents_Easy[id][numofcontries]);
-						console.log ("result = true");
 						result = true;
 					}
 					else{
-						console.log ("hello");
 						result = false;
 						break;
 					}
 				}
 				if (result == true){
-					console.log ("hi");
 					deploylimit += cntry_count;
 				}
 			
