@@ -567,7 +567,7 @@ var Map = {
                     timeout: 1000
                 });
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
+                $("#popup").append("Not your turn, Wait for your turn !");
             }
             if (Map.state == "active") {
                 if (deploycheck){
@@ -596,7 +596,7 @@ var Map = {
                         timeout: 1000
                     });
                     $("#popup").empty();
-                    $("#popup").append("You have already deployed for this turn, proceed to attack");
+                    $("#popup").append("You have already deployed, proceed to attack");
 
                 }
             }
@@ -615,12 +615,12 @@ var Map = {
                     timeout: 1000
                 });
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
+                $("#popup").append("Not your turn, Wait for your turn !");
 
             }
             if (Map.state == "active"){
                 deploycheck = false;
-				deploycount = 0;
+                deploycount = 0;
             }
 
             if (Map.state == "active") {
@@ -635,7 +635,7 @@ var Map = {
                     timeout: 1000
                 });
                 $("#popup").empty();
-                $("#popup").append( "Current Stage: Attack / Transfer, Execute your turn after this !");
+                $("#popup").append( "Current Stage: Attack / Transfer. Execute after this !");
 
             }
 
@@ -653,12 +653,13 @@ var Map = {
                     timeout: 1000
                 });
                 $("#popup").empty();
-                $("#popup").append("This is not your turn, Wait for your turn and then perform actions !");
+                $("#popup").append("Not your turn, Wait for your turn !");
 
             }
             if (Map.state == "active"){
                 deploycheck = true;
-				deploycount = 0;
+                Map.stage = "";
+                deploycount = 0;
             }
             if (Map.state == "active") {
                 $.noty.defaults.killer = true;
@@ -671,7 +672,7 @@ var Map = {
                     timeout: 1000
                 });
                 $("#popup").empty();
-                $("#popup").append( "Your turn has been executed. Wait till your turn comes again !");
+                $("#popup").append( "Your turn has been executed !");
                 socket.emit('executedTurn', {
                     gameId: gameId,
                     name: username,
@@ -741,6 +742,16 @@ var Map = {
                         $.noty.defaults.killer = true;
                         noty({
                             text: 'This is Not your turn, wait for your turn !',
+                            layout: 'center',
+                            closeWith: ['click', 'hover'],
+                            type: 'alert',
+                            timeout: 1500
+                        });
+                    }
+					if (Map.state == ""){
+                        $.noty.defaults.killer = true;
+                        noty({
+                            text: 'Click on Deploy to begin deploying',
                             layout: 'center',
                             closeWith: ['click', 'hover'],
                             type: 'alert',
@@ -1040,6 +1051,18 @@ var Map = {
                             timeout: 1500
                         });
                     }
+					
+					if (Map.state == ""){
+                        $.noty.defaults.killer = true;
+                        noty({
+                            text: 'Click on Deploy to begin deploying',
+                            layout: 'center',
+                            closeWith: ['click', 'hover'],
+                            type: 'alert',
+                            timeout: 1500
+                        });
+                    }
+					
                     if (Map.state == "active" && Map.stage == "deploy" && Map.getOwner(country) == username) {
                         var audio1 = document.getElementById('sounddeploy');
                         audio1.play();

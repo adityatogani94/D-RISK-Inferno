@@ -13,6 +13,9 @@ var isHost = false;
 
 FILE_MANAGER.downloadAll(function() {
 
+	window.addEventListener('load', function() {
+		new FastClick(document.body);
+	}, false);
 
     $("#overlay").fadeOut('slow');
 
