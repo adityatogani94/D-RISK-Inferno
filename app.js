@@ -43,7 +43,8 @@ mongo.connect(url, function(err, db){
 
 
 		var col = db.collection('username');
-
+		var colq = db.collection('query');
+		
 		socket.on('send message', function(data){
 			var name = data.name,
 				email = data.email,
@@ -381,7 +382,18 @@ mongo.connect(url, function(err, db){
 		console.log(message.name, message.count);
         io.sockets.in(message.gameId).emit('updateTerritoryInfo', message.users, message.name, message.count);
     });
-
+	
+	/*--------------Query Page Socket connection-----------------------*/
+	
+	socket.on('insert query', function(data){
+			var name = data.name,
+			email = data.email,
+			query = data.query;
+			col.insert({name: name, email:email, query:query}, function(){
+				console.log('Query Inserted');
+		});
+			io.sockets.emit('query submit', "submitted");
+		});
 
 });
 });
