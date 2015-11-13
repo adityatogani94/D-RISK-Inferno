@@ -11,7 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/demo-print.css" type="text/css" media="print" />
-	
+	<link rel="stylesheet" href="css/button.css" type="text/css" />
 	<script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
@@ -478,11 +478,13 @@
 
 
 <div id = "soundbar">
-        <audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
-        <button onclick="document.getElementById('player').play()">Play</button>
-    <button onclick="document.getElementById('player').pause()">Pause</button>
-    <button onclick="document.getElementById('player').muted=!document.getElementById('player').muted">Mute/Unmute</button>
+<menu class="medium">	
+    <audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
+    <button class="play" onclick="document.getElementById('player').play()"><img src="images/play-button.png" height="35"/></button>
+    <button class="pause" onclick="document.getElementById('player').pause()"><img src="images/pause.png" height="35"/></button>
+    <button class="stop" onclick="document.getElementById('player').muted=!document.getElementById('player').muted"><img src="images/mute.png" height="35"/></button>
 </div>
+</menu>
 
 
 </div>
