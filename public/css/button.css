@@ -1,0 +1,196 @@
+/*PostCSS Plugins*/
+@use postcss-nested;
+
+/*Fonts*/
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+
+/*Body*/
+
+
+/*Default style*/
+#a1{
+  color: #db2f27;
+  text-decoration: none;
+  &:hover {
+    color: #a63e14;
+  }
+}
+#a2{
+  color: #db2f27;
+  text-decoration: none;
+  &:hover {
+    color: #a63e14;
+  }
+}
+#a3{
+  color: #db2f27;
+  text-decoration: none;
+  &:hover {
+    color: #a63e14;
+  }
+}
+
+/*Buttons*/
+#btn1{
+	display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    &:hover,
+    &:focus {
+    outline: 0;
+}
+#btn2{
+	display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    &:hover,
+    &:focus {
+    outline: 0;
+}
+#btn3{
+	display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    &:hover,
+    &:focus {
+    outline: 0;
+}
+    &--primary {
+      background: #f45844;
+      color: white;
+      &:hover, &:focus {
+        background: #f43530;
+        color: white;
+      }
+    }
+    &--secondary {
+      background: #0098d8;
+      color: white;
+      &:hover, &:focus {
+        background: #008cbc;
+        color: white;
+      }
+    }
+    &--tertiary {
+      background: #558a86;
+      color: white;
+      &:hover, &:focus {
+        background: #345856;
+        color: white;
+      }
+    }
+    &--previous {
+      transition: padding .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+      &:before {
+        content: '';
+        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        background-image: url(http://mihaeltomic.com/share/previous.svg);
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        background-position: 0px 4px;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        transform: translate(-15px, 0px);
+        transition: all .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+        opacity: 0;
+      }
+      &:hover, &:focus {
+        padding-left: 28px;
+        &:before {
+          visibility: visible;
+          transform: translate(-25px, 0px);
+          opacity: 1;
+        }
+      }
+    }
+    &--next {
+      transition: padding .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+      &:after {
+        content: '';
+        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        background-image: url('http://mihaeltomic.com/share/next.svg');
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        background-position: 0px 4px;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        transform: translate(-15px, 0px);
+        transition: all .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+        opacity: 0;
+      }
+      &:hover, &:focus {
+        padding-right: 28px;
+        &:after {
+          visibility: visible;
+          transform: translate(5px, 0px);
+          opacity: 1;
+        }
+      }
+    }
+    &--finish {
+      transition: padding .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+      &:after {
+        content: '';
+        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        background-image: url('http://mihaeltomic.com/share/check.svg');
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        background-position: -4px 3px;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        transform: translate(-15px, 0px);
+        transition: all .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+        opacity: 0;
+      }
+      &:hover, &:focus {
+        padding-right: 28px;
+        &:after {
+          visibility: visible;
+          transform: translate(5px, 0px);
+          opacity: 1;
+        }
+      }
+    }
+    &--med {
+      font-size: 18px;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 12px;
+    }
+}
