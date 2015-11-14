@@ -64,6 +64,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 <div class="wrapper row3">
   <main class="container clear"> 
+  <div id = "contentWrapper">
     <!-- main body -->
     <!-- ################################################################################################ -->
     <div class="content"> 
@@ -92,6 +93,10 @@ Licence URI: http://www.os-templates.com/template-terms
 
       </div>
       <!-- ################################################################################################ -->
+	  </div>
+	  <div id = "thanks">
+	  Thank you for submitting your query!!!
+	  </div>
     </div>
 	<script>
 		jQuery(function($){
@@ -111,8 +116,8 @@ Licence URI: http://www.os-templates.com/template-terms
 			
 			socket.on('query submit', function(data){
 				if(data == "submitted"){
-				window.location.href = "query.html";
-				alert("Thank you for submitting your query!!!")
+				$('#contentWrapper').hide();
+				$('#thanks').show();
 				}											
 				else{
 				alert("Error!!!")}
