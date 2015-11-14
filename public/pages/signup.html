@@ -78,7 +78,9 @@ Licence URI: http://www.os-templates.com/template-terms
 			<td><input type="text" id="uname" placeholder="User Name" required /></td>
 			</tr>
 			<tr>
-			<td><input type="email" id="email" placeholder="Your Email" required /></td>
+			<td><input type="email" id="email" placeholder="Your Email" required /><br>
+			<div id = "existerr" style ="display: none; color:red; margin-top:0px"> Email id already registered !!</div>
+			</td>
 			</tr>
 			<tr>
 			<td><input type="password" id="pass" placeholder="Your Password" required /></td>
@@ -114,10 +116,12 @@ Licence URI: http://www.os-templates.com/template-terms
 			
 			socket.on('new message', function(data){
 				if(data == "successfully registered"){
+				$('#existerr').hide();
 				window.location.href = "login.html";
 				}
 				else if(data == "Already Exist"){
-					alert('Email ID Already registered!!');
+					$('#existerr').show();
+					/*alert('Email ID Already registered!!');*/
 				}
 				else{
 				alert("Error!!!")}
