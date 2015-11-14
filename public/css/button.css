@@ -8,7 +8,7 @@ menu.medium {
 
 .buttons() {
 
-button {
+#btnplay{
   position: relative;
   display: inline-block;
   padding: .6em;

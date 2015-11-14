@@ -24,6 +24,31 @@
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 
     <style type="text/css" media="screen">
+		#HomeScreenWrapper {
+			left: 20px
+			top: 20px;
+			border-radius: 50px;
+			border: 10px solid #ff3300;
+			padding: 40px; 
+			width: 300px;
+			height: 450px;    
+		}
+		#CreateScreenWrapper{
+			top: 20px;
+			border-radius: 50px;
+			border: 10px solid #0000FF;
+			padding: 40px; 
+			width: 300px;
+			height: 450px;    
+		}
+		#LobbyScreenWrapper{
+			top: 20px;
+			border-radius: 50px;
+			border: 10px solid #008000;
+			padding: 40px; 
+			width: 300px;
+			height: 450px;    
+		}
         #canvas {
 
             height: 768px;
@@ -300,30 +325,35 @@
 
 <body>
 
-<div id="HomeScreenWrapper">
-    Nick:           <input id = "name" type="text" name="usrname" required>
-  <div id ="Error1"> </div>
+<div id="HomeScreenWrapper" style="float: left;" >	
+    Nickname:<br />
+	<input id = "name" type="text" name="usrname" required>
+	<div id ="Error1"> </div>
     <br />
     <br />
     <input id="btnCreateSubmit" type="submit" value="Create Game" />
     <br />
     <br />
-
-
     Already have game id, Enter Game id !             <br />
     <br />
 
     Nick:             <input type="text" name="name" id = "name2" required/>
-  <div id ="Error2"> </div><br> <br>
+	<div id ="Error2"> </div><br> <br>
     Game Id:             <input type="text" name="gameid" id = "enteredgameid" required />
-  <div id ="Error3"> </div>
+	<div id ="Error3"> </div>
     <br />
     <br />
     <input id="btnJoinSubmit" type="submit" value="Join Game" />
     <br />
     <br />
 </div>
-<div id="CreateScreenWrapper" style="display: none;">
+
+<div style="float: left; width: 30px;" >
+	<br />
+	
+</div>
+<div id="CreateScreenWrapper" style="float: left;">
+
     <div id="welcome"> Hi </div>
     <div id="gameid">New game id created: </div><br />
 
@@ -353,7 +383,12 @@
     <br />
     <input id="btnJoinLobby" type="submit" value="Join Game" />
 </div>
-<div id="LobbyScreenWrapper" style="display: none;">
+
+<div style="float: left; width: 30px;" >
+	<br />
+	
+</div>
+<div id="LobbyScreenWrapper" style="float: left;">
     <div id="displayjoinedplayers"> Waiting for all players to join. <br></div>
     <input id="btnStartGame" style="display: none;" type="submit" value="StartGame" />
 </div>
@@ -480,9 +515,9 @@
 <div id = "soundbar">
 <menu class="medium">	
     <audio id = "player" src="sound/1.mp3" loop="true" autoplay="true" ></audio>
-    <button class="play" onclick="document.getElementById('player').play()"><img src="images/play-button.png" height="35"/></button>
-    <button class="pause" onclick="document.getElementById('player').pause()"><img src="images/pause.png" height="35"/></button>
-    <button class="stop" onclick="document.getElementById('player').muted=!document.getElementById('player').muted"><img src="images/mute.png" height="35"/></button>
+    <button id = "playbtn" class="play" onclick="document.getElementById('player').play()"><img src="images/play-button.png" height="35"/></button>
+    <button id = "playbtn" class="pause" onclick="document.getElementById('player').pause()"><img src="images/pause.png" height="35"/></button>
+    <button id = "playbtn" class="stop" onclick="document.getElementById('player').muted=!document.getElementById('player').muted"><img src="images/mute.png" height="35"/></button>
 </div>
 </menu>
 
