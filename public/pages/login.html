@@ -74,10 +74,14 @@ Licence URI: http://www.os-templates.com/template-terms
 		<form id ="form-name">
 		<table align="center" width="30%" border="0">
 		<tr>
-		<td><input type="text" id="email" placeholder="Your Email" required /></td>
+		<td><input type="text" id="email" placeholder="Your Email" required /> <br>
+		<div id = "error1" style ="display: none; color:red; margin-top:0px"> Email id not registered !!</div>
+		</td>
 		</tr>
 		<tr>
-		<td><input type="password" id="pass" placeholder="Your Password" required /></td>
+		<td><input type="password" id="pass" placeholder="Your Password" required /><br>
+		<div id = "error2" style ="display: none; color:red; margin-top:0px"> Password incorrect !! </div>
+		</td>
 		</tr>
 		<tr>
 		<td><button type="submit" name="btn-login">Sign In</button></td>
@@ -109,13 +113,19 @@ Licence URI: http://www.os-templates.com/template-terms
 			
 			socket.on('is successful login', function(data){
 				if(data == "proceed"){
+				$('#error1').hide();
+				$('#error2').hide();
 				window.location.href = "home.html";
 				}				
 				else if(data == "not registered"){
-					alert('Email ID not registered!!');
+					$('#error1').show();
+					$('#error2').hide();
+					/*alert('Email ID not registered!!');*/
 				}
 				else if(data == "password incorrect"){
-					alert('Incorrect Password!!');
+					$('#error1').hide();
+					$('#error2').show();
+					/*alert('Incorrect Password!!');*/
 				}
 				else{
 				alert("Error!!!")}
