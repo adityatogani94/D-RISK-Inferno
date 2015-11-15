@@ -24,6 +24,16 @@
     <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 
     <style type="text/css" media="screen">
+		@keyframes anim1 {
+		from {
+			opacity: 0; 
+		}
+
+		to {
+			opacity: 1;
+			}
+		}
+		
 		#HomeScreenWrapper {
 			left: 20px
 			top: 20px;
@@ -31,7 +41,8 @@
 			border: 10px solid #ff3300;
 			padding: 40px; 
 			width: 300px;
-			height: 450px;    
+			height: 450px; 
+			
 		}
 		#CreateScreenWrapper{
 			top: 20px;
@@ -39,7 +50,8 @@
 			border: 10px solid #0000FF;
 			padding: 40px; 
 			width: 300px;
-			height: 450px;    
+			height: 450px;
+			animation-name: anim1;
 		}
 		#LobbyScreenWrapper{
 			top: 20px;
@@ -47,7 +59,8 @@
 			border: 10px solid #008000;
 			padding: 40px; 
 			width: 300px;
-			height: 450px;    
+			height: 450px;
+			animation-name: anim1;
 		}
         #canvas {
 
@@ -357,7 +370,7 @@
 	<br />
 	
 </div>
-<div id="CreateScreenWrapper" style="float: left;">
+<div id="CreateScreenWrapper" style="float: left; display: none;">
 
     <div id="welcome"> Hi </div>
     <div id="gameid">New game id created: </div>
@@ -391,7 +404,7 @@
 	<br />
 	
 </div>
-<div id="LobbyScreenWrapper" style="float: left;">
+<div id="LobbyScreenWrapper" style="float: left; display: none;">
     <div id="displayjoinedplayers"> Waiting for all players to join.<br></div>
     <input id="btnStartGame" style="display: none;" type="submit" value="StartGame" />
 </div>
