@@ -28,34 +28,31 @@ hr {
     border-style: inset;
     border-width: 1px;
 }
-
 p{
-       font-family: 'Josefin Sans', sans-serif;
-       font-size: 14px;
-       color: darkred;
-       font-weight: bold;
-       font-size: 20px;
+			font-family: 'Josefin Sans', sans-serif;
+            font-size: 14px;
+            color: darkred;
+            font-weight: bold;
+			font-size: 20px;
 }
-
 h2{
 
-        font-family: 'Covered By Your Grace', cursive;
-        font-size: 14px;
-        color: darkred;
-        font-weight: bold;
-	font-size: 40px;
-	color: red;
+			font-family: 'Covered By Your Grace', cursive;
+            font-size: 14px;
+            color: darkred;
+            font-weight: bold;
+			font-size: 40px;
+			color: red;
 
 }
-
 h5{
 
-	font-family: 'Covered By Your Grace', cursive;
-        font-size: 14px;
-        color: darkred;
-        font-weight: bold;
-	font-size: 40px;
-	color: red;
+			font-family: 'Covered By Your Grace', cursive;
+            font-size: 14px;
+            color: darkred;
+            font-weight: bold;
+			font-size: 40px;
+			color: red;
 
 }
 </style>
@@ -78,8 +75,8 @@ h5{
 		<li class="active"><a href="rules.html">Game Instructions</a></li>
 		<li><a href="aboutUs.html">About us</a></li>
 		<li><a href="sidebar-left.html">Timeline</a></li>
-		<li><a href="login.html">Login</a></li>
-		<li><a href="signup.html">Sign up</a></li>
+		<li><a href="login.php">Login</a></li>
+		<li><a href="signup.php">Sign up</a></li>
         <!-- ################################################################################################ -->
       </ul>
     </nav>
@@ -110,8 +107,6 @@ h5{
 	<div class="sidebar one_quarter first"> 
       <!-- ################################################################################################ -->
       <h6 style="color:black"><b><font size = "4">Contents</font></b></h6>
-      
-      
       <nav class="sdb_holder">
         <ul>
           <li><a href="#Map" style="color:black"><font size = "4">Maps</font></a></li>
@@ -137,15 +132,12 @@ h5{
 		<div id="Map">
 			<h2 style="color:black"><b>Map</b></h2>
 		</div>
-		
 			<ul>
 				<p style="color:black">The map is the center of attention in a game. The map is simply a collection of territories, where each territory is filled with a color that indicates the player that controls the territory, and a number that indicates how many armies are present on that territory.</p>
 				<p style="color:black">There are some territories that are neutral and are represented by gray color. The number of armies that are present in the neutral territories are two in the begining and will change as the game proceeds and are occupied by a specific player.</p>
 				<p style="color:black">All territories controlled by a specific players must keep at least one army on them at all times.</p>
-			</ul>
-		
+		</ul>
 		<hr>
-		
 		<div id="Controls">
 			<h2 style="color:black"><b>Controls</b></h2>
 		</div>
@@ -158,14 +150,13 @@ h5{
 			<h2 style="color:black"><b>Phases</b></h2>
 		</div>
 			<ul>
-				<p style="color:black">Each turn goes through three phases: Deploying Armies, Attack/Transfer, and Commit. These buttons can be seen on the left side of the main map once you start the game.</p>
-				<p style="color:black">The button <b>Deploy</b> is mainly to deploy your armies in the territories, <b>Attack</b> is for attacking the neighbouring territories, and <b>Execute</b> is for finalazing your turn. The user can wwitch between phases any time he wants. So if he is in deploy phase and before deploying his all the armies he can switch to attack phase and then come back to deploy again.</p>
+				<p style="color:black">Each turn goes through three phases: Deploying Armies, Attack/Transfer, and Execute. These buttons can be seen on the left side of the main map once you start the game.</p>
+				<p style="color:black">The button <b>Deploy</b> is mainly to deploy your armies in the territories, <b>Attack</b> is for attacking the neighbouring territories, and <b>Execute</b> is for finalazing your turn. The user cannot switch from one phase to another. So if he is in deploy phase and before deploying his all the armies he cannot switch to attack phase and then come back to deploy again, i.e. he has to deploy all the armies given to him first and then move to the next phase.</p>
 			<ul>
-				
 			<br>
 				<h2 style="color:black" id="Deploy"><b>Deploy Phase</b></h2>
 				<p style="color:black">Each turn, you receive new armies that you can add to territories you control.</p>
-				<p style="color:black">When a player is in a deploying phase he will be given a total of five armies which he can deploy in the territories controlled by him. Once the player reaches the limit of 5 armies he has to move to the next phase by clicking the next phase and then the attack phase to start attacking the neighbouring territories</p>
+				<p style="color:black">When a player is in a deploying phase he will be given a total of five armies which he can deploy in the territories controlled by him. Once the player reaches the limit of 5 armies he has to move to the next phase to start attacking the neighbouring territories</p>
 				<p style="color:black">The deploying of the army can be done by the left click of the mouse on the territories the player wants to deploy. Once an army is deployed in the territory the count of the army will increase in that territory by one, which can be seen on the territory as well as on the sidebar by hovering over the territory.</p>
 			<br>
 				<h2 style="color:black" id="Attack"><b>Attack/Transfer phase</b></h2>
@@ -179,14 +170,11 @@ h5{
 				<p style="color:black">Once the player clicks on this button the chance passes to the next player. Once the chance is passed to the next player, the first player will not be able to execute any other chances until the next player is done with his turn.</p>
 				<p style="color:black">This same will follow for if there are more than two players.</p>
 			</ul>
-			
 			<br>
 			
 			
 		</ul>
-		
 		<hr>
-		
 		<div id="Other">	
 				<h2 style="color:black"><b>Other Controls</b></h2>
 			</div>	
@@ -252,12 +240,12 @@ h5{
     </div>
     <div class="one_quarter">
       <h6 class="title">Have a query?</h6>
-      <form action="pages/query.html">
+      <form method="post" action="#">
         <fieldset>
           <legend>Newsletter:</legend>
           <input class="btmspace-15" type="text" value="" placeholder="Name">
           <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button type="submit" value="submit" href="pages/query.html">Submit</button>
+          <button type="submit" value="submit">Submit</button>
         </fieldset>
       </form>
     </div>
