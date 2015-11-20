@@ -234,7 +234,7 @@ mongo.connect(url, function(err, db){
         users = message.users;
         io.sockets.in(message.gameId).emit('updateState', message.name, "active");
 
-		if (users.length == 2) {
+		if (users.length == 2 && complexity == "large") {
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
@@ -244,8 +244,31 @@ mongo.connect(url, function(err, db){
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[0], 3);
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
 		}
+		
+		if (users.length == 2 && complexity == "medium") {
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Quebec", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Australia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "Siam", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
+		}
+		
+		if (users.length == 2 && complexity == "easy") {
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "EasternUnitedStates", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
+		}
 
-		if (users.length == 3){
+		if (users.length == 3 && complexity == "large"){
+			
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
@@ -261,8 +284,44 @@ mongo.connect(url, function(err, db){
 
 
 		}
+		
+		if (users.length == 3 && complexity == "medium"){
+			
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Australia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "Siam", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Irkutsk", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 3);
 
-		if (users.length ==4) {
+
+		}
+		
+		if (users.length == 3 && complexity == "easy"){
+			
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "EasternUnitedStates", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "EasternAustralia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "Siberia", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Ural", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users, users[1], 3);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 3);
+
+
+		}
+
+		if (users.length ==4 && complexity == "large") {
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
@@ -276,8 +335,24 @@ mongo.connect(url, function(err, db){
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[3], 2);
 		}
+		
+		if (users.length ==4 && complexity == "medium") {
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Australia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Congo", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[3], 2);
+		}
+		
 
-		if (users.length ==5){
+		if (users.length ==5 && complexity == "large"){
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
@@ -294,8 +369,26 @@ mongo.connect(url, function(err, db){
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[3], 2);
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[4], 2);
 		}
+		
+		if (users.length ==5 && complexity == "medium"){
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Australia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Congo", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('init', "WesternEurope", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[3], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[4], 2);
+		}
 
-		if (users.length ==6){
+		if (users.length ==6 && complexity == "large"){
 			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "NorthWestTerritory", "Red", users[0]);
 			io.sockets.in(message.gameId).emit('init', "WesternAustralia", "Blue", users[1]);
@@ -306,6 +399,28 @@ mongo.connect(url, function(err, db){
 			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
 			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Magenta", users[4]);
 			io.sockets.in(message.gameId).emit('init', "NorthernEurope", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('init', "Argentina", "Cyan", users[5]);
+			io.sockets.in(message.gameId).emit('init', "Peru", "Cyan", users[5]);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[0], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[1], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[2], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[3], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[4], 2);
+			io.sockets.in(message.gameId).emit('updateTerritoryInfo',users, users[5], 2);
+
+		}
+		
+			if (users.length ==6 && complexity == "medium"){
+			io.sockets.in(message.gameId).emit('init', "Alaska", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Alberta", "Red", users[0]);
+			io.sockets.in(message.gameId).emit('init', "Australia", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NewGuinea", "Blue", users[1]);
+			io.sockets.in(message.gameId).emit('init', "NorthAfrica", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Congo", "Green", users[2]);
+			io.sockets.in(message.gameId).emit('init', "Yakutsk", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "Kamchatka", "Purple", users[3]);
+			io.sockets.in(message.gameId).emit('init', "GreatBritain", "Magenta", users[4]);
+			io.sockets.in(message.gameId).emit('init', "WesternEurope", "Magenta", users[4]);
 			io.sockets.in(message.gameId).emit('init', "Argentina", "Cyan", users[5]);
 			io.sockets.in(message.gameId).emit('init', "Peru", "Cyan", users[5]);
 			io.sockets.in(message.gameId).emit('updateTerritoryInfo', users,users[0], 2);
